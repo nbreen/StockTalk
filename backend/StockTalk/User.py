@@ -156,11 +156,6 @@ class User:
 
 	def to_string(self):
 		return self.get_username()
-      
-#MAIN
-u1 = User()
-u1.set_username("Jim")
-print(u1.to_string())
 
 
 
