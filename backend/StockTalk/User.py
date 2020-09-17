@@ -124,6 +124,10 @@ class User:
 		#implement later
 		pass
 	
+	def like_post(self, post):
+		#implement later
+		pass
+	
 	def follow_topic(self, topic):
 		self.topics_following.append(topic)
 
