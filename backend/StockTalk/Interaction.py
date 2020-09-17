@@ -3,10 +3,6 @@
 
 #imports
 from datetime import date
-from .user import User
-from .topic import Topic
-from .post import Post
-from .comment import Comment
 
 #Interaction class
 class Interaction:

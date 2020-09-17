@@ -15,7 +15,7 @@ class User:
 		self.password = ""
 		self.name = ""
 		self.bio = ""
-		self.profile_image = Image.open("pic.jpg")
+		self.profile_image = Image.open("Generic-Person-Image-for-Signatures.jpg")
 		self.stock_interests = []
 		self.investments = {}
 		self.followers = []
@@ -156,11 +156,6 @@ class User:
 
 	def to_string(self):
 		return self.get_username()
-      
-#MAIN
-u1 = User()
-u1.set_username("Jim")
-print(u1.to_string())
 
 
 

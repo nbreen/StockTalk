@@ -3,8 +3,6 @@
 
 #imports
 from datetime import date
-from .user import User
-from .post import Post
 
 #Comment class
 class Comment:

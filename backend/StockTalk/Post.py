@@ -4,10 +4,6 @@
 #imports
 #install PIL using "pip install Pillow" in cmd
 from PIL import Image
-from datetime import date
-from .user import User
-from .topic import Topic
-from .comment import Comment
 
 #Post class
 class Post:

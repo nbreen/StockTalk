@@ -2,10 +2,6 @@
 # coding: utf-8
 
 #imports
-from .user import User
-from .topic import Topic
-from .post import Post
-from .comment import Comment
 
 #Timeline class
 class Timeline:
