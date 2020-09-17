@@ -15,7 +15,7 @@ class User:
 		self.password = ""
 		self.name = ""
 		self.bio = ""
-		self.profile_image = Image.open("pic.jpg")
+		self.profile_image = Image.open("Generic-Person-Image-for-Signatures.jpg")
 		self.stock_interests = []
 		self.investments = {}
 		self.followers = []
