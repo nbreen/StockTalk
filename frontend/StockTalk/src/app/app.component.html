@@ -1,20 +1,11 @@
 
-<div class="container">
-  <h2 class="d-flex justify-content-center"> Welcome to StockTalk! </h2>
-  <h5 class="d-flex justify-content-center"> Create a new account </h5>
-
-  <nav class="navbar justify-content-center navbar-expand-sm bg-light">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <button routerLink="login"
-          class="m-1 btn btn-light btn-outline-primary" Button>Login</button>
-          <button routerLink="signup"
-          class="m-1 btn btn-light btn-outline-primary" Button>Sign up</button>
-      </li>
-    </ul>
-  </nav>
-
-
-  <router-outlet></router-outlet>
-</div>
-
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <!--  <span>HOME</span> -->
+     <span><a href="/">StockTalk</a></span>
+     <span class="spacer"></span>
+     <a mat-button routerLink="signup">Signup</a>
+     <a mat-button routerLink="login">Login</a>
+  </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>
