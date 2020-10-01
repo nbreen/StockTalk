@@ -12,12 +12,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // import for UI
 import { MyMaterialModule } from './material.module';
+import { AlltopicsComponent } from './alltopics/alltopics.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    AlltopicsComponent
   ],
   imports: [
     BrowserModule,
