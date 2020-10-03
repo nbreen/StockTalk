@@ -8,4 +8,5 @@ class UserSerializer(serializers.ModelSerializer):
                     'Username',
                     'Email',
                     'Password',
-                    'DateOfJoining')
+                    'DateOfJoining',
+                    'UserAge')
