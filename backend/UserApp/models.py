@@ -8,4 +8,4 @@ class Users(models.Model):
     Email = models.CharField(max_length=100)
     Password = models.CharField(max_length=100)
     DateOfJoining = models.DateTimeField()
-    UserAge = models.IntegerField(min_value = 13)
+    UserAge = models.IntegerField(min_value = 18)
