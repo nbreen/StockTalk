@@ -2,10 +2,10 @@
     <span>ALL TOPICS</span>
   </mat-toolbar>
   <mat-card class="my-card">
-     <mat-card-content>
-        
-     </mat-card-content>
-     <mat-card-actions>
-        
-     </mat-card-actions>
+     <h2>{{ title }}</h2>
+     <ul>
+          <li *ngFor="let topic of topics">
+              {{ topic }}
+          </li>
+     </ul>
   </mat-card>
