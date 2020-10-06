@@ -13,13 +13,13 @@ class Timeline:
 	
 	#variables
 	def __init__(self):
-		self.is_user_timeline = False
-		self.is_user_interaction_timeline = False
-		self.is_topic_timeline = False
+		#self.is_user_timeline = False
+		#self.is_user_interaction_timeline = False
+		#self.is_topic_timeline = False
 		self.user = User.User()
 		self.topic = Topic.Topic()
 		self.timeline = []
-	
+	'''
 	#setter methods
 	def set_is_user_timeline(self):
 		self.is_user_timeline = True
@@ -35,7 +35,7 @@ class Timeline:
 		self.is_user_timeline = False
 		self.is_user_interaction_timeline = False
 		self.is_topic_timeline = True
-
+	'''
 	def set_user(self, user):
 		self.user = user
 
@@ -43,6 +43,7 @@ class Timeline:
 		self.topic = topic
 	
 	#getter methods
+	'''
 	def get_is_user_timeline(self):
 		return self.is_user_timeline
 
@@ -51,7 +52,7 @@ class Timeline:
 
 	def get_is_topic_timeline(self):
 		return self.is_topic_timeline
-
+	'''
 	def get_timelime(self):
 		return self.timeline
 
@@ -63,6 +64,6 @@ class Timeline:
 	def remove_from_timeline(self, post):
 		self.timeline.remove(post)
 
-	def add_to_timeline(self, post):
+	def add_post_to_timeline(self, post):
 		self.timeline.append(post)
 

@@ -35,6 +35,8 @@ class User:
 		self.saved_posts = []
 		self.interactions = []
 		self.recent_topics = []
+		#self.user_timeline = Timeline.Timeline()
+		#self.user_interaction_timeline = Timeline.Timeline()
         
 		#constant variables
 		self.NUMBER_OF_RECENT_TOPICS_TO_TRACK = 10
@@ -101,8 +103,13 @@ class User:
 
 	def get_interactions(self):
 		return self.interactions
-	
 
+	#def get_user_timeline(self):
+		#return self.user_timeline
+
+	#def get_user_interaction_timeline(self):
+		#return self.user_interation_timeline
+	
 	#general methods
 	def edit_investments(self, investment, value):
 		self.investments[investment] = value
@@ -110,6 +117,13 @@ class User:
 	def follow_user(self, user):
 		if user not in self.following:
 			self.following.append(user)
+
+		#record interaction
+		new_interaction = Interaction.Interaction()
+		new_interaction.set_user(self)
+		new_interaction.set_is_follow_interaction()
+		new_interaction.set_text()
+		self.add_interaction(new_interaction)
 
 	def unfollow_user(self, user):
 		if user in self.following:
@@ -156,6 +170,7 @@ class User:
 		if topic is not None:
 			new_post.set_topic(topic)
 			self.topics_used.append(topic)
+			#TODO: update topic's posts (timeline) needs access to topics in database
 
 			#update recent topics used by user
 			if len(self.recent_topics) > self.NUMBER_OF_RECENT_TOPICS_TO_TRACK:
@@ -324,6 +339,14 @@ class User:
 		if topic not in self.topics_following:
 			self.topics_following.append(topic)
 
+		#record interaction
+		new_interaction = Interaction.Interaction()
+		new_interaction.set_user(self)
+		new_interaction.set_topic_interacted_with(topic)
+		new_interaction.set_is_follow_interaction()
+		new_interaction.set_text()
+		self.add_interaction(new_interaction)
+
 	def unfollow_topic(self, topic):
 		if topic in self.topics_following:
 			self.topics_following.remove(topic)
@@ -342,7 +365,6 @@ class User:
 	def add_comment(self, post, text):
 		#add new comment
 		new_comment = Comment.Comment()
-		new_comment.set_author(self)
 		new_comment.set_post(post)
 		new_comment.set_text(text)
 		post.add_comment(new_comment)

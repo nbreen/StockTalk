@@ -17,6 +17,7 @@ class Topic:
 		self.popularity = 0
 		self.is_trending = False
 		self.MA_time_diff = 0
+		self.posts = []
 	
 	#setter methods
 	def set_name(self, name):
@@ -41,13 +42,22 @@ class Topic:
 	def get_MA_time_diff(self):
 		return self.MA_time_diff
 
+	def get_posts(self):
+		return self.posts
+
 	#general methods
 	def increment_popularity(self):
 		self.popularity += 1
 
 	def update_MA_time_diff(self):
-		#implement later
+		#TODO: implement in later sprint
 		pass
+
+	def add_post(self, post):
+		posts.append(post)
+
+	def remove_post(self, post):
+		self.posts.remove(post)
 
 	def to_string(self):
 		return get_name()
