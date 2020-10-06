@@ -133,7 +133,6 @@ class User:
 			for row in reader:
 				for field in row:
 					if field == potential_topic[0]:
-						print(potential_topic[0])
 						f.close()
 						return potential_topic[0]
 		f.close()
