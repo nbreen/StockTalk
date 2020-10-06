@@ -8,7 +8,7 @@ CREATE TABLE User (
 
     FullName VARCHAR(64) NOT NULL, 
 
-    BirthDate DATE NOT NULL, 
+    Age INTEGER NOT NULL, 
 
     Bio VARCHAR(256), 
 
