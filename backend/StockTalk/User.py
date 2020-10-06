@@ -35,8 +35,7 @@ class User:
 		self.saved_posts = []
 		self.interactions = []
 		self.recent_topics = []
-		#self.user_timeline = Timeline.Timeline()
-		#self.user_interaction_timeline = Timeline.Timeline()
+
         
 		#constant variables
 		self.NUMBER_OF_RECENT_TOPICS_TO_TRACK = 10
@@ -103,12 +102,6 @@ class User:
 
 	def get_interactions(self):
 		return self.interactions
-
-	#def get_user_timeline(self):
-		#return self.user_timeline
-
-	#def get_user_interaction_timeline(self):
-		#return self.user_interation_timeline
 	
 	#general methods
 	def edit_investments(self, investment, value):
