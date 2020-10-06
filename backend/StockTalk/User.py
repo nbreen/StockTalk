@@ -9,6 +9,8 @@ import Interaction
 import Timeline
 import Topic
 import Post
+import re
+import csv
 
 
 #User class
@@ -123,8 +125,22 @@ class User:
 		#implement later
 		pass
 
+	#check if post has a valid topic
+	def check_for_topic(self, text):
+		potential_topic = re.findall(r"#(\w+)",text)
+		with open("valid_tickers.csv", "r") as f:
+			reader = csv.reader(f, delimiter=',')
+			for row in reader:
+				for field in row:
+					if field == potential_topic[0]:
+						print(potential_topic[0])
+						f.close()
+						return potential_topic[0]
+		f.close()
+		return None
+		
 	#pass 'None' to image and/or topic if not used. Pass an empty string "" to text if image
-	def add_post(self, text, image, topic):
+	def add_post(self, text, image):
 		#create new post
 		new_post = Post.Post()
 		new_post.set_author(self)
@@ -137,13 +153,14 @@ class User:
 			new_post.set_post_text(text)
 		
 		#set topic if given
+		topic = self.check_for_topic(text)
 		if topic is not None:
 			new_post.set_topic(topic)
 			self.topics_used.append(topic)
 
 			#update recent topics used by user
-			if len(self.recent_topics > self.NUMBER_OF_RECENT_TOPICS_TO_TRACK):
-				del self.recent_topics[0]
+			if len(self.recent_topics) > self.NUMBER_OF_RECENT_TOPICS_TO_TRACK:
+				del self.recent_topics
 				self.recent_topics.append(topic)
 			else:
 				self.recent_topics.append(topic)

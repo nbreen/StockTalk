@@ -26,13 +26,12 @@ print(p3.get_id())
 
 u1.dislike_post(p1)
 u1.like_post(p1)
-u1.add_post("some post text", None, None)
+u1.add_post("some post text #tsla #someticker", None)
 
 for interaction in u1.get_interactions():
 	print(interaction.to_string())
 
 print(p1.get_dislikes())
-
 
 for post in u1.get_posts():
 	print(post.to_string())
