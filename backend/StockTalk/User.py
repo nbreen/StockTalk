@@ -115,6 +115,7 @@ class User:
 		new_interaction = Interaction.Interaction()
 		new_interaction.set_user(self)
 		new_interaction.set_is_follow_interaction()
+		new_interaction.set_user_interacted_with(user)
 		new_interaction.set_text()
 		self.add_interaction(new_interaction)
 
