@@ -15,7 +15,7 @@ def userApi(request,id=0):
         user_serializer = UserSerializer(user, many=True)
         return JsonResponse(user_serializer.data, safe=False)
 
-    elif request.method=='ADD':
+    elif request.method=='POST':
         user_data = JSONParser().parse(request)
         user_serializer = UserSerializer(data=user_data)
         if user_serializer.is_valid():
@@ -24,7 +24,7 @@ def userApi(request,id=0):
         print(user_serializer.errors)
         return JsonResponse("Failed to add user", safe=False)
 
-    elif request.method=='UPDATE':
+    elif request.method=='PUT':
         user_data = JSONParser().parse(request)
         user = Users.objects.get(UserID=user_data['UserID'])
         user_serializer = UserSerializer(user, data=user_data) 

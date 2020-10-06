@@ -10,7 +10,8 @@ import { catchError } from 'rxjs/operators';
 
 export class CrudService {
 
-  private apiServer = "http://<address of our server>"
+  //private apiServer = "http://127.0.0.1:8000"
+  readonly APIUrl = "http://127.0.0.1:8000";
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -21,7 +22,7 @@ export class CrudService {
   constructor(private httpClient: HttpClient) { }
 
   getAllUsers(): Observable<User> {
-    return this.httpClient.get<User>(this.apiServer + "path")
+    return this.httpClient.get<User>(this.APIUrl + "/user/")
     
     /*
     .pipe(
@@ -31,8 +32,8 @@ export class CrudService {
     
   }
 
-  createUser(user): Observable<User> {
-      return this.httpClient.post<User>(this.apiServer + "path", JSON.stringify(user), this.httpOptions)
+  createUser(val:any) {
+      return this.httpClient.post<User>(this.APIUrl + "/user/", val);
 
       /*
       .pipe(
@@ -42,7 +43,7 @@ export class CrudService {
   }
 
   getUserById(id) : Observable<User> {
-    return this.httpClient.get<User>(this.apiServer + "path")
+    return this.httpClient.get<User>(this.APIUrl + "/user/")
 
     /*
     .pipe(
@@ -52,7 +53,7 @@ export class CrudService {
   }
 
   updateUser(id, user): Observable<User> {
-    return this.httpClient.put<User>(this.apiServer + "path", JSON.stringify(user), this.httpOptions)
+    return this.httpClient.put<User>(this.APIUrl + "/user/", JSON.stringify(user), this.httpOptions)
 
     /*
     .pipe(
@@ -63,7 +64,7 @@ export class CrudService {
   }
 
   deleteUser(id): Observable<User> {
-    return this.httpClient.delete<User>(this.apiServer + "path", this.httpOptions)
+    return this.httpClient.delete<User>(this.APIUrl + "/user/", this.httpOptions)
 
     /*
     .pipe(
