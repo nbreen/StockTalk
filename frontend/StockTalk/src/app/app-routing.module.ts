@@ -1,3 +1,4 @@
+import { CommentComponent } from './alltopics/topic/post/comment/comment.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
@@ -8,7 +9,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: 'login', component:LoginComponent},
   { path: 'signup', component:SignupComponent},
-  { path: 'alltopics', component:AlltopicsComponent}
+  { path: 'alltopics', component:AlltopicsComponent},
+  { path: 'comment-test', component:CommentComponent}
 ];
 
 @NgModule({

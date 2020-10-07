@@ -15,6 +15,7 @@ import { MyMaterialModule } from './material.module';
 import { AlltopicsComponent } from './alltopics/alltopics.component';
 import { TopicComponent } from './alltopics/topic/topic.component';
 import { PostComponent } from './alltopics/topic/post/post.component';
+import { CommentComponent } from './alltopics/topic/post/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PostComponent } from './alltopics/topic/post/post.component';
     SignupComponent,
     AlltopicsComponent,
     TopicComponent,
-    PostComponent
+    PostComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
