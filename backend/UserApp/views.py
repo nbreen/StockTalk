@@ -18,7 +18,7 @@ def userApi(request,id=0):
     elif request.method=='POST':
         user_data = JSONParser().parse(request)
         user_serializer = UserSerializer(data=user_data)
-        if user_serializer.is_valid() and user_data['UserAge'] >= 18:
+        if user_serializer.is_valid() and int(user_data['UserAge']) >= 18:
             user_serializer.save()
             return JsonResponse("User added successfully", safe=False)
         if(user_data['UserAge'] < 18):

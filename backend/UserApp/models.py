@@ -4,8 +4,12 @@ from django.db import models
 
 class Users(models.Model):
     UserID = models.AutoField(primary_key=True)
-    Username = models.CharField(max_length=100)
-    FullName = models.CharField(max_length=100, default='')
-    Email = models.CharField(max_length=100)
-    Password = models.CharField(max_length=100)
+    Username = models.CharField(max_length=64)
+    FullName = models.CharField(max_length=64, default='')
+    Email = models.CharField(max_length=64)
+    Password = models.CharField(max_length=64)
     UserAge = models.IntegerField(default=0)
+    Bio = models.CharField(max_length=256, default='empty')
+    ProfileImage = models.CharField(max_length=256, default='empty')
+
+

@@ -25,8 +25,14 @@ SECRET_KEY = '5if-b!ppd&r2g!!27^(0-d=)15v6ibkj(@lkb+(b9$2q1z9y-s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+CORS_ORIGIN_ALLOW_ALL = True # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:4200',
+] # If this is used, then not need to use `CORS_ORIGIN_ALLOW_ALL = True`
+CORS_ORIGIN_REGEX_WHITELIST = [
+    'http://localhost:4200',
+]
 
 # Application definition
 
@@ -44,9 +50,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -80,10 +86,10 @@ WSGI_APPLICATION = 'StockTalk.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'djangodatabase',
-        'USER': 'dbadmin',
-        'PASSWORD': 'WillSztej',
-        'HOST': 'localhost',
+        'NAME': 'StockTalk',
+        'USER': 'admin',
+        'PASSWORD': '13Team13',
+        'HOST': 'cs307team13.cwbgzf4cyva5.us-east-2.rds.amazonaws.com',
         'PORT': '3306',
     }
 }

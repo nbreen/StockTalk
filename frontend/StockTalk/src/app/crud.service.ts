@@ -3,6 +3,7 @@ import { User } from '../app/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { isPrivateIdentifier } from 'typescript';
  
 @Injectable({
   providedIn: 'root'
@@ -10,15 +11,14 @@ import { catchError } from 'rxjs/operators';
 
 export class CrudService {
 
-  //private apiServer = "http://127.0.0.1:8000"
   readonly APIUrl = "http://127.0.0.1:8000";
-
+  
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
   }
-
+  
   constructor(private httpClient: HttpClient) { }
 
   getAllUsers(): Observable<User> {
@@ -32,8 +32,8 @@ export class CrudService {
     
   }
 
-  createUser(val:any) {
-      return this.httpClient.post<User>(this.APIUrl + "/user/", val);
+  addUser(val:any) {
+      return this.httpClient.post<any>(this.APIUrl + "/user/", val);
 
       /*
       .pipe(
@@ -51,6 +51,8 @@ export class CrudService {
     );
     */
   }
+
+  
 
   updateUser(id, user): Observable<User> {
     return this.httpClient.put<User>(this.APIUrl + "/user/", JSON.stringify(user), this.httpOptions)

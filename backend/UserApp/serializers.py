@@ -7,6 +7,9 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('UserID',
                     'Username',
                     'Email',
+                    'FullName',
+                    'Email',
                     'Password',
-                    'DateOfJoining',
-                    'UserAge')
+                    'UserAge',
+                    'Bio',
+                    'ProfileImage')

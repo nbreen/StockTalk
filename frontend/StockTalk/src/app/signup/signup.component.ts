@@ -15,12 +15,13 @@ export class SignupComponent implements OnInit {
   constructor(private service:CrudService) { }
   
   @Input() user:any;
-  UserID:string;
   Username:string;
   FullName:string;
   Email:string;
   Password:string;
   UserAge:number;
+  Bio:string;
+  ProfileImage:string;
 
 
   resetForm(form?:NgForm) {
@@ -33,16 +34,20 @@ export class SignupComponent implements OnInit {
       FullName: "",
       Email: "",
       Password: "",
-      UserAge: 0
+      UserAge: 0,
+      Bio: "",
+      ProfileImage: ""
     }
   }
   
   ngOnInit(): void {
-    this.UserID=this.user.UserID;
     this.Username=this.user.Username;
     this.FullName=this.user.FullName;
     this.Email=this.user.Email;
     this.Password=this.user.Password;
+    this.UserAge=this.user.UserAge;
+    this.Bio=this.user.Bio;
+    this.ProfileImage=this.user.ProfileImage;
   }
 
   public CalculateAge(): void {
@@ -53,13 +58,15 @@ export class SignupComponent implements OnInit {
   }
 
   addUser() {
-    var val = {UserID:this.UserID,
+    var val = {
                 Username:this.Username,
                 FullName:this.FullName,
                 Email:this.Email,
                 Password:this.Password,
-                UserAge:this.UserAge}
-    this.service.createUser(val).subscribe(res=>{
+                UserAge:this.UserAge,
+                Bio:this.Bio,
+                ProfileImage:this.ProfileImage}
+    this.service.addUser(val).subscribe(res=>{
       alert(res.toString())});
 
   }
