@@ -10,8 +10,14 @@ export class TopicComponent implements OnInit {
   name: string;
   popularity: number;
   is_trending: boolean;
+  is_stock: boolean;
 
-  constructor() { }
+  constructor() {
+    this.name = "NoNameTopic"
+    this.popularity = -1;
+    this.is_trending = false;
+    this.is_stock = false;
+   }
 
   ngOnInit(): void {
   }
