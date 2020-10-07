@@ -16,6 +16,7 @@ import { AlltopicsComponent } from './alltopics/alltopics.component';
 import { TopicComponent } from './alltopics/topic/topic.component';
 import { PostComponent } from './alltopics/topic/post/post.component';
 import { CommentComponent } from './alltopics/topic/post/comment/comment.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CommentComponent } from './alltopics/topic/post/comment/comment.compone
     AlltopicsComponent,
     TopicComponent,
     PostComponent,
-    CommentComponent
+    CommentComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
