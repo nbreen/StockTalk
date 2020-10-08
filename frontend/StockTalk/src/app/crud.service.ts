@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { User } from '../app/user';
+import { User, Topic, Post, Comment, 
+         PostVotes, CommentVotes, UserFollowsTopic, 
+         UserFollowsUser, UserSavesPost } from './Interfaces';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -21,8 +23,16 @@ export class CrudService {
   
   constructor(private httpClient: HttpClient) { }
 
-  getAllUsers(): Observable<User> {
-    return this.httpClient.get<User>(this.APIUrl + "/user/")
+  private instanceOfObj(object : any) {
+    return object.Type;
+  }
+  
+
+  getAll<T>(type : T): Observable<T> {
+
+    var typeStr = this.instanceOfObj(type);
+
+    return this.httpClient.get<T>(this.APIUrl + typeStr);
     
     /*
     .pipe(
@@ -32,10 +42,11 @@ export class CrudService {
     
   }
 
-  addUser(val:any) {
+  addUser<T>(val:any, type : T) {
 
-      let body = JSON.stringify(val);
-      return this.httpClient.post<any>(this.APIUrl + "/user/", body);
+    var typeStr = this.instanceOfObj(type);
+
+      return this.httpClient.post<T>(this.APIUrl + typeStr, JSON.stringify(val), this.httpOptions);
 
       /*
       .pipe(
@@ -44,8 +55,11 @@ export class CrudService {
       */
   }
 
-  getUserById(id) : Observable<User> {
-    return this.httpClient.get<User>(this.APIUrl + "/user/")
+  getUserById<T>(id : Number, type : T) : Observable<T> {
+
+    var typeStr = this.instanceOfObj(type);
+
+    return this.httpClient.get<T>(this.APIUrl + typeStr + id, this.httpOptions);
 
     /*
     .pipe(
@@ -56,8 +70,11 @@ export class CrudService {
 
   
 
-  updateUser(id, user): Observable<User> {
-    return this.httpClient.put<User>(this.APIUrl + "/user/", JSON.stringify(user), this.httpOptions)
+  updateUser<T>(id : Number, type : t, val : any): Observable<T> {
+
+    var typeStr = this.instanceOfObj(type);
+
+    return this.httpClient.put<T>(this.APIUrl + typeStr + id + JSON.stringify(val), this.httpOptions);
 
     /*
     .pipe(
@@ -67,8 +84,11 @@ export class CrudService {
 
   }
 
-  deleteUser(id): Observable<User> {
-    return this.httpClient.delete<User>(this.APIUrl + "/user/", this.httpOptions)
+  deleteUser<T>(id : Number, type : T): Observable<T> {
+
+    var typeStr = this.instanceOfObj(type);
+
+    return this.httpClient.delete<T>(this.APIUrl + typeStr + id, this.httpOptions);
 
     /*
     .pipe(
