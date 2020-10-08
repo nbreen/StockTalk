@@ -21,8 +21,9 @@ def userApi(request,id=0):
         if user_serializer.is_valid() and int(user_data['UserAge']) >= 18:
             user_serializer.save()
             return JsonResponse("User added successfully", safe=False)
-        if(user_data['UserAge'] < 18):
-            print("Error: You must be 18 or older to create an account!")
+        if (int(user_data['UserAge']) < 18):
+            return JsonResponse("Error: You must be 18 or older to create an account!",
+                safe=False)
         print(user_serializer.errors)
         return JsonResponse("Failed to add user", safe=False)
 

@@ -26,7 +26,6 @@ export class CrudService {
   private instanceOfObj(object : any) {
     return object.Type;
   }
-  
 
   getAll<T>(type : T): Observable<T> {
 
@@ -42,11 +41,10 @@ export class CrudService {
     
   }
 
-  addUser<T>(val:any, type : T) {
+  addUser(val:any) {
 
-    var typeStr = this.instanceOfObj(type);
-
-      return this.httpClient.post<T>(this.APIUrl + typeStr, JSON.stringify(val), this.httpOptions);
+    let body = JSON.stringify(val);
+      return this.httpClient.post<any>(this.APIUrl + "/user/", body);
 
       /*
       .pipe(
@@ -70,7 +68,7 @@ export class CrudService {
 
   
 
-  updateUser<T>(id : Number, type : t, val : any): Observable<T> {
+  updateUser<T>(id : Number, type : T, val : any): Observable<T> {
 
     var typeStr = this.instanceOfObj(type);
 
