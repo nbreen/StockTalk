@@ -1,1 +1,11 @@
-<p>post works!</p>
+<div class="bubble">
+    <h1>{{ Name }} (@{{ Username }})</h1>
+    <h2>{{ PostDate }}</h2>
+    <p>{{ Post }}</p>
+    <button mat-raised-button>Save Post</button>
+    <button mat-raised-button color="green">Upvote</button>
+    <button mat-raised-button color="red">Downvote</button>
+</div>
+
+<app-comment *ngFor="let comment of comments">
+</app-comment>

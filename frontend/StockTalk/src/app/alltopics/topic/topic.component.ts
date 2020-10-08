@@ -1,3 +1,4 @@
+import { CommentComponent } from './post/comment/comment.component';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

@@ -1,3 +1,4 @@
+import { PostComponent } from './alltopics/topic/post/post.component';
 import { CommentComponent } from './alltopics/topic/post/comment/comment.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'signup', component:SignupComponent},
   { path: 'alltopics', component:AlltopicsComponent},
   { path: 'comment-test', component:CommentComponent},
+  { path: 'post-test', component:PostComponent},
   { path: 'profile', component:ProfileComponent}
 ];
 
