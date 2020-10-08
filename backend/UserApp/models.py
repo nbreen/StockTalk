@@ -9,7 +9,6 @@ class Users(models.Model):
     Email = models.CharField(max_length=64)
     Password = models.CharField(max_length=64)
     UserAge = models.IntegerField(default=0)
-    Bio = models.CharField(max_length=256, default='empty')
-    ProfileImage = models.CharField(max_length=256, default='empty')
+
 
 

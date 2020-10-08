@@ -20,8 +20,6 @@ export class SignupComponent implements OnInit {
   Email:string;
   Password:string;
   UserAge:number;
-  Bio:string;
-  ProfileImage:string;
 
 
   resetForm(form?:NgForm) {
@@ -35,8 +33,6 @@ export class SignupComponent implements OnInit {
       Email: "",
       Password: "",
       UserAge: 0,
-      Bio: "",
-      ProfileImage: ""
     }
   }
   
@@ -46,8 +42,6 @@ export class SignupComponent implements OnInit {
     this.Email=this.user.Email;
     this.Password=this.user.Password;
     this.UserAge=this.user.UserAge;
-    this.Bio=this.user.Bio;
-    this.ProfileImage=this.user.ProfileImage;
   }
 
   public CalculateAge(): void {
@@ -64,8 +58,7 @@ export class SignupComponent implements OnInit {
                 Email:this.Email,
                 Password:this.Password,
                 UserAge:this.UserAge,
-                Bio:this.Bio,
-                ProfileImage:this.ProfileImage}
+                }
     this.service.addUser(val).subscribe(res=>{
       alert(res.toString())});
 
