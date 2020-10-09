@@ -5,7 +5,6 @@
 from datetime import datetime
 import User
 import Interaction
-import Timeline
 import Topic
 import Post
 

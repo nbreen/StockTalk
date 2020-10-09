@@ -5,7 +5,6 @@
 from datetime import datetime
 import User
 import Comment
-import Timeline
 import Topic
 import Post
 

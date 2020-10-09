@@ -6,7 +6,6 @@
 from PIL import Image
 import Comment
 import Interaction
-import Timeline
 import Topic
 import Post
 import re
