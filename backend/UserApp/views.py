@@ -24,6 +24,9 @@ def userApi(request,id=0):
         if (int(user_data['UserAge']) < 18):
             return JsonResponse("Error: You must be 18 or older to create an account!",
                 safe=False)
+        if (set(user_data['Password'])-set(user_data['Password'].lower())!=set() and set(user_data['Password'])-set(user_data['Password'].upper())!=set()):
+            return JsonResponse("Error: Your password is invalid! Make sure there is one upper and one lowecase letter.",
+                safe=False)
         print(user_serializer.errors)
         return JsonResponse("Failed to add user", safe=False)
 
