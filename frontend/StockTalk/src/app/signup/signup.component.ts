@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../shared/user.model';
 import { NgForm} from '@angular/forms';
 import { CrudService } from 'src/app/crud.service';
+import { Router, RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +14,7 @@ export class SignupComponent implements OnInit {
 
   public birthdate: Date;
 
-  constructor(private service:CrudService) { }
+  constructor(private service:CrudService, private router: Router) { }
   
   @Input() user:any;
   Username:string;
@@ -51,7 +53,7 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  addUser() {
+  signup() {
     var val = {
                 Username:this.Username,
                 FullName:this.FullName,
@@ -59,8 +61,9 @@ export class SignupComponent implements OnInit {
                 Password:this.Password,
                 UserAge:this.UserAge,
                 }
-    this.service.addUser(val).subscribe(res=>{
-      alert(res.toString())});
+    this.service.addUser(val).subscribe(result => {
+      this.router.navigate(["/login"])
+    });
 
   }
   

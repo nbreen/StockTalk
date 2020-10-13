@@ -8,12 +8,12 @@ import { AlltopicsComponent } from './alltopics/alltopics.component';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/', pathMatch: 'full' },
+  //{ path: '', redirectTo: '/', pathMatch: 'full' },
   { path: 'login', component:LoginComponent},
   { path: 'signup', component:SignupComponent},
   { path: 'alltopics', component:AlltopicsComponent},
-  { path: 'comment-test', component:CommentComponent},
-  { path: 'post-test', component:PostComponent},
+  //{ path: 'comment-test', component:CommentComponent},
+  //{ path: 'post-test', component:PostComponent},
   { path: 'profile', component:ProfileComponent}
 ];
 
@@ -21,4 +21,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

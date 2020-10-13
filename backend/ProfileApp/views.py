@@ -3,8 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 
-from UserApp.models import Profiles
-from UserApp.serializers import UserSerializer
+from ProfileApp.serializers import ProfileSerializer
 
 # Create your views here.
 @csrf_exempt
