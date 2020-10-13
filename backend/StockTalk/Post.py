@@ -8,7 +8,6 @@ from datetime import datetime
 import User
 import Comment
 import Interaction
-import Timeline
 import Topic
 
 #Post class

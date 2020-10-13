@@ -5,7 +5,6 @@
 import User
 import Comment
 import Interaction
-import Timeline
 import Post
 
 #Topic class

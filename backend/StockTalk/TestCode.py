@@ -7,7 +7,6 @@ from Post import Post
 from Comment import Comment
 from Interaction import Interaction
 from Topic import Topic
-from Timeline import Timeline
 
 u1 = User()
 u1.set_username("Kelly")
