@@ -17,6 +17,7 @@ import { TopicComponent } from './alltopics/topic/topic.component';
 import { PostComponent } from './alltopics/topic/post/post.component';
 import { CommentComponent } from './alltopics/topic/post/comment/comment.component';
 import { ProfileComponent } from './profile/profile.component';
+import { Globals } from './Globals';;
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { ProfileComponent } from './profile/profile.component';
     ReactiveFormsModule,
     MyMaterialModule
   ],
-  providers: [CrudService],
+  providers: [CrudService, Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

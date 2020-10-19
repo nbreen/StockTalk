@@ -1,62 +1,60 @@
 export interface User {
-    UserID ?: Number
-    Username : String;
-    FullName : String;
-    Email : String;
-    Password : String;
-    UserAge : Number;
-    Bio ?: String;
-    ProfileImage ?: String;
+    UserID ?: number
+    Username : string;
+    FullName : string;
+    Email : string;
+    Password : string;
+    UserAge : number;
 }
 
 export interface Topic {
-    TopicName : String;
-    IsStock : Boolean;
+    TopicName : string;
+    IsStock : boolean;
 }
 
 export interface Post {
-    PostID : Number;
-    Username : String;
-    TopicName : String;
-    PostType : Number;
-    Post : String;
+    PostID : number;
+    Username : string;
+    TopicName : string;
+    PostType : number;
+    Post : string;
     PostDate : Date;
-    Anonymous : Boolean;
+    Anonymous : boolean;
 }
 
 export interface Comment {
-    CommentID : Number;
-    Username : String;
-    PostID : Number;
-    Comment : String;
+    CommentID : number;
+    Username : string;
+    PostID : number;
+    Comment : string;
     CommentDate : Date;
 }
 
 export interface PostVotes {
-    Username : String;
-    PostID : Number;
-    Vote : Number;
+    Username : string;
+    PostID : number;
+    Vote : number;
 }
 
 export interface CommentVotes {
-    Username : String;
-    CommentID : Number;
-    Vote : Number;
+    Username : string;
+    CommentID : number;
+    Vote : number;
 }
 
 export interface UserFollowsTopic {
-    Username : String;
-    TopicName : String;
+    Username : string;
+    TopicName : string;
 }
 
 export interface UserFollowsUser {
-    DoingFollowing : String;
-    BeingFollowed : String;
+    DoingFollowing : string;
+    BeingFollowed : string;
 }
 
 export interface UserSavesPost {
-    Username : String;
-    PostID : Number;
+    Username : string;
+    PostID : number;
 }
 
 export interface Profile {

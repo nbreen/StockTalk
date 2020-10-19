@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Profile } from '../shared/profile.model';
-import { User } from '../shared/user.model';
-import { CrudService } from '../crud.service';
+import { CrudService } from '../crud.service'; 
+import { Globals } from '../Globals';
+import { User, Profile } from '../Interfaces';
 
 @Component({
   selector: 'app-profile',
@@ -14,19 +14,23 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private backend : CrudService
-  ) { } 
+    private backend : CrudService,
+    private globals: Globals
+  ) {this.currentUser = this.globals.currentUser } 
 
   profile: Profile;
   currentUser: User;
   isUser: boolean;
 
   ngOnInit(): void {
-    this.route.data.subscribe(
+    /*this.route.data.subscribe(
       (data: {user: User}) => {
         this.currentUser = data.user;
       }
-    );
+    );*/
+    this.backend.getUserProfile(this.currentUser.Username)
+    .subscribe(res => this.profile)
+    console.log("Got profile", this.profile);
   }
 
   /*

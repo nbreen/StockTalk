@@ -101,9 +101,9 @@ export class CrudService {
    
   }
 
-  login(input: any) {
-    console.log("Input is", input);
-    this.httpClient.post(this.APIUrl, JSON.stringify(input))
+  login(userName: String) {
+    console.log("Input is", userName);
+    this.httpClient.post(this.APIUrl, JSON.stringify(userName))
         .subscribe(result => {
           this.router.navigate(["/alltopics"], { "queryParams": result});
         })

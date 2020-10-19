@@ -25,6 +25,11 @@ export class LoginComponent implements OnInit {
     } else {
       console.log("No data")
     }
+
+    // The server should respond with the User object of the user logged in
+    // or NULL. After the request from the server comes back this method should
+    // set the global currentUser variable with the user object returned or throw
+    // an error if the login was unsucessful
   }
   
   ngOnInit(): void {
