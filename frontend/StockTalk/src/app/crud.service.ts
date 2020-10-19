@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { User, Topic, Post, Comment, 
          PostVotes, CommentVotes, UserFollowsTopic, 
-         UserFollowsUser, UserSavesPost } from './Interfaces';
+         UserFollowsUser, UserSavesPost, Profile } from './Interfaces';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { isPrivateIdentifier } from 'typescript';
+import { Router } from '@angular/router';
  
 @Injectable({
   providedIn: 'root'
@@ -21,17 +22,16 @@ export class CrudService {
     })
   }
   
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   private instanceOfObj(object : any) {
     return object.Type;
   }
 
-  getAll<T>(type : T): Observable<T> {
+  getAll<T>(type : string): Observable<T[]> {
 
-    var typeStr = this.instanceOfObj(type);
-
-    return this.httpClient.get<T>(this.APIUrl + typeStr);
+    return this.httpClient.get<T[]>(this.APIUrl + type)
+    .pipe(map(res => []));
     
     /*
     .pipe(
@@ -41,10 +41,15 @@ export class CrudService {
     
   }
 
-  addUser(val:any) {
+  getUserProfile(username:string): Observable<Profile> {
+    return this.httpClient.get(this.APIUrl + "/profiles/" + username)
+      .pipe(map((data: {profile: Profile}) => data.profile));
+  }
 
-    let body = JSON.stringify(val);
-      return this.httpClient.post<any>(this.APIUrl + "/user/", body);
+  addUser(toAdd: User) {
+
+      let body = JSON.stringify(toAdd);
+      return this.httpClient.post<User>(this.APIUrl + "/user/", body);
 
       /*
       .pipe(
@@ -94,6 +99,14 @@ export class CrudService {
     )
     */
    
+  }
+
+  login(input: any) {
+    console.log("Input is", input);
+    this.httpClient.post(this.APIUrl, JSON.stringify(input))
+        .subscribe(result => {
+          this.router.navigate(["/alltopics"], { "queryParams": result});
+        })
   }
 
   /* need create read update delete for 

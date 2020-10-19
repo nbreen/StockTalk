@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from '../shared/user.model';
+import { User } from '../Interfaces';
 import { NgForm} from '@angular/forms';
 import { CrudService } from 'src/app/crud.service';
 import { Router, RouterModule } from '@angular/router';
@@ -14,54 +14,39 @@ export class SignupComponent implements OnInit {
 
   public birthdate: Date;
 
-  constructor(private service:CrudService, private router: Router) { }
+  constructor(private service: CrudService, private router: Router) { }
   
-  @Input() user:any;
-  Username:string;
-  FullName:string;
-  Email:string;
-  Password:string;
-  UserAge:number;
-
-
+  @Input() user: User = {
+    Username: "",
+    FullName: "",
+    Email: "",
+    Password: "",
+    UserAge: 0
+  };
+  
   resetForm(form?:NgForm) {
     if (form != null) {
       form.reset();
     }
-    this.user = {
-      UserID: "",
-      Username: "",
-      FullName: "",
-      Email: "",
-      Password: "",
-      UserAge: 0,
-    }
+
+    this.user.Username = "";
+    this.user.FullName = "";
+    this.user.Email = "";
+    this.user.Password = "";
+    this.user.UserAge = 0;
   }
   
-  ngOnInit(): void {
-    this.Username=this.user.Username;
-    this.FullName=this.user.FullName;
-    this.Email=this.user.Email;
-    this.Password=this.user.Password;
-    this.UserAge=this.user.UserAge;
-  }
+  ngOnInit(): void { }
 
   public CalculateAge(): void {
     if (this.birthdate) {
       var timeDiff = Math.abs(Date.now() - this.birthdate.getTime());
-      this.UserAge = Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
+      this.user.UserAge = Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
     }
   }
 
   signup() {
-    var val = {
-                Username:this.Username,
-                FullName:this.FullName,
-                Email:this.Email,
-                Password:this.Password,
-                UserAge:this.UserAge,
-                }
-    this.service.addUser(val).subscribe(result => {
+    this.service.addUser(this.user).subscribe(result => {
       this.router.navigate(["/login"])
     });
 

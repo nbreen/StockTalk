@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Profile } from '../shared/profile.model';
 import { User } from '../shared/user.model';
-import { ProfileService } from '../profile.service';
+import { CrudService } from '../crud.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private profileService: ProfileService
+    private backend : CrudService
   ) { } 
 
   profile: Profile;
@@ -35,7 +35,6 @@ export class ProfileComponent implements OnInit {
       this.currentUser = userData;
       this.isUser = (this.currentUser.username === this.profile.username);
     }
-  );
-  */
+  );*/
 
 }

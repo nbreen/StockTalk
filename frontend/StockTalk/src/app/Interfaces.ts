@@ -1,19 +1,17 @@
 export interface User {
-    UserID : Number
+    UserID ?: Number
     Username : String;
     FullName : String;
     Email : String;
     Password : String;
     UserAge : Number;
-    Bio : String;
-    ProfileImage : String;
-    Type : "/user/";
+    Bio ?: String;
+    ProfileImage ?: String;
 }
 
 export interface Topic {
     TopicName : String;
     IsStock : Boolean;
-    Type : "/topic/";
 }
 
 export interface Post {
@@ -24,7 +22,6 @@ export interface Post {
     Post : String;
     PostDate : Date;
     Anonymous : Boolean;
-    Type : "/post/";
 }
 
 export interface Comment {
@@ -33,37 +30,37 @@ export interface Comment {
     PostID : Number;
     Comment : String;
     CommentDate : Date;
-    Type : "/comment/";
 }
 
 export interface PostVotes {
     Username : String;
     PostID : Number;
     Vote : Number;
-    Type : "/postVotes/";
 }
 
 export interface CommentVotes {
     Username : String;
     CommentID : Number;
     Vote : Number;
-    Type : "/commentVotes/";
 }
 
 export interface UserFollowsTopic {
     Username : String;
     TopicName : String;
-    Type : "/userFollowsTopic/";
 }
 
 export interface UserFollowsUser {
     DoingFollowing : String;
     BeingFollowed : String;
-    Type : "/userFollowsUser/";
 }
 
 export interface UserSavesPost {
     Username : String;
     PostID : Number;
-    Type : "/userSavesPost/";
+}
+
+export interface Profile {
+    Username: string;
+    Bio: string;
+    ProfileImage: string;
 }

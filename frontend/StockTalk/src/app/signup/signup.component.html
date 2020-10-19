@@ -9,33 +9,33 @@
          <mat-form-field class="full-width">
             <mat-label>Username</mat-label>
             <input  matInput  placeholder="Username"  name="username"  required
-            [(ngModel)]="Username"> 
+            (ngModelChange)="user.Username = $event"> 
          </mat-form-field>
          <mat-form-field class="full-width">
             <mat-label>Full Name</mat-label>
             <input  matInput  placeholder="Full Name" name="full_name"  required
-            [(ngModel)]="FullName">
+            (ngModelChange)="user.FullName = $event">
          </mat-form-field>
          <mat-form-field class="full-width">
             <mat-label>Email</mat-label>
             <input  matInput  placeholder="Email" name="email" required
-            [(ngModel)]="Email">
+            (ngModelChange)="user.Email = $event">
          </mat-form-field>
          <mat-form-field class="full-width">
             <mat-label>Password</mat-label>
             <input  matInput  placeholder="Password" type="password" name="password1" required
-            [(ngModel)]="Password">
+            (ngModelChange)="user.Password = $event">
          </mat-form-field>
          <mat-form-field class="full-width">
             <mat-label>Confirm Password</mat-label>
             <input  matInput  placeholder="Confirm Password" type="password" name="password2" required
-            [(ngModel)]="Password">
+            (ngModelChange)="user.Password = $event">
          </mat-form-field>
 
          <mat-form-field class="full-width">
             <mat-label>Enter Age</mat-label>
             <input  matInput  placeholder="age" name="UserAge"  required
-            [(ngModel)]="UserAge">
+            (ngModelChange)="user.UserAge = $event">
          </mat-form-field>
 
          <!----
