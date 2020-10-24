@@ -17,7 +17,8 @@ import { TopicComponent } from './alltopics/topic/topic.component';
 import { PostComponent } from './alltopics/topic/post/post.component';
 import { CommentComponent } from './alltopics/topic/post/comment/comment.component';
 import { ProfileComponent } from './profile/profile.component';
-import { Globals } from './Globals';;
+import { Globals } from './Globals';
+import { DeleteUserComponent } from './delete-user/delete-user.component';;
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { Globals } from './Globals';;
     TopicComponent,
     PostComponent,
     CommentComponent,
-    ProfileComponent
+    ProfileComponent,
+    DeleteUserComponent
   ],
   imports: [
     BrowserModule,
