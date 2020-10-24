@@ -1,13 +1,11 @@
 <div class="profile-page">
 
     <div class="user-info">
+      <h4>This is the profile of: {{this.currentUsername}} </h4>
       <div class="container">
         <div class="row">
-  
           <div class="col-xs-12 col-md-10 offset-md-1">
             <img [src]="profile.ProfileImage" class="user-img" />
-            <h4>{{ profile.Username }}</h4>
-            <p>{{ profile.Bio }}</p>
              <a [routerLink]="['/settings']"
                 [hidden]="!isUser"
                 class="btn btn-sm btn-outline-secondary action-btn">

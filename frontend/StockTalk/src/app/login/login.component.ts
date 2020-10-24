@@ -5,7 +5,9 @@ import { CrudService } from '../crud.service';
 import { Http } from '@angular/http';
 import { Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
+import { Globals } from '../Globals';
 import { NgForm} from '@angular/forms';
+import { User, Profile } from '../Interfaces';
 
 
 @Component({
@@ -15,7 +17,8 @@ import { NgForm} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private service: CrudService, private router: Router) { }
+  constructor(private service: CrudService, private router: Router,
+    private globals: Globals) { }
 
   @Input() loginData: any = {
     Username: "",
@@ -37,6 +40,8 @@ export class LoginComponent implements OnInit {
         alert(res.toString());
         if (res.toString().match("User exists") === null) {
         } else {
+          this.globals.currentUsername = this.loginData.Username;
+          //alert(this.globals.currentUsername);
           this.router.navigate(["/profile/"])
         }
       });
