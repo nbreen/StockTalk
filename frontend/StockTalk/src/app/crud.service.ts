@@ -49,8 +49,7 @@ export class CrudService {
   addUser(val: any) {
 
       let body = JSON.stringify(val);
-      return this.httpClient.post<any>(this.APIUrl + "/user/", val)
-        .subscribe((res) => res.json());
+      return this.httpClient.post<any>(this.APIUrl + "/user/", val);
 
       /*
       .pipe(

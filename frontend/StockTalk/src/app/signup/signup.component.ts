@@ -3,7 +3,6 @@ import { User } from '../Interfaces';
 import { NgForm} from '@angular/forms';
 import { CrudService } from 'src/app/crud.service';
 import { Router, RouterModule } from '@angular/router';
-import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -41,9 +40,11 @@ export class SignupComponent implements OnInit {
 
 
   signup() {
-    this.service.addUser(this.user).pipe(map(res=>res.json())).subscribe(res => {
-      console.log("user added");
-        //this.router.navigate(["/login"])
+    this.service.addUser(this.user).subscribe(res => {
+      alert(res.toString());
+      if (res) {
+        this.router.navigate(["/login"])
+      }
     });
 
   }
