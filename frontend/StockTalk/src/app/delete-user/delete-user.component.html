@@ -1,0 +1,9 @@
+<h1 style="margin-left:30px; margin-top:30px">Delete Account</h1>
+
+<div style="margin-left:30px; margin-top:10px">
+    <input type="checkbox" id="understand" name="understand" [(ngModel)]="understand" style="margin-right:5px">
+    <label for="understand"> I understand that this process cannot be undone and that all data associated with my account will be deleted.</label>
+    <br>
+    <button mat-raised-button color="warn" (click)="deleteAccount()">Delete Account</button>
+</div>
+

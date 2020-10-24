@@ -1,3 +1,4 @@
+import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { PostComponent } from './alltopics/topic/post/post.component';
 import { CommentComponent } from './alltopics/topic/post/comment/comment.component';
 import { NgModule } from '@angular/core';
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'alltopics', component:AlltopicsComponent},
   //{ path: 'comment-test', component:CommentComponent},
   //{ path: 'post-test', component:PostComponent},
+  { path: 'delete-user', component:DeleteUserComponent},
   { path: 'profile', component:ProfileComponent}
 ];
 
