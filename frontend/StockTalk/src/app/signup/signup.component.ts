@@ -3,6 +3,7 @@ import { User } from '../Interfaces';
 import { NgForm} from '@angular/forms';
 import { CrudService } from 'src/app/crud.service';
 import { Router, RouterModule } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
-  public birthdate: Date;
+  public Password2: "";
 
   constructor(private service: CrudService, private router: Router) { }
   
@@ -38,16 +39,11 @@ export class SignupComponent implements OnInit {
   
   ngOnInit(): void { }
 
-  public CalculateAge(): void {
-    if (this.birthdate) {
-      var timeDiff = Math.abs(Date.now() - this.birthdate.getTime());
-      this.user.UserAge = Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
-    }
-  }
 
   signup() {
-    this.service.addUser(this.user).subscribe(result => {
-      this.router.navigate(["/login"])
+    this.service.addUser(this.user).pipe(map(res=>res.json())).subscribe(res => {
+      console.log("user added");
+        //this.router.navigate(["/login"])
     });
 
   }

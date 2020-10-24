@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'UserApp',
     'ProfileApp',
+    'LoginApp',
     'rest_framework',
 ]
 

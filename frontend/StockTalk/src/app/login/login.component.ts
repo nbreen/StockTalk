@@ -1,6 +1,12 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, Input, OnInit } from '@angular/core';
+import { RequestOptions } from '@angular/http';
 import { Router } from "@angular/router";
 import { CrudService } from '../crud.service';
+import { Http } from '@angular/http';
+import { Headers } from '@angular/http';
+import { map } from 'rxjs/operators';
+import { NgForm} from '@angular/forms';
+
 
 @Component({
   selector: 'app-login',
@@ -9,19 +15,29 @@ import { CrudService } from '../crud.service';
 })
 export class LoginComponent implements OnInit {
 
-  public input: any;
-  readonly APIUrl = "http://127.0.0.1:8000/login";
+  constructor(private service: CrudService, private router: Router) { }
 
-  constructor(private router: Router, private backend: CrudService) {
-    this.input = {
-      "email": "",
-      "password": ""
+  @Input() loginData: any = {
+    Username: "",
+    Password: ""
+  };
+  
+  resetForm(form?:NgForm) {
+    if (form != null) {
+      form.reset();
     }
+
+    this.loginData.Username = "";
+    this.loginData.Password = "";
   }
 
   public login() {
-    if (this.input.email && this.input.password) {
-      this.backend.login(this.input);
+    if (this.loginData.Username && this.loginData.Password) {
+      return this.service.validateUser(this.loginData).subscribe(result => {
+        result.json();
+        //this.router.navigate(["/profile/"])
+      });
+      
     } else {
       console.log("No data")
     }

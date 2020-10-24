@@ -46,16 +46,22 @@ export class CrudService {
       .pipe(map((data: {profile: Profile}) => data.profile));
   }
 
-  addUser(toAdd: User) {
+  addUser(val: any) {
 
-      let body = JSON.stringify(toAdd);
-      return this.httpClient.post<User>(this.APIUrl + "/user/", body);
+      let body = JSON.stringify(val);
+      return this.httpClient.post<any>(this.APIUrl + "/user/", val)
+        .subscribe((res) => res.json());
 
       /*
       .pipe(
         catchError(this.handleError<User>('createUser'))
       );
       */
+  }
+
+  validateUser(loginData: any) {
+    let body = JSON.stringify(loginData);
+    return this.httpClient.post<any>(this.APIUrl + "/login/", body);
   }
 
   getUserById<T>(id : Number, type : T) : Observable<T> {
