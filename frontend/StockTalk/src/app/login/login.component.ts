@@ -33,9 +33,12 @@ export class LoginComponent implements OnInit {
 
   public login() {
     if (this.loginData.Username && this.loginData.Password) {
-      return this.service.validateUser(this.loginData).subscribe(result => {
-        result.json();
-        //this.router.navigate(["/profile/"])
+      return this.service.validateUser(this.loginData).subscribe(res => {
+        alert(res.toString());
+        if (res.toString().match("User exists") === null) {
+        } else {
+          this.router.navigate(["/profile/"])
+        }
       });
       
     } else {

@@ -3,6 +3,7 @@ import { User } from '../Interfaces';
 import { NgForm} from '@angular/forms';
 import { CrudService } from 'src/app/crud.service';
 import { Router, RouterModule } from '@angular/router';
+import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -42,7 +43,8 @@ export class SignupComponent implements OnInit {
   signup() {
     this.service.addUser(this.user).subscribe(res => {
       alert(res.toString());
-      if (res) {
+      if (res.toString().match("User added successfully") === null) {
+      } else {
         this.router.navigate(["/login"])
       }
     });
