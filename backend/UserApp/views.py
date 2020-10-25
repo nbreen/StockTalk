@@ -19,7 +19,7 @@ def userDeleteApi(id):
 
     return JsonResponse("Deleted user sucessfully", safe=False)
 
-
+@csrf_exempt
 def userApi(request,id=0):
 
     if request.method=='GET':
