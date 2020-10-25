@@ -1,20 +1,40 @@
-CREATE TABLE User (  
+SET FOREIGN_KEY_CHECKS = 0;
 
-    Username VARCHAR(64),  
+DROP TABLE IF EXISTS UserApp_users;
+DROP TABLE IF EXISTS Topic;
+DROP TABLE IF EXISTS Post;
+DROP TABLE IF EXISTS Comment;
+DROP TABLE IF EXISTS PostVotes;
+DROP TABLE IF EXISTS CommentVotes;
+DROP TABLE IF EXISTS UserFollowsTopic;
+DROP TABLE IF EXISTS UserFollowsUser;
+DROP TABLE IF EXISTS UserSavesPost;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+CREATE TABLE UserApp_users (  
+
+    UserID INTEGER AUTO_INCREMENT,
+
+    Username VARCHAR(64) NOT NULL UNIQUE,
+
+    FullName VARCHAR(64) NOT NULL,
 
     Email VARCHAR(64) NOT NULL UNIQUE,  
 
-    Password BINARY(64) NOT NULL, 
-
-    FullName VARCHAR(64) NOT NULL, 
-
-    Age INTEGER NOT NULL, 
+    Password VARCHAR(64) NOT NULL, # Change to Binary(64) later
+ 
+    UserAge INTEGER NOT NULL, 
 
     Bio VARCHAR(256), 
 
     ProfileImage VARCHAR(256) NOT NULL, # Points to Path: Cannot be NULL (Use Default Picture) 
 
-    PRIMARY KEY(Username) 
+    PRIMARY KEY(UserID) 
+
+     # Insert test data
+     # INSERT INTO UserApp_users(Username, FullName, Email, Password, UserAge) VALUES("user#", "Test User#", "testuser#@gmail.com", "password", 20);
 
 ); 
 
@@ -36,7 +56,7 @@ CREATE TABLE Post (
 
     PostId INTEGER AUTO_INCREMENT, 
 
-    Username VARCHAR(64) NOT NULL, 
+    UserID INTEGER, 
 
     TopicName VARCHAR(64), 
 
@@ -50,7 +70,7 @@ CREATE TABLE Post (
 
     PRIMARY KEY(PostId), 
 
-    FOREIGN KEY(Username) REFERENCES User(Username) ON DELETE CASCADE, # Automatically deletes Comment when User (Poster) deletes their account 
+    FOREIGN KEY(UserID) REFERENCES UserApp_users(UserID) ON DELETE CASCADE, # Automatically deletes Comment when User (Poster) deletes their account 
 
     FOREIGN KEY(TopicName) REFERENCES Topic(TopicName) 
 
@@ -62,7 +82,7 @@ CREATE TABLE Comment (
 
     CommentId INTEGER AUTO_INCREMENT, # Need CommentId because a User can make many Comments on same Post 
 
-    Username VARCHAR(64) NOT NULL, # Username of Commenter 
+    UserID INTEGER, # UserID of Commenter 
 
     PostId INTEGER NOT NULL, 
 
@@ -72,7 +92,7 @@ CREATE TABLE Comment (
 
     PRIMARY KEY(CommentId), 
 
-    FOREIGN KEY(Username) REFERENCES User(Username) ON DELETE CASCADE, # Automatically deletes Comment when User (Commenter) deletes their account 
+    FOREIGN KEY(UserID) REFERENCES UserApp_users(UserID) ON DELETE CASCADE, # Automatically deletes Comment when User (Commenter) deletes their account 
 
     FOREIGN KEY(PostId) REFERENCES Post(PostId) ON DELETE CASCADE # Automatically deletes Comment when the Post is deleted 
 
@@ -82,15 +102,15 @@ CREATE TABLE Comment (
 
 CREATE TABLE PostVotes (  
 
-     Username VARCHAR(64), # Username of Post Voter 
+     UserID INTEGER, # UserID of Post Voter 
 
      PostId INTEGER, # Post being voted on 
 
      Vote INTEGER NOT NULL, # -1 = Down     1 = Up     Delete Row if User undoes their vote 
 
-     PRIMARY KEY(Username, PostId), 
+     PRIMARY KEY(UserID, PostId), 
 
-     FOREIGN KEY(Username) REFERENCES User(Username) ON DELETE CASCADE, # Automatically deletes Post Vote when User (Voter) deletes their account 
+     FOREIGN KEY(UserID) REFERENCES UserApp_users(UserID) ON DELETE CASCADE, # Automatically deletes Post Vote when User (Voter) deletes their account 
 
      FOREIGN KEY(PostId) REFERENCES Post(PostId) ON DELETE CASCADE # Automatically deletes all Post Votes associated with the Post when the Post is deleted 
 
@@ -102,15 +122,15 @@ CREATE TABLE PostVotes (
 
 CREATE TABLE CommentVotes ( 
 
-     Username VARCHAR(64), # Username of Comment Voter 
+     UserID INTEGER, # UserID of Comment Voter 
 
      CommentId INTEGER, # Comment being voted on 
 
      Vote INTEGER NOT NULL, # -1 = Down     1 = Up     Delete Row if User undoes their vote 
 
-     PRIMARY KEY(Username, CommentId), 
+     PRIMARY KEY(UserID, CommentId), 
 
-     FOREIGN KEY(Username) REFERENCES User(Username) ON DELETE CASCADE, # Automatically deletes Comment Vote when User (Voter) deletes their account 
+     FOREIGN KEY(UserID) REFERENCES UserApp_users(UserID) ON DELETE CASCADE, # Automatically deletes Comment Vote when User (Voter) deletes their account 
 
      FOREIGN KEY(CommentId) REFERENCES Comment(CommentId) ON DELETE CASCADE # Automatically deletes all Comment Votes associated with the Comment when the Comment is deleted 
 
@@ -120,13 +140,13 @@ CREATE TABLE CommentVotes (
 
 CREATE TABLE UserFollowsTopic ( 
 
-     Username VARCHAR(64), # Username of Person Following Topic 
+     UserID INTEGER, # UserID of Person Following Topic 
 
      TopicName VARCHAR(64), # Topic they are following 
 
-     PRIMARY KEY(Username, TopicName), 
+     PRIMARY KEY(UserID, TopicName), 
 
-     FOREIGN KEY(Username) REFERENCES User(Username) ON DELETE CASCADE # Automatically deletes the fact that User is following Topic when User deletes their account 
+     FOREIGN KEY(UserID) REFERENCES UserApp_users(UserID) ON DELETE CASCADE # Automatically deletes the fact that User is following Topic when User deletes their account 
 
 ); 
 
@@ -134,15 +154,15 @@ CREATE TABLE UserFollowsTopic (
 
 CREATE TABLE UserFollowsUser ( 
 
-     DoingFollowing VARCHAR(64), # Username of Person doing the Following 
+     DoingFollowing INTEGER, # UserID of Person doing the Following 
 
-     BeingFollowed VARCHAR(64), # Username of the Person being Followed 
+     BeingFollowed INTEGER, # UserID of the Person being Followed 
 
      PRIMARY KEY(DoingFollowing, BeingFollowed), 
 
-     FOREIGN KEY(DoingFollowing) REFERENCES User(Username) ON DELETE CASCADE, 
+     FOREIGN KEY(DoingFollowing) REFERENCES UserApp_users(UserID) ON DELETE CASCADE, 
 
-     FOREIGN KEY(BeingFollowed) REFERENCES User(Username) ON DELETE CASCADE 
+     FOREIGN KEY(BeingFollowed) REFERENCES UserApp_users(UserID) ON DELETE CASCADE 
 
      # Cascades automatically remove row(s) when either User is deleted 
 
@@ -152,13 +172,13 @@ CREATE TABLE UserFollowsUser (
 
 CREATE TABLE UserSavesPost ( 
 
-     Username VARCHAR(64), # Username of Post Voter 
+     UserID INTEGER, # UserID of Post Voter 
 
      PostId INTEGER, 
 
-     PRIMARY KEY(Username, PostId), 
+     PRIMARY KEY(UserID, PostId), 
 
-     FOREIGN KEY(Username) REFERENCES User(Username) ON DELETE CASCADE, 
+     FOREIGN KEY(UserID) REFERENCES UserApp_users(UserID) ON DELETE CASCADE, 
 
      FOREIGN KEY(PostId) REFERENCES Post(PostId) ON DELETE CASCADE 
 
