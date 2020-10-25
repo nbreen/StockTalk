@@ -92,6 +92,10 @@ export class CrudService {
 
   }
 
+  deleteAccount(userID: Number) {
+    return this.httpClient.delete(this.APIUrl + "/delete-user/" + userID);
+  }
+
   deleteUser<T>(id : Number, type : T): Observable<T> {
 
     var typeStr = this.instanceOfObj(type);

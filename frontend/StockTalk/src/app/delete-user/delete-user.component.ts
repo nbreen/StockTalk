@@ -1,3 +1,4 @@
+import { stringify } from 'querystring';
 import { CrudService } from 'src/app/crud.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -13,8 +14,12 @@ import { Globals } from '../Globals';
 export class DeleteUserComponent implements OnInit {
 
   understand = false;
-  currentUser: User;
+  currentUsername: String;
 
+  constructor(private router: Router, private backend: CrudService, private globals: Globals) {
+    this.currentUsername = this.globals.currentUsername;
+  }
+  
   deleteAccount() {
     console.log(this.understand);
     if (this.understand == false) {
@@ -22,14 +27,11 @@ export class DeleteUserComponent implements OnInit {
       alert("Please verify that you want to delete your account!");
     } else {
       // Delete Account
-      this.backend.deleteUser(this.currentUser.UserID, true).subscribe(result => {
-        this.router.navigate(['/login'])
+      this.backend.deleteAccount(46).subscribe(result => {
+        alert(result);
+        this.router.navigate(['/login']);
       });
     }
-  }
-
-  constructor(private router: Router, private backend: CrudService, private globals: Globals) {
-    this.currentUser = this.globals.currentUser;
   }
 
   ngOnInit(): void {
