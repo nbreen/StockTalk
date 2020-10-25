@@ -41,6 +41,15 @@ export class SignupComponent implements OnInit {
 
 
   signup() {
+
+    if (this.user.Password != this.Password2) {
+      let error: string = "Passwords are not the same"
+      alert(error);
+      return;
+    }
+
+
+
     this.service.addUser(this.user).subscribe(res => {
       alert(res.toString());
       if (res.toString().match("User added successfully") === null) {
