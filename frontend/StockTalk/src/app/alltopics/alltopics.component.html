@@ -7,18 +7,18 @@
      <table style="width:100%">
         <tr>
           <th>Topic Name</th>
-          <th>Popularity Rank</th>
+          <!-- <th>Popularity Rank</th>
           <th>Trending?</th>
-          <th>Stock?</th>
+          <th>Stock?</th> -->
         </tr>
         <tr *ngFor="let topic of topics">
            
               <td>{{topic.name}}</td>
-              <td>{{topic.popularity}}</td>
+              <!-- <td>{{topic.popularity}}</td>
               <td *ngIf="topic.is_trending">🔥</td>
-              <td *ngIf="!topic.is_trending">❌</td>
-              <td *ngIf="topic.is_stock;">💲</td>
-              <td *ngIf="!topic.is_stock;">❌</td>
+              <td *ngIf="!topic.is_trending">❌</td> -->
+              <!-- <td *ngIf="topic.is_stock;">💲</td>
+              <td *ngIf="!topic.is_stock;">❌</td> -->
              
         </tr>
         </table>

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'UserApp',
     'ProfileApp',
     'LoginApp',
+    'TopicApp',
     'rest_framework',
 ]
 
