@@ -11,6 +11,9 @@ import re
 
 # Create your views here.
 @csrf_exempt
-def getAllTopics(Topic):
-    # all_topics = Topic.objects.all()
-    return JsonResponse("Test", safe=False)
+def getAllTopics(TopicName):
+    topic = Topic.objects.all()
+    print(topic)
+    topic_serializer = TopicSerializer(topic, many=True)
+    print(topic_serializer)
+    return JsonResponse(topic_serializer.data, safe=False)

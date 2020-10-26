@@ -31,7 +31,6 @@ export class CrudService {
   getAll<T>(type : string): Observable<T[]> {
 
     return this.httpClient.get<T[]>(this.APIUrl + type)
-    .pipe(map(res => []));
     
     /*
     .pipe(

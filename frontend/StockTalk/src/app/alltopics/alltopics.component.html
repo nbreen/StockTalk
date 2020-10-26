@@ -1,3 +1,5 @@
+<div *ngIf=topics>
+
 <mat-toolbar>
     <span>ALL TOPICS</span>
 </mat-toolbar>
@@ -13,7 +15,7 @@
         </tr>
         <tr *ngFor="let topic of topics">
            
-              <td>{{topic.name}}</td>
+              {{topic.TopicName}}
               <!-- <td>{{topic.popularity}}</td>
               <td *ngIf="topic.is_trending">🔥</td>
               <td *ngIf="!topic.is_trending">❌</td> -->
@@ -23,3 +25,5 @@
         </tr>
         </table>
   </mat-card>
+
+</div>
