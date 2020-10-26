@@ -42,7 +42,7 @@ export class CrudService {
   }
 
   getUserProfile(username:string): Observable<Profile> {
-    return this.httpClient.get(this.APIUrl + "/profiles/" + username)
+    return this.httpClient.get(this.APIUrl + "/profile/" + username)
       .pipe(map((data: {profile: Profile}) => data.profile));
   }
 

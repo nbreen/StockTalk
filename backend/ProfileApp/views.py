@@ -4,6 +4,7 @@ from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 
 from ProfileApp.serializers import ProfileSerializer
+from ProfileApp.models import Profiles
 
 # Create your views here.
 @csrf_exempt

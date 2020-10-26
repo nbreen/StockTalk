@@ -29,11 +29,10 @@ export class ProfileComponent implements OnInit {
       }
     );*/
     
-    /*
-    this.backend.getUserProfile(this.currentUser.Username)
-    .subscribe(res => this.profile)
-    console.log("Got profile", this.profile);
-    */
+    
+    this.backend.getUserProfile(this.globals.currentUsername)
+    .subscribe(res => console.log(res));
+    //console.log("Got profile", this.profile);
     
   }
 
