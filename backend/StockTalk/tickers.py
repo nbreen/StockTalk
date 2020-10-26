@@ -17,7 +17,7 @@ connection = pymysql.connect(db_host, db_user, db_password, db_name)
 cur = connection.cursor()
 
 query = """
-INSERT IGNORE INTO Topic (TopicName, IsStock) VALUES (%s, 1)
+INSERT IGNORE INTO TopicApp_topic (TopicName, IsStock) VALUES (%s, 1)
 """
 for i in range(len(stock_tickers)):
 	cur.execute(query, stock_tickers[i])
