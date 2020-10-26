@@ -12,9 +12,10 @@ import { isConstructorDeclaration } from 'typescript';
 
 export class AppComponent {
   title = 'StockTalk';
-  // currentUsername: String;
+  currentUsername: String = undefined;
 
-  // constructor(private router: Router, private backend: CrudService, private globals: Globals) {
-  //   this.currentUsername = this.globals.currentUsername;
-  // }
+  constructor(private router: Router, private backend: CrudService, public globalsVar: Globals) {
+    this.currentUsername = this.globalsVar.currentUsername;
+  }
+
 }

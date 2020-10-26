@@ -6,13 +6,17 @@
      <span class="spacer"></span>
      <a mat-button routerLink="alltopics">Topics</a>
      <span class="spacer"></span>
-     <a mat-button routerLink="signup">Signup</a>
-     <a mat-button routerLink="login">Login</a>
+     
+     <div *ngIf= !globalsVar.currentUsername>
+      <a mat-button routerLink="signup">Signup</a>
+      <a mat-button routerLink="login">Login</a>
+    </div>
 
-     <a mat-button routerLink="delete-user">Delete Account</a>
-     <!-- <div *ngIf= !currentUsername>
+     <div *ngIf= globalsVar.currentUsername>
+      <a mat-button routerLink="profile">My Profile</a>
       <a mat-button routerLink="delete-user">Delete Account</a>
-     </div> -->
+      <a mat-button>Log Out</a>
+     </div>
   
   </mat-toolbar-row>
 </mat-toolbar>
