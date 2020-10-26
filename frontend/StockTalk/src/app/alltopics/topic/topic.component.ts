@@ -1,3 +1,5 @@
+import { CrudService } from 'src/app/crud.service';
+import { Post } from './../../Interfaces';
 import { CommentComponent } from './post/comment/comment.component';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,19 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopicComponent implements OnInit {
   
-  name: string;
-  popularity: number;
-  is_trending: boolean;
-  is_stock: boolean;
+  TopicName: string;
+  IsStock: boolean;
+  Posts: Array<Post>;
 
-  constructor() {
-    this.name = "NoNameTopic"
-    this.popularity = -1;
-    this.is_trending = false;
-    this.is_stock = false;
+  constructor(private backend: CrudService) {
+    this.TopicName = window.location.href.substring(28); // Change later, gets the TopicName from substringing the URL
+    this.IsStock = true;
    }
 
   ngOnInit(): void {
+    this.backend.getAll<Post>("/post/" + this.TopicName).subscribe(data => {
+      console.log(data);
+      this.Posts = data;
+    })
   }
 
 }

@@ -14,8 +14,9 @@
           <th>Stock?</th> -->
         </tr>
         <tr *ngFor="let topic of topics">
-           
-              {{topic.TopicName}}
+              
+              <a href="/topic/{{topic.TopicName}}">{{topic.TopicName}}</a>
+              
               <!-- <td>{{topic.popularity}}</td>
               <td *ngIf="topic.is_trending">🔥</td>
               <td *ngIf="!topic.is_trending">❌</td> -->
