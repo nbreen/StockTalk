@@ -15,7 +15,7 @@
         </tr>
         <tr *ngFor="let topic of topics">
               
-              <a href="/topic/{{topic.TopicName}}">{{topic.TopicName}}</a>
+              <a routerLink="/topic/{{topic.TopicName}}">{{topic.TopicName}}</a>
               
               <!-- <td>{{topic.popularity}}</td>
               <td *ngIf="topic.is_trending">🔥</td>

@@ -12,6 +12,7 @@ import { isConstructorDeclaration } from 'typescript';
 
 export class AppComponent {
   title = 'StockTalk';
+<<<<<<< HEAD
 
   constructor(private router: Router, private backend: CrudService, public globals: Globals) {
      
@@ -24,4 +25,12 @@ export class AppComponent {
     this.router.navigate(["/"]);
   }
 
+=======
+  currentUsername: String = undefined;
+
+  constructor(private router: Router, private backend: CrudService, public globalsVar: Globals) {
+    this.currentUsername = this.globalsVar.currentUsername;
+  }
+
+>>>>>>> c8cda70c4946278b446ded3578fb653589051688
 }
