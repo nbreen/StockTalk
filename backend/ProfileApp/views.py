@@ -11,8 +11,10 @@ from ProfileApp.models import Profiles
 def profileApi(request,id=0):
 
     if request.method=='GET':
-        profile = Profiles.objects.all()
-        profile_serializer = ProfileSerializer(profile, many=True)
+        profile_data = JSONParser().parse(request)
+        profile_username = profile_data['Username']
+        profile = Profiles.objects.get(Username=profile_username)
+        profile_serializer = ProfileSerializer(profile)
         return JsonResponse(profile_serializer.data, safe=False)
 
     elif request.method=='POST':
