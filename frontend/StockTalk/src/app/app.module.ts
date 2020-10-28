@@ -18,7 +18,8 @@ import { PostComponent } from './alltopics/topic/post/post.component';
 import { CommentComponent } from './alltopics/topic/post/comment/comment.component';
 import { ProfileComponent } from './profile/profile.component';
 import { Globals } from './Globals';
-import { DeleteUserComponent } from './delete-user/delete-user.component';;
+import { DeleteUserComponent } from './delete-user/delete-user.component';
+import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';;
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DeleteUserComponent } from './delete-user/delete-user.component';;
     PostComponent,
     CommentComponent,
     ProfileComponent,
-    DeleteUserComponent
+    DeleteUserComponent,
+    ProfileSettingsComponent
   ],
   imports: [
     BrowserModule,

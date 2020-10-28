@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AlltopicsComponent } from './alltopics/alltopics.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 
 const routes: Routes = [
   //{ path: '', redirectTo: '/', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'delete-user', component:DeleteUserComponent},
   { path: 'profile', component:ProfileComponent},
   { path: 'topic/:TopicName', component:TopicComponent},
+  { path: 'settings', component:ProfileSettingsComponent}
 ];
 
 @NgModule({

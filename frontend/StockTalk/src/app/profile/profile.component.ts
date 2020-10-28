@@ -26,6 +26,9 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
 
     this.currentUsername = localStorage.getItem("currentUsername");
+    this.profile.Username = "testUser";
+    this.profile.Bio = "TestBio";
+    this.profile.ProfileImage = "/default/image/path";
 
     //this.user = new User();
 
@@ -35,11 +38,9 @@ export class ProfileComponent implements OnInit {
       }
     );*/
     
-    /*
-    this.backend.getUserProfile(this.currentUser.Username)
-    .subscribe(res => this.profile)
-    console.log("Got profile", this.profile);
-    */
+    this.backend.getUserProfile(this.currentUsername)
+    .subscribe(res => console.log(res))
+    //console.log("Got profile", this.profile);
     
   }
 
