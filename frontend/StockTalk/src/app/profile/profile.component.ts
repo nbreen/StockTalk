@@ -20,13 +20,25 @@ export class ProfileComponent implements OnInit {
 
   profile: Profile;
   currentUsername: any;
+  isAuthenticated: boolean;
   User: any;
   isUser: boolean;
 
   ngOnInit(): void {
 
     this.currentUsername = localStorage.getItem("currentUsername");
+    this.isAuthenticated = (localStorage.getItem("isAuthenticated") == "true");
     this.User = this.route.snapshot.params["User"];
+
+    
+    if (this.currentUsername == this.User) {
+      this.isUser = true;
+    } else {
+      this.isUser = false;
+    }
+    
+
+
 
     //this.user = new User();
 
