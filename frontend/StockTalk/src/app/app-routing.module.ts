@@ -17,7 +17,7 @@ const routes: Routes = [
   //{ path: 'comment-test', component:CommentComponent},
   //{ path: 'post-test', component:PostComponent},
   { path: 'delete-user', component:DeleteUserComponent},
-  { path: 'profile', component:ProfileComponent},
+  { path: 'profile/:User', component:ProfileComponent},
   { path: 'topic/:TopicName', component:TopicComponent},
 ];
 

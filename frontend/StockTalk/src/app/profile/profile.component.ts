@@ -16,16 +16,17 @@ export class ProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private backend : CrudService,
     public globals: Globals
-  ) {this.currentUsername = this.globals.currentUsername } 
+  ) { this.currentUsername = this.globals.currentUsername; } 
 
   profile: Profile;
   currentUsername: any;
-  User: User;
+  User: any;
   isUser: boolean;
 
   ngOnInit(): void {
 
     this.currentUsername = localStorage.getItem("currentUsername");
+    this.User = this.route.snapshot.params["User"];
 
     //this.user = new User();
 

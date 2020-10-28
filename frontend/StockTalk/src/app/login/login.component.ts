@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
           this.globals.currentUsername = this.loginData.Username;
           localStorage.setItem("isAuthenticated", "true");
           localStorage.setItem("currentUsername", this.loginData.Username);
-          this.router.navigate(["/profile/"])
+          this.router.navigate(["/profile/" + this.loginData.Username]);
         }
       });
       
