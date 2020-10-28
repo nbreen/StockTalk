@@ -15,6 +15,7 @@ import { User, Profile } from '../Interfaces';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
+
 export class LoginComponent implements OnInit {
 
   constructor(private service: CrudService, private router: Router,
@@ -42,7 +43,8 @@ export class LoginComponent implements OnInit {
         } else {
           this.globals.isAuthenticated = true;
           this.globals.currentUsername = this.loginData.Username;
-          //alert(this.globals.currentUsername);
+          localStorage.setItem("isAuthenticated", "true");
+          localStorage.setItem("currentUsername", this.loginData.Username);
           this.router.navigate(["/profile/"])
         }
       });

@@ -1,4 +1,6 @@
 
+
+<body ng-init="reload()">
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <!--  <span>HOME</span> -->
@@ -6,7 +8,6 @@
      <span class="spacer"></span>
      <a mat-button routerLink="alltopics">Topics</a>
      <span class="spacer"></span>
-<<<<<<< HEAD
 
      <a mat-button *ngIf="!this.globals.isAuthenticated" routerLink="signup">Signup</a>
      <a mat-button *ngIf="!this.globals.isAuthenticated" routerLink="login">Login</a>
@@ -15,20 +16,11 @@
      <a mat-button *ngIf="this.globals.isAuthenticated" routerLink="delete-user">Delete Account</a>
 
      <!-- <div *ngIf= !currentUsername>
-=======
-     
-     <div *ngIf= !globalsVar.currentUsername>
-      <a mat-button routerLink="signup">Signup</a>
-      <a mat-button routerLink="login">Login</a>
-    </div>
-
-     <div *ngIf= globalsVar.currentUsername>
-      <a mat-button routerLink="profile">My Profile</a>
->>>>>>> c8cda70c4946278b446ded3578fb653589051688
       <a mat-button routerLink="delete-user">Delete Account</a>
       <a mat-button>Log Out</a>
-     </div>
+     </div -->
   
   </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>
+</body>
