@@ -19,20 +19,25 @@ export class ProfileComponent implements OnInit {
   ) {this.currentUsername = this.globals.currentUsername } 
 
   profile: Profile;
-  currentUsername: String;
+  currentUsername: any;
+  User: User;
   isUser: boolean;
 
   ngOnInit(): void {
-    /*this.route.data.subscribe(
+
+    //this.user = new User();
+
+        /*this.route.data.subscribe(
       (data: {user: User}) => {
         this.currentUser = data.user;
       }
     );*/
     
-    
-    this.backend.getUserProfile(this.globals.currentUsername)
-    .subscribe(res => console.log(res));
-    //console.log("Got profile", this.profile);
+    /*
+    this.backend.getUserProfile(this.currentUser.Username)
+    .subscribe(res => this.profile)
+    console.log("Got profile", this.profile);
+    */
     
   }
 

@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
         alert(res.toString());
         if (res.toString().match("User exists") === null) {
         } else {
+          this.globals.isAuthenticated = true;
           this.globals.currentUsername = this.loginData.Username;
           //alert(this.globals.currentUsername);
           this.router.navigate(["/profile/"])

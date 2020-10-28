@@ -12,9 +12,16 @@ import { isConstructorDeclaration } from 'typescript';
 
 export class AppComponent {
   title = 'StockTalk';
-  // currentUsername: String;
 
-  // constructor(private router: Router, private backend: CrudService, private globals: Globals) {
-  //   this.currentUsername = this.globals.currentUsername;
-  // }
+  constructor(private router: Router, private backend: CrudService, public globals: Globals) {
+     
+  }
+
+  public logout() {
+    this.globals.isAuthenticated = false;
+    this.globals.currentUser = null;
+    this.globals.currentUsername = "";
+    this.router.navigate(["/"]);
+  }
+
 }

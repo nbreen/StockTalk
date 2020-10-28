@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'ProfileApp',
     'LoginApp',
     'TopicApp',
+    'PostApp',
+    'CommentApp',
     'rest_framework',
 ]
 
