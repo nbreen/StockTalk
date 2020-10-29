@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { CrudService } from '../crud.service'; 
 import { Globals } from '../Globals';
 import { User, Profile, UserFollowsUser } from '../Interfaces';
+import { map } from 'rxjs/operators'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -18,7 +20,11 @@ export class ProfileComponent implements OnInit {
     public globals: Globals
   ) { this.currentUsername = this.globals.currentUsername; } 
 
-  profile: Profile;
+  profile: Profile = {
+    Username: "",
+    Bio: "",
+    ProfileImage: ""
+  };
   currentUsername: any;
   isAuthenticated: boolean;
   User: any;
@@ -30,36 +36,13 @@ export class ProfileComponent implements OnInit {
     this.isAuthenticated = (localStorage.getItem("isAuthenticated") == "true");
     this.User = this.route.snapshot.params["User"];
 
-    
     if (this.currentUsername == this.User) {
       this.isUser = true;
     } else {
       this.isUser = false;
     }
-    
 
-    //this.user = new User();
-
-        /*this.route.data.subscribe(
-      (data: {user: User}) => {
-        this.currentUser = data.user;
-      }
-    );*/
-    
-    /*
-    this.backend.getUserProfile(this.currentUser.Username)
-    .subscribe(res => this.profile)
-    console.log("Got profile", this.profile);
-    */
-    
+    this.backend.getUserProfile(this.currentUsername)
+    .subscribe(result => this.profile = {...result[0]});
   }
-
-  /*
-  this.profileService.currentUser.subscribe(
-    (userData: User) => {
-      this.currentUser = userData;
-      this.isUser = (this.currentUser.username === this.profile.username);
-    }
-  );*/
-
 }
