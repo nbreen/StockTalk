@@ -15,6 +15,8 @@
      <a mat-button (click)="logout()" *ngIf="this.globals.isAuthenticated">Logout</a>
      <a mat-button *ngIf="this.globals.isAuthenticated" routerLink="delete-user">Delete Account</a>
 
+     <a mat-button (click)="test()" >Test</a>
+
      <!-- <div *ngIf= !currentUsername>
       <a mat-button routerLink="delete-user">Delete Account</a>
       <a mat-button>Log Out</a>

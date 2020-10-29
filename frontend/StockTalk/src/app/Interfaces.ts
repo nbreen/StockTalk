@@ -7,6 +7,10 @@ export interface User {
     UserAge : number;
 }
 
+export interface Username {
+    Username: string;
+}
+
 export interface Topic {
     TopicName : string;
     IsStock : boolean;

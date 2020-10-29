@@ -6,3 +6,4 @@ class Profiles(models.Model):
     Username = models.CharField(max_length=64)
     Bio = models.CharField(max_length=256, default='empty')
     ProfileImage = models.CharField(max_length=256, default='empty')
+    

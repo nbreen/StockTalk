@@ -45,8 +45,13 @@ export class CrudService {
       .pipe(map((data: {profile: Profile}) => data.profile));
   }
 
-  addUser(val: any) {
+  getProfile(val: any) {
+    let body = JSON.stringify(val);
+    alert(body);
+    return this.httpClient.get<any>(this.APIUrl + "/profile/", val);
+  }
 
+  addUser(val: any) {
       let body = JSON.stringify(val);
       return this.httpClient.post<any>(this.APIUrl + "/user/", val);
 

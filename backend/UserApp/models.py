@@ -11,4 +11,3 @@ class Users(models.Model):
     UserAge = models.IntegerField(default=0)
 
 
-

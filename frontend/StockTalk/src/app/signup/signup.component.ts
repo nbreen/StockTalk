@@ -24,6 +24,8 @@ export class SignupComponent implements OnInit {
     Password: "",
     UserAge: 0
   };
+
+
   
   resetForm(form?:NgForm) {
     if (form != null) {

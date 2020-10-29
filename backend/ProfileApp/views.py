@@ -1,23 +1,27 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
+from rest_framework import generics
 from django.http.response import JsonResponse
 
 from ProfileApp.serializers import ProfileSerializer
 from ProfileApp.models import Profiles
 
 # Create your views here.
+
+class ProfileList(generics.ListAPIView):    
+    serializer_class = ProfileSerializer
+
+    def get_queryset(self):
+        profile_username = self.kwargs['username']
+        return Profiles.objects.filter(Username = profile_username)
+        
+
 @csrf_exempt
 def profileApi(request,id=0):
+        
 
-    if request.method=='GET':
-        profile_data = JSONParser().parse(request)
-        profile_username = profile_data['Username']
-        profile = Profiles.objects.get(Username=profile_username)
-        profile_serializer = ProfileSerializer(profile)
-        return JsonResponse(profile_serializer.data, safe=False)
-
-    elif request.method=='POST':
+    if request.method=='POST':
         profile_data = JSONParser().parse(request)
         profile_serializer = ProfileSerializer(data=profile_data)
         if profile_serializer.is_valid():

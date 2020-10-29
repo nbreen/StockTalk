@@ -4,6 +4,7 @@ import { Globals } from './Globals';
 import { Component } from '@angular/core';
 import { isConstructorDeclaration } from 'typescript';
 import { ResourceLoader } from '@angular/compiler';
+import { Username } from './Interfaces';
 
 
 @Component({
@@ -18,10 +19,13 @@ export class AppComponent {
 
   constructor(private router: Router, private backend: CrudService, public globals: Globals) {
     localStorage.setItem("isAuthenticated", "false");
-    //localStorage.setItem("currentUsername", "");
   }
 
   public reload() {
+  }
+
+  test2: Username = {
+    Username: "nbreen"
   }
 
   ngOnInit() {
@@ -33,6 +37,14 @@ export class AppComponent {
       // Current user is NOT authenticated
       this.globals.isAuthenticated = true;
     }
+  }
+
+  public test() {
+    this.test2.Username = "nbreen";
+    this.backend.getProfile(this.test2).subscribe(res => {
+      alert(res.toString());
+    });
+
   }
   
 

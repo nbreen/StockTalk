@@ -38,8 +38,6 @@ export class ProfileComponent implements OnInit {
     }
     
 
-
-
     //this.user = new User();
 
         /*this.route.data.subscribe(
