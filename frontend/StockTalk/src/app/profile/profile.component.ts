@@ -4,6 +4,7 @@ import { CrudService } from '../crud.service';
 import { Globals } from '../Globals';
 import { User, Profile, UserFollowsUser } from '../Interfaces';
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -18,17 +19,19 @@ export class ProfileComponent implements OnInit {
     public globals: Globals
   ) {this.currentUsername = this.globals.currentUsername } 
 
-  profile: Profile;
+  profile: Profile = {
+    Username: "testUser",
+    Bio: "testBio",
+    ProfileImage: '../../assets/Images/DefaultprofileImage.jpg'
+  };
   currentUsername: any;
   User: User;
   isUser: boolean;
 
   ngOnInit(): void {
 
-    this.currentUsername = localStorage.getItem("currentUsername");
-    this.profile.Username = "testUser";
-    this.profile.Bio = "TestBio";
-    this.profile.ProfileImage = "/default/image/path";
+    //this.currentUsername = localStorage.getItem("currentUsername");
+    this.currentUsername = "testUser";
 
     //this.user = new User();
 
