@@ -6,6 +6,7 @@ import { User, Profile, UserFollowsUser } from '../Interfaces';
 import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs';
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -43,6 +44,6 @@ export class ProfileComponent implements OnInit {
     }
 
     this.backend.getUserProfile(this.currentUsername)
-    .subscribe(result => this.profile = {...result[0]});
+    .subscribe(result => {this.profile = {...result[0]}; console.log(this.profile)});
   }
 }
