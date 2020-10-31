@@ -4,6 +4,7 @@ import pymysql
 import re
 import names
 import random
+import updateTrendingTopics as utt
 
 #connect to database
 db_engine = 'django.db.backends.mysql'
@@ -129,7 +130,7 @@ for i in range(len(data_with_ticker)):
 	password = "password"
 	age = 18
 	younger_bias = random.randrange(0,3)
-	if younger_bias < 2:
+	if younger_bias < 3:
 		age = random.randrange(18,35)
 	else:
 		age = random.randrange(18,70)
@@ -157,3 +158,5 @@ for i in range(len(data_with_ticker)):
 
 	cur.execute("INSERT INTO PostApp_posts(PostId, UserID, TopicName, PostType, Post, PostDate, Anonymous) VALUES (%s, %s, %s, 0, %s, %s, 0)", (str(next_post_id), str(user_id_for_post), str(topic), str(post), str(date)))
 	connection.commit()
+
+	utt.update(str(topic), str(date))
