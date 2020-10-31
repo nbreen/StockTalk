@@ -70,13 +70,11 @@ def update(topic, time):
 	cur.execute("UPDATE TopicApp_topic SET TrendingScore = %s WHERE TopicName = %s", (str(gain), topic))
 	connection.commit()
 
-	cur.execute("UPDATE TopicApp_topic SET isTrending = 0 WHERE isStock = 1")
-	connection.commit()
 
 	#Update isTrending variable -needs a minimum of n posts to be considered trending
 	if n_posts > n:
-		cur.execute("SELECT TopicName FROM TopicApp_topic WHERE isTrending = 1 ORDER BY TrendingScore DESC")
-		previous_trending_topics = cur.fetchall()
+		cur.execute("UPDATE TopicApp_topic SET isTrending = 0 WHERE isStock = 1")
+		connection.commit()
 
 		cur.execute("UPDATE TopicApp_topic AS x INNER JOIN (SELECT TopicName FROM TopicApp_topic ORDER BY TrendingScore DESC LIMIT 10) AS y SET  isTrending = 1 WHERE x.TopicName = y.TopicName")
 		connection.commit()
