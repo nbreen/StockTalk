@@ -2,8 +2,10 @@
 # -*- coding: utf-8 -*-
 import pymysql
 import re
+import names
+import random
 
-#conncet to database
+#connect to database
 db_engine = 'django.db.backends.mysql'
 db_name = 'StockTalk'
 db_user = 'admin'
@@ -89,21 +91,69 @@ data_with_ticker = []
 index = 0
 
 for data in valid_data:
-	print("Processing: " + str(index) + "/" + str(len(valid_data)))
+	print("Processing: " + str(index+1) + "/" + str(len(valid_data)))
 	index += 1
 	for topic in topics:
 		pattern = '#' + topic[0].lower() + '([\s]|$)'
-		search = re.search(pattern, data[0].lower())
-		if search != None:
-			data_with_ticker.append(data)
+		ticker = re.search(pattern, data[0].lower())
+		if ticker != None and data[0][0:4] != "rt @" :
+			ticker = ticker.group(0)[1:].upper()
+			if ticker[-1] == " ":
+				ticker = ticker[:-1]
+			data_with_ticker.append((data, ticker))
 
 #print all posts with user and timestamp that involve a valid topic in our database
+
 for data in data_with_ticker:
-	print("Post: " + str(data[0]))
-	print("User: " + str(data[1]))
-	print("Timestamp(ms): " + str(data[2]))
+	print("Post: " + str(data[0][0]))
+	print("User: " + str(data[0][1]))
+	print("Timestamp(ms): " + str(data[0][2]))
 	print("")
 
 
+cur.execute("SELECT MAX(UserID) FROM UserApp_users")
+max_id = cur.fetchone()
+next_id = max_id[0]
 
+cur.execute("SELECT MAX(PostId) FROM PostApp_posts")
+max_post_id = cur.fetchone()
+next_post_id = max_post_id[0]
 
+#create users in database with a post
+for i in range(len(data_with_ticker)):
+#for i in range(1):
+	next_id += 1
+	username = data_with_ticker[i][0][1]
+	full_name = names.get_full_name()
+	email = str(data_with_ticker[i][0][1]) + "@email.com"
+	password = "password"
+	age = 18
+	younger_bias = random.randrange(0,3)
+	if younger_bias < 2:
+		age = random.randrange(18,35)
+	else:
+		age = random.randrange(18,70)
+
+	bio = "My name is " + str(full_name) + ". I am " + str(age) + " years old and love to talk about stocks!"
+
+	profile_image = "None"
+	followers = 0
+	following = 0
+	n_posts = 0
+	
+	cur.execute("INSERT IGNORE INTO UserApp_users(UserID, Username, Fullname, Email, Password, UserAge, Bio, ProfileImage, Followers, Following, NumberOfPosts) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, 0, 0, 0)", (str(next_id), username, full_name, email, password, str(age), bio, str(profile_image)))
+	connection.commit()
+
+	next_post_id += 1
+	topic = data_with_ticker[i][1]
+	post_type = 0
+	post = data_with_ticker[i][0][0]
+	#remove first 5 digits (15830) for correct int size
+	date = data_with_ticker[i][0][2][4:]
+	anon = 0
+
+	cur.execute("SELECT UserID FROM UserApp_users WHERE Username = %s", str(username))
+	user_id_for_post = cur.fetchone()[0]
+
+	cur.execute("INSERT INTO PostApp_posts(PostId, UserID, TopicName, PostType, Post, PostDate, Anonymous) VALUES (%s, %s, %s, 0, %s, %s, 0)", (str(next_post_id), str(user_id_for_post), str(topic), str(post), str(date)))
+	connection.commit()
