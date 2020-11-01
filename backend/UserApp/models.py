@@ -10,7 +10,7 @@ class Users(models.Model):
     Password = models.CharField(max_length=64)
     UserAge = models.IntegerField(default=0)
 
-class TopicsFollowed(model.Model):
+class UserFollowsTopic(model.Model):
     UserID: models.AutoField(primary_key = True)
     TopicFollowed = models.CharField(max_length = 64) 
 
