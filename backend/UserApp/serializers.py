@@ -12,7 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
                     'Password',
                     'UserAge')
       
-class followTopicSerializer(serializers.ModelSerializer):
+class FollowTopicSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserFollowsTopic
         fields = ('UserID',
