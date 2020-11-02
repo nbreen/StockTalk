@@ -24,8 +24,7 @@ export class ProfileComponent implements OnInit {
 
   
   profile: Profile;
-  profileFilePath: string;
-
+  profilePhotoPath: string;
 
 
   currentUsername: any;
@@ -49,6 +48,7 @@ export class ProfileComponent implements OnInit {
       var profile_data = JSON.stringify(res);
       profile_data = profile_data.substring(1, profile_data.length-1);
       this.profile = JSON.parse(profile_data);
+      this.profilePhotoPath = this.backend.PhotoUrl + this.profile.ProfileImage;
     });
 
   }

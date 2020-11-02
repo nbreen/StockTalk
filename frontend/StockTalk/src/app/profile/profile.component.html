@@ -7,7 +7,7 @@
     <mat-card-content> 
       <!--<img class="profile" src = {{profile.ProfileImage}}>
       <p>Image src {{profile.ProfileImage}}</p>-->
-      <img class="profile" src = '../../assets/Images/DefaultprofileImage.jpg'>
+      <img [src]=this.profilePhotoPath height="100px;" width="100px;">
       <mat-label class="profile-info">Username: {{profile.Username}} </mat-label>
       <mat-label class="profile-info">Bio: {{profile.Bio}}</mat-label>
     </mat-card-content>

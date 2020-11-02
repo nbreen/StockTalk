@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class CrudService {
 
   readonly APIUrl = "http://127.0.0.1:8000";
-  readonly PhotoUrl = "https://127.0.0.1:8000/media/";
+  readonly PhotoUrl = "http://127.0.0.1:8000/media/";
   
   httpOptions = {
     headers: new HttpHeaders({
