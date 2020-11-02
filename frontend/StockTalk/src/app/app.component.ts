@@ -26,9 +26,7 @@ export class AppComponent {
   public reload() {
   }
 
-  test2: Username = {
-    Username: "nbreen"
-  }
+
 
   ngOnInit() {
     this.globals.currentUsername = localStorage.getItem("currentUsername");
@@ -42,13 +40,8 @@ export class AppComponent {
 
   }
 
-  public test() {
-    this.backend.getProfile("WillSztej").subscribe(res => {
-      var profile_data = JSON.stringify(res);
-      profile_data = profile_data.substring(1, profile_data.length-1);
-      this.test_profile = JSON.parse(profile_data);
-    });
-
+  directProfile() {
+    this.router.navigate(["/profile/" + this.globals.currentUsername]);
   }
   
 
@@ -57,6 +50,7 @@ export class AppComponent {
     if (confirm("Are you sure you want to logout?")) {
       localStorage.setItem("isAuthenticated", "false");
       localStorage.setItem("currentUsername", "");
+      this.globals.isAuthenticated = false;
       this.router.navigate(["/"]);
     }
 

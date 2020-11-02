@@ -23,7 +23,6 @@ export class ProfileComponent implements OnInit {
     public globals: Globals
   ) {} 
 
-  
   profile: Profile;
   profilePhotoPath: string;
   settingsURL: string;
@@ -41,7 +40,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
 
-  
     var url_username = this.route.snapshot.params["User"];
 
     if (this.globals.currentUsername == url_username) {

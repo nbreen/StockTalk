@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CrudService } from '../crud.service'; 
 import { Globals } from '../Globals';
 import { Profile } from '../shared/profile.model';
 import { User } from '../shared/user.model';
 import { Router } from '@angular/router';
+import { NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-profile-settings',
@@ -24,6 +25,59 @@ export class ProfileSettingsComponent implements OnInit {
   profile: Profile;
   user: User;
   profilePhotoPath: string;
+
+  @Input() new_password: string = "";
+  @Input() current_password: string = "";
+  @Input() new_bio: string = "";
+
+  directProfile() {
+    this.router.navigate(["/profile/" + this.globals.currentUsername]);
+  }
+
+
+  submitChanges() {
+
+    if (this.new_password != "") {
+      if (this.current_password != this.user.Password) {
+        alert("Password is incorrect.");
+        this.new_password = "";
+        this.current_password = "";
+        this.new_bio = "";
+        return;
+      }
+    }
+
+    if (this.new_bio.length > 256 && this.new_bio != "") {
+      alert("Bio must be less than 256 characters.");
+        this.new_password = "";
+        this.current_password = "";
+        this.new_bio = "";
+        return;
+
+    }
+
+    this.user.Password = this.new_password;
+    this.profile.Bio = this.new_bio;
+
+    this.backend.updateUser(JSON.stringify(this.user)).subscribe(res => {
+      if (res.toString() != "User updated successfully") {
+        alert("Something went wrong, please check your input again.");
+        return;
+      }
+    });
+
+    this.backend.updateProfile(JSON.stringify(this.profile)).subscribe(res => {
+      if (res.toString() != "Profile updated successfully") {
+        alert("Something went wrong, please check your input again.");
+        return;
+      }
+    });
+
+    alert("Profile settings updated successfully.");
+    this.router.navigate(["/profile/" + this.user.Username]);
+    
+
+  }
 
 
   ngOnInit(): void {

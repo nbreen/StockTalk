@@ -85,19 +85,12 @@ export class CrudService {
   }
 
   
+  updateUser(val:any) {
+    return this.httpClient.post(this.APIUrl + '/user/', val);
+  }
 
-  updateUser<T>(id : Number, type : T, val : any): Observable<T> {
-
-    var typeStr = this.instanceOfObj(type);
-
-    return this.httpClient.put<T>(this.APIUrl + typeStr + id + JSON.stringify(val), this.httpOptions);
-
-    /*
-    .pipe(
-      catchError(this.handleError<User>('updateUser'))
-    );
-    */
-
+  updateProfile(val:any) {
+    return this.httpClient.post(this.APIUrl + '/profile/', val);
   }
 
   deleteAccount(userID: Number) {
