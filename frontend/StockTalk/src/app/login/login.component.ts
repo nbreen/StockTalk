@@ -7,7 +7,8 @@ import { Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
 import { Globals } from '../Globals';
 import { NgForm} from '@angular/forms';
-import { User, Profile } from '../Interfaces';
+import { User } from '../shared/user.model';
+import { Profile } from '../shared/profile.model';
 
 
 @Component({
@@ -35,17 +36,33 @@ export class LoginComponent implements OnInit {
     this.loginData.Password = "";
   }
 
+  temp_user: User;
+
   public login() {
     if (this.loginData.Username && this.loginData.Password) {
       return this.service.validateUser(this.loginData).subscribe(res => {
-        alert(res.toString());
         if (res.toString().match("User exists") === null) {
+          alert("Username or password is incorrect");
         } else {
-          this.globals.isAuthenticated = true;
-          this.globals.currentUsername = this.loginData.Username;
-          localStorage.setItem("isAuthenticated", "true");
-          localStorage.setItem("currentUsername", this.loginData.Username);
-          this.router.navigate(["/profile/" + this.loginData.Username]);
+
+          this.service.getUser(this.loginData.Username).subscribe(res => {
+            var user_data = JSON.stringify(res);
+            user_data = user_data.substring(1, user_data.length-1);
+            this.temp_user = JSON.parse(user_data);
+          })
+
+          if (this.temp_user.Password == this.loginData.Password) {
+            alert("Welcome " + this.temp_user.Username);
+            this.globals.isAuthenticated = true;
+            this.globals.currentUsername = this.loginData.Username;
+            localStorage.setItem("isAuthenticated", "true");
+            localStorage.setItem("currentUsername", this.loginData.Username);
+            this.router.navigate(["/profile/" + this.loginData.Username]);
+          } else {
+            alert("Username or password is incorrect");
+            this.temp_user = null;
+            return;
+          }
         }
       });
       

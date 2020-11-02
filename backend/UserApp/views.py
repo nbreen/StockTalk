@@ -3,6 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from django.db import connection
+from rest_framework import generics
 
 from UserApp.models import Users
 from UserApp.serializers import UserSerializer
@@ -10,6 +11,16 @@ from UserApp.serializers import FollowTopicSerializer
 import re
 
 # Create your views here.
+
+class UserList(generics.ListAPIView):    
+    serializer_class = UserSerializer
+
+    def get_queryset(self):
+        #ipdb.set_trace()
+        username = self.kwargs['username']
+        return Users.objects.filter(Username=username)
+
+
 @csrf_exempt
 def userDeleteApi(id):
     newid = re.findall("\d+", str(id))[0]

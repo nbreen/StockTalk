@@ -3,6 +3,6 @@ from UserApp import views
 
 urlpatterns=[
     url(r'^user/$', views.userApi),
-    url(r'^user/([0-9]+)$', views.userApi),
+    url(r'^user/(?P<username>.+)/$', views.UserList.as_view()),
     url(r'^delete-user\/.*$', views.userDeleteApi)
 ]

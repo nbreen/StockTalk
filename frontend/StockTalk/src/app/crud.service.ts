@@ -51,6 +51,10 @@ export class CrudService {
     return this.httpClient.get<Profile>(this.APIUrl + "/profile/" + val);
   }
 
+  getUser(val: any): Observable<User> {
+    return this.httpClient.get<User>(this.APIUrl + "/user/" + val);
+  }
+
   addUser(val: any) {
       let body = JSON.stringify(val);
       return this.httpClient.post<any>(this.APIUrl + "/user/", val);
