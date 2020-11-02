@@ -1,0 +1,30 @@
+<div *ngIf=topics>
+
+<mat-toolbar>
+    <span>ALL TOPICS</span>
+</mat-toolbar>
+  <mat-card class="my-card">
+     <h2>{{ title }}</h2>
+     
+     <table style="width:100%">
+        <tr>
+          <th>Topic Name</th>
+          <!-- <th>Popularity Rank</th>
+          <th>Trending?</th>
+          <th>Stock?</th> -->
+        </tr>
+        <tr *ngFor="let topic of topics">
+              
+              <a routerLink="/topic/{{topic.TopicName}}">{{topic.TopicName}}</a>
+              
+              <!-- <td>{{topic.popularity}}</td>
+              <td *ngIf="topic.is_trending">🔥</td>
+              <td *ngIf="!topic.is_trending">❌</td> -->
+              <!-- <td *ngIf="topic.is_stock;">💲</td>
+              <td *ngIf="!topic.is_stock;">❌</td> -->
+             
+        </tr>
+        </table>
+  </mat-card>
+
+</div>
