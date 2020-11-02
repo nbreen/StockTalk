@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AlltopicsComponent } from './alltopics/alltopics.component';
+import { TrendingtopicsComponent } from './trendingtopics/trendingtopics.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'delete-user', component:DeleteUserComponent},
   { path: 'profile/:User', component:ProfileComponent},
   { path: 'topic/:TopicName', component:TopicComponent},
-  { path: 'settings/:User', component:ProfileSettingsComponent}
+  { path: 'settings/:User', component: ProfileSettingsComponent },
+  { path: 'trendingtopics', component: TrendingtopicsComponent }
 ];
 
 @NgModule({

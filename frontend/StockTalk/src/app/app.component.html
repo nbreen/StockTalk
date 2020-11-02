@@ -4,24 +4,28 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <!--  <span>HOME</span> -->
-     <span><a href="/">StockTalk</a></span>
-     <span class="spacer"></span>
-     <a mat-button routerLink="alltopics">Topics</a>
-     <span class="spacer"></span>
+    <span><a href="/">StockTalk</a></span>
+    <span class="spacer"></span>
+    <a mat-button routerLink="alltopics">Topics</a>
+    <span class="spacer"></span>
 
-     <a mat-button *ngIf="!this.globals.isAuthenticated" routerLink="signup">Signup</a>
-     <a mat-button *ngIf="!this.globals.isAuthenticated" routerLink="login">Login</a>
+    <span class="spacer"></span>
+    <a mat-button routerLink="trendingtopics">Trending Topics</a>
+    <span class="spacer"></span>
 
-     <a mat-button (click)="logout()" *ngIf="this.globals.isAuthenticated">Logout</a>
-     <a mat-button *ngIf="this.globals.isAuthenticated" routerLink="delete-user">Delete Account</a>
+    <a mat-button *ngIf="!this.globals.isAuthenticated" routerLink="signup">Signup</a>
+    <a mat-button *ngIf="!this.globals.isAuthenticated" routerLink="login">Login</a>
 
-     <a mat-button (click)="test()" >Test</a>
+    <a mat-button (click)="logout()" *ngIf="this.globals.isAuthenticated">Logout</a>
+    <a mat-button *ngIf="this.globals.isAuthenticated" routerLink="delete-user">Delete Account</a>
 
-     <!-- <div *ngIf= !currentUsername>
-      <a mat-button routerLink="delete-user">Delete Account</a>
-      <a mat-button>Log Out</a>
-     </div -->
-  
+    <a mat-button (click)="test()">Test</a>
+
+    <!-- <div *ngIf= !currentUsername>
+   <a mat-button routerLink="delete-user">Delete Account</a>
+   <a mat-button>Log Out</a>
+  </div -->
+
   </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>
