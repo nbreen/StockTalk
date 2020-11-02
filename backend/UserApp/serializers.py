@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from UserApp.models import Users
+from UserApp.models import UserFollowsTopic
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

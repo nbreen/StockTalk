@@ -45,9 +45,8 @@ export class CrudService {
   }
 
   getProfile(val: any) {
-    let body = JSON.stringify(val);
-    alert(body);
-    return this.httpClient.get<any>(this.APIUrl + "/profile/", val);
+    //alert(body);
+    return this.httpClient.get<Profile>(this.APIUrl + "/profile/" + val);
   }
 
   addUser(val: any) {

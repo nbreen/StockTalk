@@ -41,8 +41,8 @@ export class AppComponent {
 
   public test() {
     this.test2.Username = "nbreen";
-    this.backend.getProfile(this.test2).subscribe(res => {
-      alert(res.toString());
+    this.backend.getUserProfile(this.test2.Username).subscribe(res => {
+      alert(res.Bio);
     });
 
   }
