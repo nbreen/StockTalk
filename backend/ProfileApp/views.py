@@ -7,6 +7,8 @@ from django.http.response import JsonResponse
 from ProfileApp.serializers import ProfileSerializer
 from ProfileApp.models import Profiles
 
+from django.core.files.storage import default_storage
+
 # Create your views here.
 
 class ProfileList(generics.ListAPIView):    
@@ -15,7 +17,13 @@ class ProfileList(generics.ListAPIView):
     def get_queryset(self):
         profile_username = self.kwargs['username']
         return Profiles.objects.filter(Username = profile_username)
-        
+
+
+@csrf_exempt
+def SaveProfilePic(request):
+    file=request.FILES['uploadedFile']
+    file_name = default_storage.save(file.name, file)
+    return JsonResponse(file_name, safe=False)
 
 @csrf_exempt
 def profileApi(request,id=0):
