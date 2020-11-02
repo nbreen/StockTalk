@@ -5,6 +5,8 @@ import { Component } from '@angular/core';
 import { isConstructorDeclaration } from 'typescript';
 import { ResourceLoader } from '@angular/compiler';
 import { Username } from './Interfaces';
+import { Profile } from './shared/profile.model';
+//import { networkInterfaces } from 'os';
 
 
 @Component({
@@ -16,6 +18,7 @@ import { Username } from './Interfaces';
 export class AppComponent {
 
   title = 'StockTalk';
+  test_profile: Profile;
 
   constructor(private router: Router, private backend: CrudService, public globals: Globals) {
     localStorage.setItem("isAuthenticated", "false");
@@ -40,9 +43,10 @@ export class AppComponent {
   }
 
   public test() {
-    this.test2.Username = "nbreen";
-    this.backend.getProfile(this.test2).subscribe(res => {
-      alert(res.toString());
+    this.backend.getProfile("WillSztej").subscribe(res => {
+      var profile_data = JSON.stringify(res);
+      profile_data = profile_data.substring(1, profile_data.length-1);
+      this.test_profile = JSON.parse(profile_data);
     });
 
   }

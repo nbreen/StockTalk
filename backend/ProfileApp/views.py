@@ -3,11 +3,14 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from rest_framework import generics
 from django.http.response import JsonResponse
+from django.core import serializers
 
 from ProfileApp.serializers import ProfileSerializer
 from ProfileApp.models import Profiles
 
 from django.core.files.storage import default_storage
+
+import ipdb;
 
 # Create your views here.
 
@@ -15,8 +18,13 @@ class ProfileList(generics.ListAPIView):
     serializer_class = ProfileSerializer
 
     def get_queryset(self):
+        #ipdb.set_trace()
         profile_username = self.kwargs['username']
-        return Profiles.objects.filter(Username = profile_username)
+        return Profiles.objects.filter(Username=profile_username)
+        
+
+
+        
 
 
 @csrf_exempt
@@ -27,9 +35,13 @@ def SaveProfilePic(request):
 
 @csrf_exempt
 def profileApi(request,id=0):
-        
 
-    if request.method=='POST':
+    if request.method=='GET':
+        profiles = Profiles.objects.all()
+        profile_serializer = ProfileSerializer(profiles, many=True)
+        return JsonResponse(profile_serializer.data, safe=False)
+        
+    elif request.method=='POST':
         profile_data = JSONParser().parse(request)
         profile_serializer = ProfileSerializer(data=profile_data)
         if profile_serializer.is_valid():

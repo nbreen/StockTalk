@@ -11,7 +11,7 @@
       <mat-label class="profile-info">Username: {{profile.Username}} </mat-label>
       <mat-label class="profile-info">Bio: {{profile.Bio}}</mat-label>
     </mat-card-content>
-    <button routerLink="/settings" mat-raised-button color="primary">Edit Profile</button>
+    <button *ngIf="this.isUser" routerLink="/settings" mat-raised-button color="primary">Edit Profile</button>
  </mat-card>
 
  <!--

@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CrudService } from '../crud.service'; 
 import { Globals } from '../Globals';
-import { User, Profile, UserFollowsUser } from '../Interfaces';
+import { User, UserFollowsUser } from '../Interfaces';
 import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs';
+import { Profile } from '../shared/profile.model';
 
 
 @Component({
@@ -21,11 +22,12 @@ export class ProfileComponent implements OnInit {
     public globals: Globals
   ) { this.currentUsername = this.globals.currentUsername; } 
 
-  profile: Profile = {
-    Username: "",
-    Bio: "",
-    ProfileImage: ""
-  };
+  
+  profile: Profile;
+  profileFilePath: string;
+
+
+
   currentUsername: any;
   isAuthenticated: boolean;
   User: any;
@@ -43,7 +45,11 @@ export class ProfileComponent implements OnInit {
       this.isUser = false;
     }
 
-    this.backend.getUserProfile(this.currentUsername)
-    .subscribe(result => {this.profile = {...result[0]}; console.log(this.profile)});
+    this.backend.getProfile(this.currentUsername).subscribe(res => {
+      var profile_data = JSON.stringify(res);
+      profile_data = profile_data.substring(1, profile_data.length-1);
+      this.profile = JSON.parse(profile_data);
+    });
+
   }
 }

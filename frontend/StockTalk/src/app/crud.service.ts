@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 export class CrudService {
 
   readonly APIUrl = "http://127.0.0.1:8000";
+  readonly PhotoUrl = "https://127.0.0.1:8000/media/";
   
   httpOptions = {
     headers: new HttpHeaders({
@@ -40,14 +41,14 @@ export class CrudService {
     
   }
 
+  /*
   getUserProfile(username:string): Observable<Profile> {
     return this.httpClient.get<Profile>(this.APIUrl + "/profile/" + username, this.httpOptions);
   }
+  */
 
-  getProfile(val: any) {
-    let body = JSON.stringify(val);
-    alert(body);
-    return this.httpClient.get<any>(this.APIUrl + "/profile/", val);
+  getProfile(val: any): Observable<Profile> {
+    return this.httpClient.get<Profile>(this.APIUrl + "/profile/" + val);
   }
 
   addUser(val: any) {
