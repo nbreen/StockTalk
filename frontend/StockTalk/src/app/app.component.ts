@@ -21,7 +21,6 @@ export class AppComponent {
   test_profile: Profile;
 
   constructor(private router: Router, private backend: CrudService, public globals: Globals) {
-    localStorage.setItem("isAuthenticated", "false");
   }
 
   public reload() {
@@ -33,13 +32,14 @@ export class AppComponent {
 
   ngOnInit() {
     this.globals.currentUsername = localStorage.getItem("currentUsername");
-    if (localStorage.getItem("isAuthenticated").match("false") === null) {
+    if (localStorage.getItem("isAuthenticated") == "false") {
       // Current user is authenticated
       this.globals.isAuthenticated = false;
     } else {
       // Current user is NOT authenticated
       this.globals.isAuthenticated = true;
     }
+
   }
 
   public test() {
@@ -55,9 +55,6 @@ export class AppComponent {
   public logout() {
 
     if (confirm("Are you sure you want to logout?")) {
-      this.globals.isAuthenticated = false;
-      this.globals.currentUser = null;
-      this.globals.currentUsername = "";
       localStorage.setItem("isAuthenticated", "false");
       localStorage.setItem("currentUsername", "");
       this.router.navigate(["/"]);

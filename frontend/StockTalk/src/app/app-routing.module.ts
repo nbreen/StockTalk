@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'delete-user', component:DeleteUserComponent},
   { path: 'profile/:User', component:ProfileComponent},
   { path: 'topic/:TopicName', component:TopicComponent},
-  { path: 'settings', component:ProfileSettingsComponent}
+  { path: 'settings/:User', component:ProfileSettingsComponent}
 ];
 
 @NgModule({
