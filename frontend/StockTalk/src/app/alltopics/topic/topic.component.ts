@@ -1,8 +1,7 @@
 import { CrudService } from 'src/app/crud.service';
-import { Post } from './../../Interfaces';
+import { Post, User } from './../../Interfaces';
 import { CommentComponent } from './post/comment/comment.component';
 import { Component, OnInit } from '@angular/core';
-import { User } from '../Interfaces';
 
 @Component({
   selector: 'app-topic',
