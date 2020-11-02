@@ -6,6 +6,7 @@ from django.db import connection
 
 from UserApp.models import Users
 from UserApp.serializers import UserSerializer
+from UserApp.serializers import FollowTopicSerializer
 import re
 
 # Create your views here.
@@ -55,3 +56,24 @@ def userApi(request,id=0):
         user=Users.objects.get(UserID=id)
         user.delete()
         return JsonResponse("Deleted user sucessfully", safe=False)    
+    
+@csrf_exempt    
+def followTopicApi(request, id, fol):
+    if request.method=='GET':
+        value = UserFollowsTopic.objects.all()
+        follow_serializer = FollowTopicSerializer(value, many=True)
+        return JsonResponse(follow_serializer.data, safe=False)
+
+    elif request.method=='POST':
+        follow_data = JSONParser().parse(request)
+        follow_serializer = FollowTopicSerializer(data=follow_data)
+        if follow_serializer.is_valid():
+            follow_serializer.save()
+            return JsonResponse("User followed successfully", safe=False)
+        print(follow_serializer.errors)
+        return JsonResponse("Failed to follow user", safe=False)
+
+    elif request.method=='DELETE':
+        value=UserFollowsTopic.objects.get(UserID=id, TopicFollowed=fol)
+        value.delete()
+        return JsonResponse("User unfollowed sucessfully", safe=False)

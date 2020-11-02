@@ -11,3 +11,9 @@ class UserSerializer(serializers.ModelSerializer):
                     'Email',
                     'Password',
                     'UserAge')
+      
+class FollowTopicSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserFollowsTopic
+        fields = ('UserID',
+                  'TopicFollowed')
