@@ -4,14 +4,14 @@ import { Topic } from '../Interfaces';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-alltopics',
-  templateUrl: './alltopics.component.html',
-  styleUrls: ['./alltopics.component.scss'],
+  selector: 'app-trendingtopics',
+  templateUrl: './trendingtopics.component.html',
+  styleUrls: ['./trendingtopics.component.scss'],
 
 })
 
-export class AlltopicsComponent implements OnInit {
-  title: string = "Here are all of the Topics on StockTalk"
+export class TrendingtopicsComponent implements OnInit {
+  title: string = "Here are all of the Trending Topics on StockTalk"
   topics: Array<Topic>;
 
   constructor(
@@ -19,7 +19,6 @@ export class AlltopicsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.backend.getAll<Topic>("/topic/").subscribe(val  => {console.log(val); this.topics = val});
 
     this.backend.getAll<Topic>("/topic/").subscribe(data => {
       console.log(data);

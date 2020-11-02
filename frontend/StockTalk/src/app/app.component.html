@@ -4,22 +4,33 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <!--  <span>HOME</span> -->
-     <span><a href="/">StockTalk</a></span>
-     <span class="spacer"></span>
-     <a mat-button routerLink="alltopics">Topics</a>
-     <span class="spacer"></span>
+    <span><a href="/">StockTalk</a></span>
+    <span class="spacer"></span>
+    <a mat-button routerLink="alltopics">Topics</a>
+    <span class="spacer"></span>
 
-     <a mat-button *ngIf="!this.globals.isAuthenticated" routerLink="signup">Signup</a>
-     <a mat-button *ngIf="!this.globals.isAuthenticated" routerLink="login">Login</a>
+    <span class="spacer"></span>
+    <a mat-button routerLink="trendingtopics">Trending Topics</a>
+    <span class="spacer"></span>
 
+<<<<<<< HEAD
      <a mat-button (click)="logout()" *ngIf="this.globals.isAuthenticated">Logout</a>
      <a mat-button (click)="directProfile()" *ngIf="this.globals.isAuthenticated">My Profile</a>
+=======
+    <a mat-button *ngIf="!this.globals.isAuthenticated" routerLink="signup">Signup</a>
+    <a mat-button *ngIf="!this.globals.isAuthenticated" routerLink="login">Login</a>
 
-     <!-- <div *ngIf= !currentUsername>
-      <a mat-button routerLink="delete-user">Delete Account</a>
-      <a mat-button>Log Out</a>
-     </div -->
-  
+    <a mat-button (click)="logout()" *ngIf="this.globals.isAuthenticated">Logout</a>
+    <a mat-button *ngIf="this.globals.isAuthenticated" routerLink="delete-user">Delete Account</a>
+
+    <a mat-button (click)="test()">Test</a>
+
+    <!-- <div *ngIf= !currentUsername>
+   <a mat-button routerLink="delete-user">Delete Account</a>
+   <a mat-button>Log Out</a>
+  </div -->
+>>>>>>> bff8e89d955cf0c5adab290a990da69230f54b6d
+
   </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>
