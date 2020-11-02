@@ -22,6 +22,11 @@ cur = connection.cursor()
 cur.execute("SELECT TopicName FROM TopicApp_topic ")
 topics = cur.fetchall()
 
+'''
+cur.execute("UPDATE TopicApp_topic SET isTrending = 0")
+connection.commit()
+'''
+
 #open the raw twitter data file (many more yet to be processed)
 f = open("sample_twitter_data.json", "r")
 

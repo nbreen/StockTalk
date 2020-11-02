@@ -20,7 +20,7 @@ def update(topic, time):
 	cur = connection.cursor()
 
 	#how many posts to track back
-	n = 10
+	n = 3
 	'''
 	cur.execute("UPDATE TopicApp_topic SET CurrentMA = 0 WHERE IsStock = 1")
 	connection.commit()
@@ -55,10 +55,10 @@ def update(topic, time):
 		cur.execute("UPDATE TopicApp_topic SET PreviousMA = %s WHERE TopicName = %s", (current_MA, topic))
 		connection.commit()
 
-	if previous_MA != 0:
+	if previous_MA != 0 and n_posts >= n:
 		gain = current_MA / previous_MA
 	else:
-		gain = .01
+		gain = .01 * (n_posts + 1)
 
 	#update database with new values
 	cur.execute("UPDATE TopicApp_topic SET NumberOFPosts = %s WHERE TopicName = %s", (str(n_posts+1), topic))
@@ -71,13 +71,12 @@ def update(topic, time):
 	connection.commit()
 
 
-	#Update isTrending variable -needs a minimum of n posts to be considered trending
-	if n_posts > n:
-		cur.execute("UPDATE TopicApp_topic SET isTrending = 0 WHERE isStock = 1")
-		connection.commit()
+	#update isTrending
+	cur.execute("UPDATE TopicApp_topic SET isTrending = 0 WHERE isStock = 1")
+	connection.commit()
 
-		cur.execute("UPDATE TopicApp_topic AS x INNER JOIN (SELECT TopicName FROM TopicApp_topic ORDER BY TrendingScore DESC LIMIT 10) AS y SET  isTrending = 1 WHERE x.TopicName = y.TopicName")
-		connection.commit()
+	cur.execute("UPDATE TopicApp_topic AS x INNER JOIN (SELECT TopicName FROM TopicApp_topic ORDER BY TrendingScore DESC LIMIT 10) AS y SET  isTrending = 1 WHERE x.TopicName = y.TopicName")
+	connection.commit()
 
 
 #test function
