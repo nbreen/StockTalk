@@ -19,7 +19,9 @@ import { CommentComponent } from './alltopics/topic/post/comment/comment.compone
 import { ProfileComponent } from './profile/profile.component';
 import { Globals } from './Globals';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
-import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';;
+import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
+import { MakePostComponent } from './make-post/make-post.component';
+import { FollowersComponent } from './followers/followers.component';;
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { ProfileSettingsComponent } from './profile-settings/profile-settings.co
     CommentComponent,
     ProfileComponent,
     DeleteUserComponent,
-    ProfileSettingsComponent
+    ProfileSettingsComponent,
+    MakePostComponent,
+    FollowersComponent
   ],
   imports: [
     BrowserModule,
