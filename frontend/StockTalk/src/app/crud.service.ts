@@ -41,17 +41,6 @@ export class CrudService {
 
   }
 
-  getTrending<T>(type: string): Observable<T[]> {
-
-    return this.httpClient.get<T[]>(this.APIUrl + type)
-
-    /*
-    .pipe(
-      catchError(this.handleError<User>('getAllUsers'))
-    )
-    */
-
-  }
 
   /*
   getUserProfile(username:string): Observable<Profile> {

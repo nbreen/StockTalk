@@ -21,7 +21,7 @@ export class TrendingtopicsComponent implements OnInit {
     private backend: CrudService,
     private router: Router
   ) {
-    this.backend.getTrending<Topic>("/topic/1").subscribe(data => {
+    this.backend.getAll<Topic>("/topic/2").subscribe(data => {
       console.log(data);
       this.topics = data;
     })
