@@ -5,6 +5,8 @@
 import pymysql
 import re
 import random
+import datetime
+import time as t_mod
 
 
 #Time in the form of ms since 1970 with the first 5 digits removed
@@ -38,13 +40,14 @@ def update(topic, time):
 	current_MA = int(float(cur.fetchone()[0]))
 
 	cur.execute("SELECT TimeOfLastPost FROM TopicApp_topic WHERE TopicName = %s", topic)
-	last_post_time = int(cur.fetchone()[0])
-
-	time = int(time)
-
+	last_post_time = cur.fetchone()[0]
+	
 
 	#formula for Moving average
-	current_MA = int((current_MA*(n-1) + (time - last_post_time)) / n)
+	date_format = '%Y-%m-%d %H:%M:%S'
+	time_formatted = datetime.datetime.strptime(time, date_format)
+
+	current_MA = int((current_MA*(n-1) + (t_mod.mktime(time_formatted.timetuple()) - t_mod.mktime(last_post_time.timetuple()))) / n)
 
 	#update database with this value
 	cur.execute("UPDATE TopicApp_topic SET CurrentMA = %s WHERE TopicName = %s", (current_MA, topic))
@@ -61,13 +64,13 @@ def update(topic, time):
 		gain = .01 * (n_posts + 1)
 
 	#update database with new values
-	cur.execute("UPDATE TopicApp_topic SET NumberOFPosts = %s WHERE TopicName = %s", (str(n_posts+1), topic))
+	cur.execute("UPDATE TopicApp_topic SET NumberOFPosts = %s WHERE TopicName = %s", (int(n_posts+1), topic))
 	connection.commit()
 
 	cur.execute("UPDATE TopicApp_topic SET TimeOfLastPost = %s WHERE TopicName = %s", (time, topic))
 	connection.commit()
 
-	cur.execute("UPDATE TopicApp_topic SET TrendingScore = %s WHERE TopicName = %s", (str(gain), topic))
+	cur.execute("UPDATE TopicApp_topic SET TrendingScore = %s WHERE TopicName = %s", (float(gain), topic))
 	connection.commit()
 
 
@@ -80,4 +83,4 @@ def update(topic, time):
 
 
 #test function
-#update("AACG","46037001")
+#update("AACG","2020-11-01 00:10:20")

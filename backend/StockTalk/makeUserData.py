@@ -5,6 +5,7 @@ import re
 import names
 import random
 import updateTrendingTopics as utt
+import datetime
 
 #connect to database
 db_engine = 'django.db.backends.mysql'
@@ -109,11 +110,14 @@ for data in valid_data:
 			data_with_ticker.append((data, ticker))
 
 #print all posts with user and timestamp that involve a valid topic in our database
-
 for data in data_with_ticker:
-	print("Post: " + str(data[0][0]))
-	print("User: " + str(data[0][1]))
-	print("Timestamp(ms): " + str(data[0][2]))
+	data = [data[0][0], data[0][1], data[0][2]]
+	
+	print("Post: " + str(data[0]))
+	print("User: " + str(data[1]))
+
+	data[2] = (datetime.datetime.fromtimestamp(int(data[2])/1000.0))
+	print("Timestamp: " + str(data[2]))
 	print("")
 
 
@@ -147,28 +151,29 @@ for i in range(len(data_with_ticker)):
 	following = 0
 	n_posts = 0
 	
-	cur.execute("INSERT IGNORE INTO UserApp_users(UserID, Username, Fullname, Email, Password, UserAge, Bio, ProfileImage, Followers, Following, NumberOfPosts) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, 0, 0, 0)", (str(next_id), username, full_name, email, password, str(age), bio, str(profile_image)))
+	cur.execute("INSERT IGNORE INTO UserApp_users(UserID, Username, Fullname, Email, Password, UserAge, Bio, ProfileImage, Followers, Following, NumberOfPosts) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, 0, 0, 0)", (int(next_id), username, full_name, email, password, int(age), bio, str(profile_image)))
 	connection.commit()
-
 	next_post_id += 1
 	topic = data_with_ticker[i][1]
 	post_type = 0
 	post = data_with_ticker[i][0][0]
-	#remove first 5 digits (15830) for correct int size
-	date = data_with_ticker[i][0][2][4:]
+	date = data_with_ticker[i][0][2]
 	anon = 0
 
 	cur.execute("SELECT UserID FROM UserApp_users WHERE Username = %s", str(username))
 	user_id_for_post = cur.fetchone()[0]
 
-	cur.execute("INSERT INTO PostApp_posts(PostId, UserID, TopicName, PostType, Post, PostDate, Anonymous) VALUES (%s, %s, %s, 0, %s, %s, 0)", (str(next_post_id), str(user_id_for_post), str(topic), str(post), str(date)))
+	date_formatted = datetime.datetime.fromtimestamp(int(date)/1000)
+	date_formatted = date_formatted.strftime('%Y-%m-%d %H:%M:%S')
+
+	cur.execute("INSERT INTO PostApp_posts(PostId, UserID, TopicName, PostType, Post, PostDate, Anonymous) VALUES (%s, %s, %s, 0, %s, %s, 0)", (int(next_post_id), int(user_id_for_post), str(topic), str(post), date_formatted))
 	connection.commit()
 
 	cur.execute("SELECT NumberOfPosts FROM UserApp_users WHERE Username = %s", username)
-	n_posts = str(cur.fetchone()[0]) + str(1)
+	n_posts = int(cur.fetchone()[0]) + 1
 	
 	cur.execute("UPDATE UserApp_users SET NumberOfPosts = %s WHERE Username = %s", (n_posts, username))
 	connection.commit()
 
-	utt.update(str(topic), str(date))
+	utt.update(str(topic), date_formatted)
 
