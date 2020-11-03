@@ -31,7 +31,7 @@ def getAllTopics(Method):
                         'IsStock',
                         'isTrending',
                         'TrendingScore',
-                        'NumberOfPosts').order_by("-NumberOfPosts", "TopicName")
+                        'NumberOfPosts').order_by("-TrendingScore", "TopicName")
     print(topic)
     topic_serializer = TopicSerializer(topic, many=True)
     print(topic_serializer)
