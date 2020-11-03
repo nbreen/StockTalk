@@ -10,6 +10,8 @@ import { AlltopicsComponent } from './alltopics/alltopics.component';
 import { TrendingtopicsComponent } from './trendingtopics/trendingtopics.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
+import { FollowersComponent } from './followers/followers.component';
+import { MakePostComponent } from './make-post/make-post.component';
 
 const routes: Routes = [
   //{ path: '', redirectTo: '/', pathMatch: 'full' },
@@ -22,7 +24,9 @@ const routes: Routes = [
   { path: 'profile/:User', component:ProfileComponent},
   { path: 'topic/:TopicName', component:TopicComponent},
   { path: 'settings/:User', component: ProfileSettingsComponent },
-  { path: 'trendingtopics', component: TrendingtopicsComponent }
+  { path: 'trendingtopics', component: TrendingtopicsComponent },
+  { path: 'followers/:User', component: FollowersComponent},
+  { path: 'make-post', component: MakePostComponent}
 ];
 
 @NgModule({

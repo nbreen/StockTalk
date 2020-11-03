@@ -56,7 +56,7 @@ def userApi(request,id=0):
 
     elif request.method=='PUT':
         user_data = JSONParser().parse(request)
-        user = Users.objects.get(UserID=user_data['UserID'])
+        user = Users.objects.get(Username=user_data['Username'])
         user_serializer = UserSerializer(user, data=user_data) 
         if user_serializer.is_valid():
             user_serializer.save()

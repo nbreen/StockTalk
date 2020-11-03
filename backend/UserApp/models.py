@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Users(models.Model):
-    UserID = models.AutoField(primary_key=True)
+    UserID = models.AutoField(primary_key = True)
     Username = models.CharField(max_length=64)
     FullName = models.CharField(max_length=64, default='')
     Email = models.CharField(max_length=64)
@@ -11,6 +11,6 @@ class Users(models.Model):
     UserAge = models.IntegerField(default=0)
 
 class UserFollowsTopic(models.Model):
-    UserID: models.AutoField(primary_key = True)
+    UserID = models.AutoField(primary_key = True)
     TopicFollowed = models.CharField(max_length = 64) 
 

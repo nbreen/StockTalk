@@ -4,24 +4,26 @@
 <mat-card class="my-card">
   <mat-card-content>
     <img [src]=this.profilePhotoPath height="100px;" width="100px;">
+    
     <!-- CONTENT HERE -->
     <form class="my-form">
       <!--FORM FIELDS HERE-->
+      <form action="/action_page.php">
+        <input type="file" (change)="uploadProfilePic($event)" id="myFile" name="filename">
+      </form>
        <mat-form-field class="full-width">
-          <mat-label>Bio</mat-label>
-          <input matInput value={{this.profile.Bio}} placeholder="Username"  name="username"
-          [(ngModel)]="this.new_bio"> 
+          <input placeholder={{this.profile.Bio}}  name="username" [(ngModel)]="this.new_bio"> 
        </mat-form-field>
     </form>
     <form class="my-form">
       <mat-form-field class="full-width">
         <mat-label>Current Password</mat-label>
-        <input  matInput  placeholder="Password" type="password" name="password1" 
+        <input  placeholder="Password" type="password" name="password1" 
         [(ngModel)]="this.current_password">
      </mat-form-field>
      <mat-form-field class="full-width">
         <mat-label>New Password</mat-label>
-        <input  matInput  placeholder="Password2" type="password" name="password2"
+        <input  placeholder="Password2" type="password" name="password2"
         [(ngModel)]="this.new_password">
      </mat-form-field>
     </form>

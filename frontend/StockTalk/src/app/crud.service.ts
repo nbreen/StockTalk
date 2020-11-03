@@ -29,24 +29,27 @@ export class CrudService {
     return object.Type;
   }
 
-  getAll<T>(type: string): Observable<T[]> {
+  getAll<T>(type : string): Observable<T[]> {
 
     return this.httpClient.get<T[]>(this.APIUrl + type)
-
+    
     /*
     .pipe(
       catchError(this.handleError<User>('getAllUsers'))
     )
     */
-
+    
   }
-
 
   /*
   getUserProfile(username:string): Observable<Profile> {
     return this.httpClient.get<Profile>(this.APIUrl + "/profile/" + username, this.httpOptions);
   }
   */
+
+  uploadProfilePic(val:any) {
+    return this.httpClient.post(this.APIUrl + '/SaveProfilePic/', val);
+  }
 
   getProfile(val: any): Observable<Profile> {
     return this.httpClient.get<Profile>(this.APIUrl + "/profile/" + val);
@@ -87,11 +90,11 @@ export class CrudService {
 
   
   updateUser(val:any) {
-    return this.httpClient.post(this.APIUrl + '/user/', val);
+    return this.httpClient.put(this.APIUrl + '/user/', val);
   }
 
   updateProfile(val:any) {
-    return this.httpClient.post(this.APIUrl + '/profile/', val);
+    return this.httpClient.put(this.APIUrl + '/profile/', val);
   }
 
   deleteAccount(userID: Number) {
