@@ -23,12 +23,12 @@ class UserList(generics.ListAPIView):
 
 @csrf_exempt
 def userDeleteApi(id):
-    newid = re.findall("\d+", str(id))[0]
-    query = "DELETE FROM UserApp_users WHERE UserID = " + newid
+    name = (str(id)[35:-2])
+    print(name)
+    query = f'DELETE FROM UserApp_users WHERE Username = \"{name}\";'
     cursor = connection.cursor()
     cursor.execute(query)
     cursor.close()
-
     return JsonResponse("Deleted user sucessfully", safe=False)
 
 @csrf_exempt

@@ -27,10 +27,16 @@ export class DeleteUserComponent implements OnInit {
       alert("Please verify that you want to delete your account!");
     } else {
       // Delete Account
-      this.backend.deleteAccount(46).subscribe(result => {
+      this.backend.deleteAccount(this.globals.currentUsername).subscribe(result => {
         alert(result);
         this.router.navigate(['/login']);
       });
+
+      // Logout
+      localStorage.setItem("isAuthenticated", "false");
+      localStorage.setItem("currentUsername", "");
+      this.globals.isAuthenticated = false;
+
     }
   }
 
