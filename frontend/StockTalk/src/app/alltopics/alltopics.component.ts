@@ -1,3 +1,4 @@
+import { Globals } from './../Globals';
 import { TopicComponent } from './topic/topic.component';
 import { CrudService } from '../crud.service';
 import { Topic } from '../Interfaces';
@@ -18,12 +19,27 @@ export class AlltopicsComponent implements OnInit {
 
   constructor(
     private backend: CrudService,
-    private router: Router
+    private router: Router,
+    private globals: Globals
   ) { 
-    this.backend.getAll<Topic>("/topic/").subscribe(data => {
-      console.log(data);
-      this.topics = data;
-    })
+    
+    if (localStorage.getItem("sortAZ") == "true") {
+      this.backend.getAll<Topic>("/topic/0").subscribe(data => {
+        console.log(data);
+        this.topics = data;
+      })
+    } else if (localStorage.getItem("sortCount") == "true") {
+      this.backend.getAll<Topic>("/topic/1").subscribe(data => {
+        console.log(data);
+        this.topics = data;
+      })
+    } else {
+      localStorage.setItem("sortCount", "true");
+      this.backend.getAll<Topic>("/topic/0").subscribe(data => {
+        console.log(data);
+        this.topics = data;
+      })
+    }
   }
 
   ngOnInit() {
@@ -32,11 +48,15 @@ export class AlltopicsComponent implements OnInit {
   }
 
   sortAZ() {
-    
+    localStorage.setItem("sortAZ", "true");
+    localStorage.setItem("sortCount", "false");
+    window.location.reload();
   }
 
   sortCount() {
-    
+    localStorage.setItem("sortAZ", "false");
+    localStorage.setItem("sortCount", "true");
+    window.location.reload(); 
   }
   
 }

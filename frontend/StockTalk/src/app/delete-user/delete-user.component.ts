@@ -35,6 +35,8 @@ export class DeleteUserComponent implements OnInit {
       // Logout
       localStorage.setItem("isAuthenticated", "false");
       localStorage.setItem("currentUsername", "");
+      localStorage.setItem("sortAZ", "false");
+      localStorage.setItem("sortCount", "false");
       this.globals.isAuthenticated = false;
 
     }

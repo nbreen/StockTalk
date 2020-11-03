@@ -50,6 +50,8 @@ export class AppComponent {
     if (confirm("Are you sure you want to logout?")) {
       localStorage.setItem("isAuthenticated", "false");
       localStorage.setItem("currentUsername", "");
+      localStorage.setItem("sortAZ", "false");
+      localStorage.setItem("sortCount", "false");
       this.globals.isAuthenticated = false;
       this.router.navigate(["/"]);
     }

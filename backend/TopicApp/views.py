@@ -11,13 +11,22 @@ import re
 
 # Create your views here.
 @csrf_exempt
-def getAllTopics(TopicName):
-    topic = Topic.objects.all().only('TopicName',
-                    'IsStock',
-                    'isTrending',
-                    'TrendingScore',
-                    'NumberOfPosts')
-    # print(topic)
+def getAllTopics(Method):
+    methString = str(Method)[-3]
+
+    if int(methString) == 0 :
+        topic = Topic.objects.all().only('TopicName',
+                        'IsStock',
+                        'isTrending',
+                        'TrendingScore',
+                        'NumberOfPosts').order_by("TopicName")
+    elif int(methString) == 1 :
+        topic = Topic.objects.all().only('TopicName',
+                        'IsStock',
+                        'isTrending',
+                        'TrendingScore',
+                        'NumberOfPosts').order_by("-NumberOfPosts")
+    print(topic)
     topic_serializer = TopicSerializer(topic, many=True)
-    # print(topic_serializer)
+    print(topic_serializer)
     return JsonResponse(topic_serializer.data, safe=False)
