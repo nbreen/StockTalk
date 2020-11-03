@@ -5,8 +5,11 @@
 </mat-toolbar>
   <mat-card class="my-card">
      <h2>{{ title }}</h2>
-     
-     <table style="width:100%">
+
+     <button class=mybutton mat-raised-button color="primary" (click)="sortAZ()">Sort by Topic Name</button>
+     <button class=mybutton mat-raised-button color="primary" (click)="sortCount()">Sort by Post Count</button>
+    
+     <table style="width:25%">
         <tr>
           <th>Topic Name</th>
           <th>Post Count</th>
