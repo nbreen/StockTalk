@@ -29,16 +29,28 @@ export class CrudService {
     return object.Type;
   }
 
-  getAll<T>(type : string): Observable<T[]> {
+  getAll<T>(type: string): Observable<T[]> {
 
     return this.httpClient.get<T[]>(this.APIUrl + type)
-    
+
     /*
     .pipe(
       catchError(this.handleError<User>('getAllUsers'))
     )
     */
-    
+
+  }
+
+  getTrending<T>(type: string): Observable<T[]> {
+
+    return this.httpClient.get<T[]>(this.APIUrl + type)
+
+    /*
+    .pipe(
+      catchError(this.handleError<User>('getAllUsers'))
+    )
+    */
+
   }
 
   /*

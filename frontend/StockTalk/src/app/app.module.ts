@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import for UI
 import { MyMaterialModule } from './material.module';
 import { AlltopicsComponent } from './alltopics/alltopics.component';
+import { TrendingtopicsComponent } from './trendingtopics/trendingtopics.component';
 import { TopicComponent } from './alltopics/topic/topic.component';
 import { PostComponent } from './alltopics/topic/post/post.component';
 import { CommentComponent } from './alltopics/topic/post/comment/comment.component';
@@ -29,6 +30,7 @@ import { FollowersComponent } from './followers/followers.component';;
     LoginComponent,
     SignupComponent,
     AlltopicsComponent,
+    TrendingtopicsComponent,
     TopicComponent,
     PostComponent,
     CommentComponent,
