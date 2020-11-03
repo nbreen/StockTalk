@@ -26,6 +26,25 @@ def getAllTopics(Method):
                         'isTrending',
                         'TrendingScore',
                         'NumberOfPosts').order_by("-NumberOfPosts", "TopicName")
+    elif int(methString) == 2 :
+        topic = Topic.objects.all().filter(isTrending=1).only('TopicName',
+                        'IsStock',
+                        'isTrending',
+                        'TrendingScore',
+                        'NumberOfPosts').order_by("-NumberOfPosts", "TopicName")
+    print(topic)
+    topic_serializer = TopicSerializer(topic, many=True)
+    print(topic_serializer)
+    return JsonResponse(topic_serializer.data, safe=False)
+
+
+
+def getTrendingTopics(TopicName):
+    topic = Topic.objects.all().filter(isTrending=1).only('TopicName',
+                        'IsStock',
+                        'isTrending',
+                        'TrendingScore',
+                        'NumberOfPosts')
     print(topic)
     topic_serializer = TopicSerializer(topic, many=True)
     print(topic_serializer)
