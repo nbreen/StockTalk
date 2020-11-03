@@ -1,3 +1,4 @@
+import { FollowersComponent } from './followers/followers.component';
 import { TopicComponent } from './alltopics/topic/topic.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { PostComponent } from './alltopics/topic/post/post.component';
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'profile/:User', component:ProfileComponent},
   { path: 'topic/:TopicName', component:TopicComponent},
   { path: 'settings/:User', component: ProfileSettingsComponent },
-  { path: 'trendingtopics', component: TrendingtopicsComponent }
+  { path: 'trendingtopics', component: TrendingtopicsComponent },
+  { path: 'followers/:User', component: FollowersComponent}
 ];
 
 @NgModule({

@@ -11,6 +11,7 @@ from ProfileApp.models import Profiles
 from django.core.files.storage import default_storage
 
 import ipdb;
+from django.db import connection
 
 # Create your views here.
 
@@ -62,3 +63,30 @@ def profileApi(request,id=0):
         profile=Profile.objects.get(Username=id)
         profile.delete()
         return JsonResponse("Deleted profile sucessfully", safe=False)    
+
+
+@csrf_exempt
+def getFollowers(request):
+    name = str(request)[30:-2]
+    print(name)
+    query = f'SELECT * FROM UserFollowsUser WHERE BeingFollowed = \"{name}\";'
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+
+    print(records)
+    cursor.close()
+    return JsonResponse(records, safe=False)
+
+@csrf_exempt
+def getFollowing(request):
+    name = str(request)[30:-2]
+    print(name)
+    query = f'SELECT * FROM UserFollowsUser WHERE DoingFollowing = \"{name}\";'
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+
+    print(records)
+    cursor.close()
+    return JsonResponse(records, safe=False)

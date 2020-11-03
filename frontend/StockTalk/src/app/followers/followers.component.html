@@ -1,1 +1,39 @@
-<p>followers works!</p>
+<div *ngIf=following>
+    <!-- <h2>{{}} Follower/Following Page!</h2> -->
+    <mat-card class="my-card"> 
+      <h2>Followers/Following Page for {{ url_username }}</h2>  
+       
+         <table style="width:25%">
+            
+            <div style="width: 50%; float: left;"> 
+
+            <tr>
+              <th>Followers</th>
+            </tr>
+            <tr *ngFor="let follower of followers">
+              <a routerLink="/profile/{{follower[0]}}">{{follower[0]}}</a>              
+            </tr>
+            
+            </div>
+
+
+            <div style="margin-left: 50%;"> 
+
+            <tr>
+                <th>Following</th>
+            </tr>
+
+            <tr *ngFor="let follow of following">
+              <a routerLink="/profile/{{follow[1]}}">{{follow[1]}}</a>              
+            </tr>
+
+            </div>
+
+            
+        </table>
+
+
+      </mat-card>
+    
+    </div>
+    
