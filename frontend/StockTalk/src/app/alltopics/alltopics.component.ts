@@ -26,4 +26,5 @@ export class AlltopicsComponent implements OnInit {
       this.topics = data;
     })
   }
+  
 }

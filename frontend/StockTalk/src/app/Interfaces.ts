@@ -14,6 +14,12 @@ export interface Username {
 export interface Topic {
     TopicName : string;
     IsStock : boolean;
+    isTrending : boolean;
+    TrendingScore : number;
+    NumberOfPosts : number;
+    // TimeOfLastPost : number;
+    // PreviousMA : number;
+    // CurrentMA : number;
 }
 
 export interface Post {

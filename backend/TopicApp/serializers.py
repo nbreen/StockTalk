@@ -5,4 +5,11 @@ class TopicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Topic
         fields = ('TopicName',
-                    'IsStock')
+                    'IsStock',
+                    'isTrending',
+                    'TrendingScore',
+                    'NumberOfPosts',
+                    # 'TimeOfLastPost',
+                    # 'PreviousMA',
+                    # 'CurrentMA'
+        )

@@ -9,6 +9,7 @@
      <table style="width:100%">
         <tr>
           <th>Topic Name</th>
+          <th>Post Count</th>
           <!-- <th>Popularity Rank</th>
           <th>Trending?</th>
           <th>Stock?</th> -->
@@ -16,7 +17,7 @@
         <tr *ngFor="let topic of topics">
               
               <a routerLink="/topic/{{topic.TopicName}}">{{topic.TopicName}}</a>
-              
+              <td>{{topic.NumberOfPosts}}</td>
               <!-- <td>{{topic.popularity}}</td>
               <td *ngIf="topic.is_trending">🔥</td>
               <td *ngIf="!topic.is_trending">❌</td> -->
