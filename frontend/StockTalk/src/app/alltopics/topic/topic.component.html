@@ -2,7 +2,7 @@
     <h1>You are now on the topic page for the stock ${{ TopicName }}</h1>
 </div>
 <div>
-  <button routerLink="/settings" mat-raised-button color="primary" onClick="this.innerText='Unfollow'">
+  <button routerLink="/settings" mat-raised-button (click)="followTopic()" color="primary" onClick="this.innerText='Unfollow'">
        Follow Topic
     </button>
 </div>
