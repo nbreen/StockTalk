@@ -12,8 +12,13 @@ urlpatterns=[
     url(r'following/.*$', views.getFollowing),
     url(r'topicsFollowing/.*$', views.getTopics),
     url(r'checkfollowuser/.*$', views.getButton),
+<<<<<<< HEAD
     url(r'followuser/.*$', views.followuser),
     url(r'unfollowuser/.*$', views.unfollowuser),
     url(r'^post/.$', views.getAllPosts)
+=======
+    url(r'unfollowuser/.*$', views.unfollowuser),
+    url(r'followuser/.*$', views.followuser)
+>>>>>>> 1b2e13df79d4510bdcda7c5588f14d0143f99b29
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
