@@ -1,10 +1,8 @@
 <div *ngIf=IsStock>
     <h1>You are now on the topic page for the stock ${{ TopicName }}</h1>
 </div>
-<div>
-  <button routerLink="/settings" mat-raised-button (click)="followTopic()" color="primary" onClick="this.innerText='Unfollow'">
-       Follow Topic
-    </button>
-</div>
+
+<a *ngIf="following && getIsDone" mat-raised-button color="primary" (click)="unfollowButton()">Unfollow</a>
+<a *ngIf="!following && getIsDone" mat-raised-button color="primary" (click)="followButton()">Follow</a>
 
 <h2>Posts</h2>

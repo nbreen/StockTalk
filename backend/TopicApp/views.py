@@ -49,3 +49,55 @@ def getTrendingTopics(TopicName):
     topic_serializer = TopicSerializer(topic, many=True)
     print(topic_serializer)
     return JsonResponse(topic_serializer.data, safe=False)
+
+@csrf_exempt
+def getButton(request):
+    name = str(request).split("/")
+    name1 = name[2]
+    name2 = (name[3])[:-2]
+    print(name1)
+    print(name2)
+
+    query = f'SELECT * FROM UserFollowsTopic WHERE Username = \"{name1}\" AND TopicName = \"{name2}\";'
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+
+    # print(records)
+    cursor.close()
+    return JsonResponse(records, safe=False)
+
+@csrf_exempt
+def followtopic(request):
+    #print(str(request))
+    name = str(request).split("/")
+    name1 = name[2]
+    name2 = (name[3])[:-2]
+    #print(name1)
+    #print(name2)
+
+    query = f'INSERT INTO UserFollowsTopic VALUES(\"{name1}\", \"{name2}\");'
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+    # print(records)
+    cursor.close()
+    return JsonResponse(records, safe=False)
+    
+@csrf_exempt
+def unfollowtopic(request):
+    print(str(request))
+    name = str(request).split("/")
+    name1 = name[2]
+    name2 = (name[3])[:-2]
+    #print("WE ARE DELETING THIS PAIR")
+    #print(name1)
+    #print(name2)
+
+    queryDel = f'SET SQL_SAFE_UPDATES = 0; DELETE FROM UserFollowsTopic WHERE Username = \"{name1}\" AND TopicName = \"{name2}\"; SET SQL_SAFE_UPDATES = 1;'
+    cursor = connection.cursor()
+    cursor.execute(queryDel)
+    records = cursor.fetchall()
+    # connection.commit()
+    cursor.close()
+    return JsonResponse(records, safe=False)
