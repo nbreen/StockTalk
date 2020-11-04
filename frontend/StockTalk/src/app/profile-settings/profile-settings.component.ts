@@ -25,6 +25,8 @@ export class ProfileSettingsComponent implements OnInit {
   profile: Profile;
   user: User;
   profilePhotoPath: string;
+  bio_change: boolean;
+  password_change: boolean;
 
   @Input() new_password: string = "";
   @Input() current_password: string = "";
@@ -36,6 +38,14 @@ export class ProfileSettingsComponent implements OnInit {
 
 
   submitChanges() {
+
+    if (this.new_password != "" && this.current_password != "") {
+      this.password_change = true;
+    }
+
+    if (this.new_bio != "") {
+      this.bio_change = true;
+    }
 
     if (this.new_password != "") {
       if (this.current_password != this.user.Password) {
@@ -59,24 +69,27 @@ export class ProfileSettingsComponent implements OnInit {
     this.user.Password = this.new_password;
     this.profile.Bio = this.new_bio;
 
-    this.backend.updateUser(JSON.stringify(this.user)).subscribe(res => {
-      if (res.toString() != "User updated successfully") {
-        alert("Something went wrong, please check your input again.");
-        return;
-      }
-    });
+    if (this.password_change) {
+      this.backend.updateUser(JSON.stringify(this.user)).subscribe(res => {
+        if (res.toString() != "User updated successfully") {
+          alert("Something went wrong, please check your input again.");
+          return;
+        }
+      });
+    }
 
-    this.backend.updateProfile(JSON.stringify(this.profile)).subscribe(res => {
-      if (res.toString() != "Profile updated successfully") {
-        alert("Something went wrong, please check your input again.");
-        return;
-      }
-    });
+    if (this.bio_change) {
+      this.backend.updateProfile(JSON.stringify(this.profile)).subscribe(res => {
+        if (res.toString() != "Profile updated successfully") {
+          alert("Something went wrong, please check your input again.");
+          return;
+        }
+      });
+    }
 
     alert("Profile settings updated successfully.");
     this.router.navigate(["/profile/" + this.user.Username]);
     
-
   }
 
 
@@ -100,6 +113,17 @@ export class ProfileSettingsComponent implements OnInit {
       this.user = JSON.parse(user_data);
     });
     
+  }
+
+  uploadProfilePic(event){
+    var file=event.target.files[0];
+    const formData:FormData=new FormData();
+    formData.append('uploadedFile',file,file.name);
+
+    this.backend.uploadProfilePic(formData).subscribe((data:any)=>{
+      var photoFileName=data.toString();
+      this.profilePhotoPath=this.backend.PhotoUrl + photoFileName;
+    })
   }
 
 }

@@ -12,12 +12,15 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Profiles',
+            name='Post',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('Username', models.CharField(max_length=64)),
-                ('Bio', models.CharField(default='empty', max_length=256)),
-                ('ProfileImage', models.CharField(default='empty', max_length=256)),
+                ('Text', models.CharField(default='', max_length=256)),
+                ('Image', models.CharField(default='', max_length=256)),
+                ('Topic', models.CharField(default='', max_length=256)),
+                ('Upvotes', models.IntegerField(default=0)),
+                ('Downvotes', models.IntegerField(default=0)),
             ],
         ),
     ]

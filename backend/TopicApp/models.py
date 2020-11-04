@@ -7,6 +7,7 @@ class Topic(models.Model):
     isTrending = models.BooleanField(default=False)
     TrendingScore = models.FloatField()
     NumberOfPosts = models.IntegerField()
-    # TimeOfLastPost = models.IntegerField()
-    # PreviousMA = models.IntegerField()
-    # CurrentMA = models.IntegerField()
+
+    #TimeOfLastPost = models.IntegerField()
+    #PreviousMA = models.IntegerField()
+    #CurrentMA = models.IntegerField()
