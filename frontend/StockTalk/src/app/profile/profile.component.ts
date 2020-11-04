@@ -29,6 +29,7 @@ export class ProfileComponent implements OnInit {
 
   user: User;
   isUser: boolean;
+  currProfile: string;
 
   showSettings() {
     if (this.isUser && this.globals.isAuthenticated) {
@@ -39,8 +40,9 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+  
     var url_username = this.route.snapshot.params["User"];
+    this.currProfile = url_username;
 
     if (this.globals.currentUsername == url_username) {
       this.isUser = true;

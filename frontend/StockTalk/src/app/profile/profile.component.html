@@ -1,4 +1,5 @@
 <div class="profile-page">
+  <a mat-raised-button routerLink="/followers/{{currProfile}}" color="primary">See {{ currProfile }}'s followers and the Users/Topics they follow!</a>
   <mat-toolbar>
     {{this.profile.Username}}'s profile
   </mat-toolbar>
@@ -13,6 +14,8 @@
     </mat-card-content>
     <button *ngIf="this.showSettings()" routerLink="{{this.settingsURL}}" mat-raised-button color="primary">Edit Profile</button>
     <button *ngIf="this.showSettings()" routerLink="make-post" mat-raised-button color="primary">Make a post!</button>
+    <!-- <a mat-raised-button routerLink="/followers/{{currProfile}}" color="primary">See {{ currProfile }}'s followers and the Users/Topics they follow!</a> -->
+
  </mat-card>
 
- 
+</div>
