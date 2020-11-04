@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs';
 import { Profile } from '../shared/profile.model';
 import { User } from '../shared/user.model';
+import { Post } from '../Interfaces';
 
 
 @Component({
@@ -16,14 +17,18 @@ import { User } from '../shared/user.model';
 })
 
 export class ProfileComponent implements OnInit {
+  posts: Array<Post>;
 
   constructor(
     private route: ActivatedRoute,
-    private backend : CrudService,
+    private backend: CrudService,
     public globals: Globals
   ) {
-    
-  } 
+    this.backend.getAll<Post>("/post/0").subscribe(data => {
+      console.log(data);
+      this.posts = data;
+    })
+  }
 
   profile: Profile;
   profilePhotoPath: string;

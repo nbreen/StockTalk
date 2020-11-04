@@ -13,9 +13,9 @@
   </mat-toolbar>
 
   <mat-card class="my-card">
-    <mat-card-content> 
+    <mat-card-content>
       <!--<img class="profile" src = {{profile.ProfileImage}}>
-      <p>Image src {{profile.ProfileImage}}</p>-->
+    <p>Image src {{profile.ProfileImage}}</p>-->
       <img [src]=this.profilePhotoPath height="100px;" width="100px;">
       <mat-label class="profile-info">Username: {{this.profile.Username}} </mat-label>
       <mat-label class="profile-info">Bio: {{this.profile.Bio}}</mat-label>
@@ -24,6 +24,21 @@
     <button *ngIf="this.showSettings()" routerLink="make-post" mat-raised-button color="primary">Make a post!</button>
     <!-- <a mat-raised-button routerLink="/followers/{{currProfile}}" color="primary">See {{ currProfile }}'s followers and the Users/Topics they follow!</a> -->
 
- </mat-card>
+    <table style="width:100%">
+
+      <tr>
+
+        <th>Posts</th>
+
+      </tr>
+
+        <tr *ngFor="let post of posts">
+          <a routerLink="/topic/{{post.Post}}">{{post.Post}}</a>
+
+         </tr>
+    </table>
+  </mat-card>
+
+ 
 
 </div>

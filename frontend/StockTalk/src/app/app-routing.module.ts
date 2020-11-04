@@ -26,7 +26,8 @@ const routes: Routes = [
   { path: 'settings/:User', component: ProfileSettingsComponent },
   { path: 'trendingtopics', component: TrendingtopicsComponent },
   { path: 'followers/:User', component: FollowersComponent},
-  { path: 'make-post', component: MakePostComponent}
+  { path: 'make-post', component: MakePostComponent },
+  { path: 'post', component: PostComponent }
 ];
 
 @NgModule({
