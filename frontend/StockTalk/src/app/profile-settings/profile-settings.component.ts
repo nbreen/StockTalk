@@ -27,6 +27,7 @@ export class ProfileSettingsComponent implements OnInit {
   profilePhotoPath: string;
   bio_change: boolean;
   password_change: boolean;
+  pic_change: boolean;
 
   @Input() new_password: string = "";
   @Input() current_password: string = "";
@@ -41,13 +42,13 @@ export class ProfileSettingsComponent implements OnInit {
 
     if (this.new_password != "" && this.current_password != "") {
       this.password_change = true;
-    }
+    } 
 
     if (this.new_bio != "") {
       this.bio_change = true;
     }
 
-    if (this.new_password != "") {
+    if (this.password_change) {
       if (this.current_password != this.user.Password) {
         alert("Password is incorrect.");
         this.new_password = "";
@@ -66,8 +67,13 @@ export class ProfileSettingsComponent implements OnInit {
 
     }
 
-    this.user.Password = this.new_password;
-    this.profile.Bio = this.new_bio;
+    if (this.password_change) {
+      this.user.Password = this.new_password;
+    }
+
+    if (this.bio_change) {
+      this.profile.Bio = this.new_bio;
+    }
 
     if (this.password_change) {
       this.backend.updateUser(JSON.stringify(this.user)).subscribe(res => {
@@ -78,7 +84,7 @@ export class ProfileSettingsComponent implements OnInit {
       });
     }
 
-    if (this.bio_change) {
+    if (this.bio_change || this.pic_change) {
       this.backend.updateProfile(JSON.stringify(this.profile)).subscribe(res => {
         if (res.toString() != "Profile updated successfully") {
           alert("Something went wrong, please check your input again.");
@@ -119,6 +125,8 @@ export class ProfileSettingsComponent implements OnInit {
     var file=event.target.files[0];
     const formData:FormData=new FormData();
     formData.append('uploadedFile',file,file.name);
+    this.profile.ProfileImage = file.name;
+    this.pic_change = true;
 
     this.backend.uploadProfilePic(formData).subscribe((data:any)=>{
       var photoFileName=data.toString();
