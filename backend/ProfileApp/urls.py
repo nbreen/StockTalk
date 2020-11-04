@@ -9,6 +9,7 @@ urlpatterns=[
     url(r'^profile/(?P<username>.+)/$', views.ProfileList.as_view()),
     url(r'SaveProfilePic$', views.SaveProfilePic),
     url(r'followers/.*$', views.getFollowers),
-    url(r'following/.*$', views.getFollowing)
+    url(r'following/.*$', views.getFollowing),
+    url(r'topicsFollowing/.*$', views.getTopics)
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

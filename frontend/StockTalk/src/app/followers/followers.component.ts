@@ -21,6 +21,7 @@ export class FollowersComponent implements OnInit {
 
   followers: Array<string>;
   following: Array<string>;
+  topics: Array<string>;
   url_username: string;
 
   ngOnInit(): void {
@@ -29,12 +30,15 @@ export class FollowersComponent implements OnInit {
 
     this.backend.getAll<string>("/followers/" + this.url_username).subscribe(res => {
       this.followers = res;
-      console.log(this.followers);
     });
 
     this.backend.getAll<string>("/following/" + this.url_username).subscribe(res => {
       this.following = res;
-      console.log(this.following);
+    });
+
+    this.backend.getAll<string>("/topicsFollowing/" + this.url_username).subscribe(res => {
+      this.topics = res;
+      console.log(this.topics);
     });
   }
 

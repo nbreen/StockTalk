@@ -68,7 +68,7 @@ def profileApi(request,id=0):
 @csrf_exempt
 def getFollowers(request):
     name = str(request)[30:-2]
-    print(name)
+    # print(name)
     query = f'SELECT * FROM UserFollowsUser WHERE BeingFollowed = \"{name}\";'
     cursor = connection.cursor()
     cursor.execute(query)
@@ -81,8 +81,22 @@ def getFollowers(request):
 @csrf_exempt
 def getFollowing(request):
     name = str(request)[30:-2]
-    print(name)
+    # print(name)
     query = f'SELECT * FROM UserFollowsUser WHERE DoingFollowing = \"{name}\";'
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+
+    print(records)
+    cursor.close()
+    return JsonResponse(records, safe=False)
+
+@csrf_exempt
+def getTopics(request):
+    name = str(request)[36:-2]
+    # print(name)
+
+    query = f'SELECT * FROM UserFollowsTopic WHERE Username = \"{name}\";'
     cursor = connection.cursor()
     cursor.execute(query)
     records = cursor.fetchall()

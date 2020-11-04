@@ -1,24 +1,21 @@
 <div *ngIf=following>
     <!-- <h2>{{}} Follower/Following Page!</h2> -->
     <mat-card class="my-card"> 
-      <h2>Followers/Following Page for {{ url_username }}</h2>  
+      <h2>Followers/Following Page for {{ url_username }}</h2> 
        
          <table style="width:25%">
-            
-            <div style="width: 50%; float: left;"> 
+          <div class="container">
 
+          <div style="float: left; width: 200px;">
             <tr>
               <th>Followers</th>
             </tr>
             <tr *ngFor="let follower of followers">
               <a routerLink="/profile/{{follower[0]}}">{{follower[0]}}</a>              
             </tr>
-            
-            </div>
+          </div>
 
-
-            <div style="margin-left: 50%;"> 
-
+          <div style="float: left; width: 100px;">
             <tr>
                 <th>Following</th>
             </tr>
@@ -26,14 +23,23 @@
             <tr *ngFor="let follow of following">
               <a routerLink="/profile/{{follow[1]}}">{{follow[1]}}</a>              
             </tr>
+          </div>
 
-            </div>
-
+          <div style="float: left; width: 200px; margin-left : 30px">
+            <tr>
+                <th>Following Topics</th>
+            </tr>
+  
+            <tr *ngFor="let topic of topics">
+              <a routerLink="/topic/{{topic[1]}}">{{topic[1]}}</a>              
+            </tr>
+          </div>
+          </div>
             
         </table>
 
 
-      </mat-card>
+    </mat-card>
     
-    </div>
+</div>
     
