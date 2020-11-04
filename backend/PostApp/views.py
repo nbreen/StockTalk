@@ -29,4 +29,6 @@ def userApi(request,id=0):
     elif request.method=='DELETE':
         post=Post.objects.get(UserID=id)
         post.delete()
-        return JsonResponse("Deleted post sucessfully", safe=False)    
+        return JsonResponse("Deleted post sucessfully", safe=False)   
+
+

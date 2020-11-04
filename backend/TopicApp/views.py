@@ -38,14 +38,3 @@ def getAllTopics(Method):
     return JsonResponse(topic_serializer.data, safe=False)
 
 
-
-def getTrendingTopics(TopicName):
-    topic = Topic.objects.all().filter(isTrending=1).only('TopicName',
-                        'IsStock',
-                        'isTrending',
-                        'TrendingScore',
-                        'NumberOfPosts')
-    print(topic)
-    topic_serializer = TopicSerializer(topic, many=True)
-    print(topic_serializer)
-    return JsonResponse(topic_serializer.data, safe=False)
