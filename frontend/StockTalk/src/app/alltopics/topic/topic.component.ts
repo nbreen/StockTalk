@@ -66,7 +66,7 @@ export class TopicComponent implements OnInit {
       console.log(data);
       this.Posts = data;
     })
-
   }
+  
 
 }
