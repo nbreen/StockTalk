@@ -12,3 +12,4 @@ class Post(models.Model):
     Downvotes = models.IntegerField(default=0)
     Upvotes = models.IntegerField(default=0)
     Anonymous = models.IntegerField(default=0)
+    PostImage = models.CharField(max_length=256, default='empty')

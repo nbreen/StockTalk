@@ -62,10 +62,11 @@ export class TopicComponent implements OnInit {
       this.getIsDone = true;
     });
     
-    this.backend.getAll<Post>("/post/" + this.TopicName).subscribe(data => {
+    this.backend.getAll<Post>("/getPost/ByTopic/" + this.TopicName).subscribe(data => {
       console.log(data);
       this.Posts = data;
     })
+
   }
   
 
