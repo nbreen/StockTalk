@@ -15,8 +15,5 @@ urlpatterns=[
     url(r'followuser/.*$', views.followuser),
     url(r'unfollowuser/.*$', views.unfollowuser),
     url(r'^post/.$', views.getAllPosts)
-    url(r'unfollowuser/.*$', views.unfollowuser),
-    url(r'followuser/.*$', views.followuser)
-
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
