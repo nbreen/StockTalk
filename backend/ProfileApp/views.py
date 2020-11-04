@@ -147,17 +147,17 @@ def followuser(request):
 
 @csrf_exempt
 def unfollowuser(request):
-    print(str(request))
+    #print(str(request))
     name = str(request).split("/")
     name1 = name[2]
     name2 = (name[3])[:-2]
-    print(name1)
+    #print(name1)
     print(name2)
 
     query = f'SET SQL_SAFE_UPDATES = 0; DELETE FROM UserFollowsUser WHERE DoingFollowing = \"{name1}\" AND BeingFollowed = \"{name2}\"; UPDATE UserApp_users SET Following=Following-1 WHERE Username = "{name1}"; UPDATE UserApp_users SET Followers=Followers-1 WHERE Username = "{name2}"; SET SQL_SAFE_UPDATES = 1;'
     cursor = connection.cursor()
     cursor.execute(query)
-    connection.commit()
+    #connection.commit()
     cursor.close()
     return JsonResponse("success", safe=False)
 
@@ -173,7 +173,7 @@ def getAllPosts(Method):
         print("TEST********************************************************")
  
     post_serializer = PostSerializer(records, many=True)
-    print(post_serializer)
+    #print(post_serializer)
     return JsonResponse(post_serializer.data, safe=False)
 
 
