@@ -1,5 +1,13 @@
 <div class="profile-page">
   <a mat-raised-button routerLink="/followers/{{currProfile}}" color="primary">See {{ currProfile }}'s followers and the Users/Topics they follow!</a>
+  <br>
+  
+
+  <a *ngIf="following && getIsDone && !isUser" mat-raised-button color="primary" (click)="unfollowButton()">Unfollow</a>
+  <a *ngIf="!following && getIsDone && !isUser" mat-raised-button color="primary" (click)="followButton()">Follow</a>
+  <a *ngIf = "isUser">Welcome to your Profile!</a>
+
+
   <mat-toolbar>
     {{this.profile.Username}}'s profile
   </mat-toolbar>

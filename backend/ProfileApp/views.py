@@ -104,3 +104,56 @@ def getTopics(request):
     print(records)
     cursor.close()
     return JsonResponse(records, safe=False)
+
+@csrf_exempt
+def getButton(request):
+    name = str(request).split("/")
+    name1 = name[2]
+    name2 = (name[3])[:-2]
+    print(name1)
+    print(name2)
+
+    if name1 == name2:
+        return JsonResponse("same", safe=False)
+
+
+    query = f'SELECT * FROM UserFollowsUser WHERE DoingFollowing = \"{name1}\" AND BeingFollowed = \"{name2}\";'
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+
+    # print(records)
+    cursor.close()
+    return JsonResponse(records, safe=False)
+
+@csrf_exempt
+def followuser(request):
+    name = str(request).split("/")
+    name1 = name[2]
+    name2 = (name[3])[:-2]
+    print(name1)
+    print(name2)
+
+    query = f'INSERT INTO UserFollowsUser VALUES(\"{name1}\", \"{name2}\"); SET SQL_SAFE_UPDATES = 0; UPDATE UserApp_users SET Following=Following+1 WHERE Username = "{name1}"; UPDATE UserApp_users SET Followers=Followers+1 WHERE Username = "{name2}"; SET SQL_SAFE_UPDATES = 1;'
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+    # print(records)
+    cursor.close()
+    return JsonResponse(records, safe=False)
+
+@csrf_exempt
+def unfollowuser(request):
+    print(str(request))
+    name = str(request).split("/")
+    name1 = name[2]
+    name2 = (name[3])[:-2]
+    print(name1)
+    print(name2)
+
+    query = f'SET SQL_SAFE_UPDATES = 0; DELETE FROM UserFollowsUser WHERE DoingFollowing = \"{name1}\" AND BeingFollowed = \"{name2}\"; UPDATE UserApp_users SET Following=Following-1 WHERE Username = "{name1}"; UPDATE UserApp_users SET Followers=Followers-1 WHERE Username = "{name2}"; SET SQL_SAFE_UPDATES = 1;'
+    cursor = connection.cursor()
+    cursor.execute(query)
+    connection.commit()
+    cursor.close()
+    return JsonResponse("success", safe=False)

@@ -21,7 +21,9 @@ export class ProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private backend : CrudService,
     public globals: Globals
-  ) {} 
+  ) {
+    
+  } 
 
   profile: Profile;
   profilePhotoPath: string;
@@ -29,7 +31,10 @@ export class ProfileComponent implements OnInit {
 
   user: User;
   isUser: boolean;
+
   currProfile: string;
+  following: boolean;
+  getIsDone: boolean;
 
   showSettings() {
     if (this.isUser && this.globals.isAuthenticated) {
@@ -37,6 +42,22 @@ export class ProfileComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  followButton() {
+    // Post
+    let info = "/followuser/" + this.globals.currentUsername + "/" + this.currProfile;
+    this.following = true;
+    this.backend.getAll(info).subscribe(result => {
+    });
+  }
+
+  unfollowButton() {
+    // Delete
+    let info = "/unfollowuser/" + this.globals.currentUsername + "/" + this.currProfile;
+    this.following = false;
+    this.backend.getAll(info).subscribe(result => {
+    });
   }
 
   ngOnInit(): void {
@@ -67,5 +88,22 @@ export class ProfileComponent implements OnInit {
       this.user = JSON.parse(user_data);
     });
 
+    let info = "/checkfollowuser/" + this.globals.currentUsername + "/" + this.currProfile;
+    console.log(info);
+    this.backend.getAll(info).subscribe(res => {
+      console.log(res);
+      if (res.length == 0) {
+        this.following = false;
+      } else if (res[0] == "same") {
+        this.following = false;
+        this.isUser = true;
+      } else {
+        this.following = true;
+      }
+      console.log(res);
+      this.getIsDone = true;
+    });
+
   }
+
 }
