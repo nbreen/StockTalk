@@ -41,7 +41,10 @@ export class AppComponent {
   }
 
   directProfile() {
-    this.router.navigate(["/profile/" + this.globals.currentUsername]);
+    // this.router.navigate(["/profile/" + this.globals.currentUsername]);
+    this.router.navigate(["/profile/" + this.globals.currentUsername]) .then(() => {
+      window.location.reload();
+    });
   }
   
 
