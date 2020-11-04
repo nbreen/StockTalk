@@ -1,5 +1,3 @@
-<div *ngIf=topics>
-
 <mat-toolbar>
     <span>ALL TOPICS</span>
 </mat-toolbar>
@@ -9,6 +7,7 @@
      <button class=mybutton mat-raised-button color="primary" (click)="sortAZ()">Sort by Topic Name</button>
      <button class=mybutton mat-raised-button color="primary" (click)="sortCount()">Sort by Post Count</button>
     
+     <div *ngIf=topics>
      <table style="width:25%">
         <tr>
           <th>Topic Name</th>
@@ -28,7 +27,11 @@
               <td *ngIf="!topic.is_stock;">❌</td> -->
              
         </tr>
-        </table>
+      </table>
+      </div>
   </mat-card>
 
-</div>
+  <mat-card class="my-card">
+    <h2 *ngIf=!topics>Loading All Topics Please Wait...</h2>
+  </mat-card>
+  
