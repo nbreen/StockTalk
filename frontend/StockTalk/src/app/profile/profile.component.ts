@@ -47,16 +47,19 @@ export class ProfileComponent implements OnInit {
   followButton() {
     // Post
     let info = "/followuser/" + this.globals.currentUsername + "/" + this.currProfile;
-    this.following = true;
     this.backend.getAll(info).subscribe(result => {
+      console.log("follow success")
+      this.following = true;
+
     });
   }
 
   unfollowButton() {
     // Delete
     let info = "/unfollowuser/" + this.globals.currentUsername + "/" + this.currProfile;
-    this.following = false;
     this.backend.getAll(info).subscribe(result => {
+      console.log("unfollow success")
+      this.following = false;
     });
   }
 
