@@ -5,5 +5,5 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns=[
-    url(r'^getPost\/.*$', views.getPostByTopic)
+    url(r'^getPost\/.*$', views.getPost)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

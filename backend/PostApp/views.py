@@ -16,7 +16,7 @@ from django.db import connection
 
 # Create your views here.
 @csrf_exempt
-def getPostByTopic(Method):
+def getPost(Method):
     print(str(Method))
     request = (str(Method)).split("/")
     filterBy = request[2]
@@ -38,16 +38,6 @@ def getPostByTopic(Method):
     print(post)
     post_serializer = PostSerializer(post, many=True)
     print(post_serializer)
-    return JsonResponse("Placeholder", safe=False)
-
-@csrf_exempt
-def getPostByUser(Method):
-    # Code
-    return JsonResponse("Placeholder", safe=False)
-
-@csrf_exempt
-def getSavedPosts(Method):
-    # Code
     return JsonResponse("Placeholder", safe=False)
 
 
