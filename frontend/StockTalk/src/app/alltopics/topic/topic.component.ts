@@ -26,8 +26,5 @@ export class TopicComponent implements OnInit {
     })
   }
   
-  followTopic() {
-    
-  }
 
 }
