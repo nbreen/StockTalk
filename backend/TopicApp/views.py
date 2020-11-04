@@ -38,20 +38,6 @@ def getAllTopics(Method):
     return JsonResponse(topic_serializer.data, safe=False)
 
 
-<<<<<<< HEAD
-=======
-
-def getTrendingTopics(TopicName):
-    topic = Topic.objects.all().filter(isTrending=1).only('TopicName',
-                        'IsStock',
-                        'isTrending',
-                        'TrendingScore',
-                        'NumberOfPosts')
-    print(topic)
-    topic_serializer = TopicSerializer(topic, many=True)
-    print(topic_serializer)
-    return JsonResponse(topic_serializer.data, safe=False)
-
 @csrf_exempt
 def getButton(request):
     name = str(request).split("/")
@@ -103,4 +89,3 @@ def unfollowtopic(request):
     # connection.commit()
     cursor.close()
     return JsonResponse(records, safe=False)
->>>>>>> 1b2e13df79d4510bdcda7c5588f14d0143f99b29

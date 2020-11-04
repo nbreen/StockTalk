@@ -31,4 +31,3 @@ def userApi(request,id=0):
         post.delete()
         return JsonResponse("Deleted post sucessfully", safe=False)   
 
-
