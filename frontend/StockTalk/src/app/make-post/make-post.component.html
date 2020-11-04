@@ -1,1 +1,31 @@
-<p>make-post works!</p>
+<mat-toolbar>
+    <span>Make a new post!</span>
+  </mat-toolbar>
+  <mat-card class="my-card">
+    <mat-card-content>
+      
+      <!-- CONTENT HERE -->
+      <form class="my-form">
+        <!--FORM FIELDS HERE-->
+        <form action="/action_page.php">
+          <input type="file" (change)="uploadProfilePic($event)" id="myFile" name="filename">
+        </form>
+      </form>
+      <form class="my-form">
+        <mat-form-field class="full-width">
+          <mat-label>Topic</mat-label>
+          <input  placeholder="topic" type="text" name="topic" 
+          [(ngModel)]="this.new_post.Topic">
+       </mat-form-field>
+       <mat-form-field class="full-width">
+        <input placeholder="Input text here (optional)" name="text" [(ngModel)]="this.new_post.Text"> 
+     </mat-form-field>
+      </form>
+         
+    </mat-card-content>
+    <mat-card-actions>
+      <!-- SIGN UP BUTTON -->
+      <button mat-raised-button (click)="submitPost()" color="primary">SUBMIT</button>
+      <button mat-raised-button (click)="directProfile()" color="primary">CANCEL</button>
+    </mat-card-actions>
+  </mat-card>

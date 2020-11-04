@@ -51,6 +51,10 @@ export class CrudService {
     return this.httpClient.post(this.APIUrl + '/SaveProfilePic/', val);
   }
 
+  uploadPostPic(val:any) {
+    return this.httpClient.post(this.APIUrl + '/SaveProfilePic/', val);
+  }
+
   getProfile(val: any): Observable<Profile> {
     return this.httpClient.get<Profile>(this.APIUrl + "/profile/" + val);
   }
@@ -58,6 +62,12 @@ export class CrudService {
   getUser(val: any): Observable<User> {
     return this.httpClient.get<User>(this.APIUrl + "/user/" + val);
   }
+
+  addPost(val: any) {
+    let body = JSON.stringify(val);
+    return this.httpClient.post<any>(this.APIUrl + "/post/", val);
+  }
+
 
   addUser(val: any) {
       let body = JSON.stringify(val);

@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { Profile } from '../shared/profile.model';
 import { User } from '../shared/user.model';
 import { Post } from '../Interfaces';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private backend: CrudService,
-    public globals: Globals
+    public globals: Globals,
+    private router: Router
   ) {
     this.backend.getAll<Post>("/post/0").subscribe(data => {
       console.log(data);
@@ -57,6 +59,10 @@ export class ProfileComponent implements OnInit {
       this.following = true;
 
     });
+  }
+
+  routeMakePost() {
+    this.router.navigate(["/makepost/" + this.globals.currentUsername]);
   }
 
   unfollowButton() {

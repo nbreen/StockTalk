@@ -20,8 +20,8 @@
       <mat-label class="profile-info">Username: {{this.profile.Username}} </mat-label>
       <mat-label class="profile-info">Bio: {{this.profile.Bio}}</mat-label>
     </mat-card-content>
+    <button *ngIf="this.showSettings()" (click)="routeMakePost()" mat-raised-button color="primary">Make a post!</button>
     <button *ngIf="this.showSettings()" routerLink="{{this.settingsURL}}" mat-raised-button color="primary">Edit Profile</button>
-    <button *ngIf="this.showSettings()" routerLink="make-post" mat-raised-button color="primary">Make a post!</button>
     <!-- <a mat-raised-button routerLink="/followers/{{currProfile}}" color="primary">See {{ currProfile }}'s followers and the Users/Topics they follow!</a> -->
 
     <table style="width:100%">
@@ -34,7 +34,6 @@
 
         <tr *ngFor="let post of posts">
           <a routerLink="/topic/{{post.Post}}">{{post.Post}}</a>
-
          </tr>
     </table>
   </mat-card>
