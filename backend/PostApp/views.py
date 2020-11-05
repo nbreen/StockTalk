@@ -40,6 +40,55 @@ def getPost(Method):
     print(post_serializer)
     return JsonResponse(post_serializer.data, safe=False)
 
+@csrf_exempt
+def checkSavedPost(Method):
+    print(str(Method))
+    request = (str(Method)).split("/")
+    Username = request[2]
+    PostId = (request[3])[:-2]
+
+    query = f'SELECT * FROM UserSavesPost WHERE Username = "{Username}" AND PostId = "{PostId}";'
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+
+    print(records)
+    cursor.close()
+    return JsonResponse(records, safe=False)
+
+@csrf_exempt
+def savePost(request):
+    name = str(request).split("/")
+    Username = name[2]
+    PostId = (name[3])[:-2]
+    #print(Username)
+    #print(PostId)
+
+    query = f'INSERT INTO UserSavesPost VALUES(\"{Username}\", \"{PostId}\");'
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+    # print(records)
+    cursor.close()
+    return JsonResponse(records, safe=False)
+
+@csrf_exempt
+def unsavePost(request):
+    name = str(request).split("/")
+    Username = name[2]
+    PostId = (name[3])[:-2]
+    #print(Username)
+    #print(PostId)
+
+    query = f'SET SQL_SAFE_UPDATES = 0; DELETE FROM UserSavesPost WHERE Username = \"{Username}\" AND PostId = \"{PostId}\"; SET SQL_SAFE_UPDATES = 1;'
+    cursor = connection.cursor()
+    cursor.execute(query)
+    #connection.commit()
+    cursor.close()
+    return JsonResponse("success", safe=False)
+
+
+
 
 @csrf_exempt
 def userApi(request,id=0):

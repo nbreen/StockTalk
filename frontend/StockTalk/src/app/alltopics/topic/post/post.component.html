@@ -1,8 +1,12 @@
 <div class="bubble">
-    <a style="font-size:20px; color:black" routerLink="/profile/{{ Post.Username }}">@{{Post.Username}}</a> 
+    <a style="font-size:20px; color:black" routerLink="/profile/{{ Post.Username }}">@{{Post.Username}}</a>
+    <!-- <br> -->
+    <!-- <a style="font-size:20px; color:black" routerLink="/topic/{{ Post.TopicName }}">#{{ Post.TopicName }}</a>  -->
     <h2>{{ Post.PostDate }}</h2>
     <p>{{ Post.Post }}</p>
-    <button mat-raised-button>Save Post</button>
+    <button *ngIf="saved && getIsDone" mat-raised-button color="primary" (click)="unsaveButton()">Unsave Post</button>
+    <button *ngIf="!saved && getIsDone" mat-raised-button color="primary" (click)="saveButton()">Save Post</button>
+
     <button mat-raised-button color="green">Upvote</button>
     <button mat-raised-button color="red">Downvote</button>
     <div> Upvotes: {{ Post.Upvotes }} <br> Downvotes: {{ Post.Downvotes }}</div>
