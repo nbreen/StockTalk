@@ -43,6 +43,10 @@ export class ProfileComponent implements OnInit {
   following: boolean;
   getIsDone: boolean;
 
+  Posts: Array<Post>;
+  postCount: number = -1;
+
+
   showSettings() {
     if (this.isUser && this.globals.isAuthenticated) {
       return true;
@@ -117,6 +121,13 @@ export class ProfileComponent implements OnInit {
       console.log(res);
       this.getIsDone = true;
     });
+
+    this.backend.getAll<Post>("/getPost/ByUser/" + this.currProfile).subscribe(data => {
+      this.Posts = data;
+      console.log(this.Posts);
+      this.postCount = data.length;
+    })
+
 
   }
 

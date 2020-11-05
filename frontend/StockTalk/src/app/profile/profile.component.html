@@ -1,3 +1,13 @@
+<h2>Posts Created By {{ currProfile }}</h2>
+
+<h2 *ngIf="postCount != -1">This Page has {{ postCount }} Post(s)</h2>
+
+<div *ngFor="let Post of Posts">
+
+  <app-post [Post]="Post"></app-post>
+
+</div>
+
 <div class="profile-page">
   <a mat-raised-button routerLink="/followers/{{currProfile}}" color="primary">See {{ currProfile }}'s followers and the Users/Topics they follow!</a>
   <br>

@@ -17,6 +17,7 @@ export class TopicComponent implements OnInit {
   Posts: Array<Post>;
   following: boolean;
   getIsDone: boolean;
+  postCount: number = -1;
 
 
   constructor(private route: ActivatedRoute,
@@ -65,6 +66,7 @@ export class TopicComponent implements OnInit {
     this.backend.getAll<Post>("/getPost/ByTopic/" + this.TopicName).subscribe(data => {
       this.Posts = data;
       console.log(this.Posts);
+      this.postCount = data.length;
     })
 
   }
