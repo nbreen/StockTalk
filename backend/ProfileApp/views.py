@@ -161,18 +161,3 @@ def unfollowuser(request):
     cursor.close()
     return JsonResponse("success", safe=False)
 
-@csrf_exempt
-def getAllPosts(Method):
-    methString = str(Method)[-3]
-    if int(methString) == 0 :
-        query = f'SELECT * FROM PostApp_post WHERE UserID = 1;'
-        cursor = connection.cursor()
-        cursor.execute(query)
-        records = cursor.fetchall()
-        print(records)
-        print("TEST********************************************************")
- 
-    post_serializer = PostSerializer(records, many=True)
-    #print(post_serializer)
-    return JsonResponse(post_serializer.data, safe=False)
-
