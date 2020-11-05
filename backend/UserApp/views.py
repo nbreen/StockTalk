@@ -25,7 +25,8 @@ class UserList(generics.ListAPIView):
 def userDeleteApi(id):
     name = (str(id)[35:-2])
     print(name)
-    query = f'DELETE FROM UserApp_users WHERE Username = \"{name}\";'
+    ### Manually deleting a user's account and their related data. Done manually because Models and schema do not implement ON DELETE CASCADE
+    query = f'DELETE FROM UserApp_users WHERE Username = \"{name}\"; DELETE FROM PostsApp_posts WHERE Username = "{name}"; DELETE FROM UserFollowsUser WHERE DoingFollowing = "{name}" OR BeingFollowed = "{name}"; DELETE FROM UserFollowsTopic WHERE Username = "{name}"; DELETE FROM UserSavesPost WHERE Username = "{name}";'
     cursor = connection.cursor()
     cursor.execute(query)
     cursor.close()
