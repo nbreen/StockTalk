@@ -23,13 +23,17 @@ export interface Topic {
 }
 
 export interface Post {
-    PostID : number;
     Username : string;
+    PostId : number;
+    UserId : number;
     TopicName : string;
     PostType : number;
     Post : string;
-    PostDate : Date;
+    PostDate : string;
+    Downvotes : number;
+    Upvotes : number;
     Anonymous : boolean;
+    PostImage : string;
 }
 
 export interface Comment {

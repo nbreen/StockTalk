@@ -25,10 +25,10 @@ def getPost(Method):
     #print(filterBy)
     #print(mustEqual)
 
-    post = "Placeholder"
-
+    post = "Hello"
     if (filterBy == "ByTopic"):
         post = Post.objects.all().filter(TopicName=mustEqual)
+        print(post)
     elif (filterBy == "ByUser"):
         post = Post.objects.all().filter(Username=mustEqual)
 
@@ -38,7 +38,7 @@ def getPost(Method):
     print(post)
     post_serializer = PostSerializer(post, many=True)
     print(post_serializer)
-    return JsonResponse("Placeholder", safe=False)
+    return JsonResponse(post_serializer.data, safe=False)
 
 
 @csrf_exempt
