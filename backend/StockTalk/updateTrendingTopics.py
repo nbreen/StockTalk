@@ -48,7 +48,7 @@ def update(topic, time):
 	time_formatted = datetime.datetime.strptime(time, date_format)
 
 	current_MA = int((current_MA*(n-1) + (t_mod.mktime(time_formatted.timetuple()) - t_mod.mktime(last_post_time.timetuple()))) / n)
-
+	
 	#update database with this value
 	cur.execute("UPDATE TopicApp_topic SET CurrentMA = %s WHERE TopicName = %s", (current_MA, topic))
 	connection.commit()

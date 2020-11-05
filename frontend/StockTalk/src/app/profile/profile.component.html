@@ -32,9 +32,10 @@
 
       </tr>
 
-        <tr *ngFor="let post of posts">
-          <a routerLink="/topic/{{post.Post}}">{{post.Post}}</a>
-         </tr>
+      <tr *ngFor="let post of posts">
+        <img [src]=this.profilePhotoPath height="100px;" width="100px;">
+        <a routerLink="/topic/{{post.Post}}">{{post.Post}}</a>
+      </tr>
     </table>
   </mat-card>
 

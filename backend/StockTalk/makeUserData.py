@@ -163,10 +163,11 @@ for i in range(len(data_with_ticker)):
 	cur.execute("SELECT UserID FROM UserApp_users WHERE Username = %s", str(username))
 	user_id_for_post = cur.fetchone()[0]
 
+
 	date_formatted = datetime.datetime.fromtimestamp(int(date)/1000)
 	date_formatted = date_formatted.strftime('%Y-%m-%d %H:%M:%S')
 
-	cur.execute("INSERT INTO PostApp_post(PostId, UserID, TopicName, PostType, Post, PostDate, Downvotes, Upvotes, Anonymous) VALUES (%s, %s, %s, 0, %s, %s, 0, 0, 0)", (int(next_post_id), int(user_id_for_post), str(topic), str(post), date_formatted))
+	cur.execute("INSERT INTO PostApp_post(Username, PostId, UserId, TopicName, PostType, Post, PostDate, Downvotes, Upvotes, Anonymous) VALUES (%s, %s, %s, %s, 0, %s, %s, 0, 0, 0)", (username, int(next_post_id), int(user_id_for_post), str(topic), str(post), date_formatted))
 	connection.commit()
 
 	cur.execute("SELECT NumberOfPosts FROM UserApp_users WHERE Username = %s", username)

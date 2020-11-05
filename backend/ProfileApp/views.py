@@ -176,4 +176,3 @@ def getAllPosts(Method):
     #print(post_serializer)
     return JsonResponse(post_serializer.data, safe=False)
 
-
