@@ -28,14 +28,35 @@ export class MakePostComponent implements OnInit {
 
   @Input() new_post: Post = {
     Username: "",
-    Text: "",
-    Image: "",
-    Topic: "",
+    PostId: 0,
+    UserId: 0,
+    TopicName: "",
+    PostType: 0,
+    Post: "",
+    PostDate: "",
+    Downvotes: 0,
     Upvotes: 0,
-    Downvotes: 0
+    Anonymous: 0,
+    PostImage: ""
+  }
+
+  resetPost() {
+    this.new_post.TopicName = "";
+    this.new_post.PostImage = "";
   }
 
   submitPost() {
+    alert("hey");
+
+    this.backend.addPost(this.new_post).subscribe(res => {
+      if (res.toString != "Post added successfully") {
+        alert("Something went wrong");
+        this.resetPost();
+      }
+      
+      
+    });
+
 
   }
 
@@ -60,6 +81,7 @@ export class MakePostComponent implements OnInit {
       var user_data = JSON.stringify(res);
       user_data = user_data.substring(1, user_data.length-1);
       this.user = JSON.parse(user_data);
+      this.new_post.Username = this.user.Username;
     });
 
   }

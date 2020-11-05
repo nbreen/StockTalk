@@ -1,8 +1,13 @@
 export class Post {
     Username: String;
-    Text: String;
-    Image: String;
-    Topic: String;
-    Upvotes: number;
+    PostId: number;
+    UserId: number;
+    TopicName: String;
+    PostType: number;
+    Post: String;
+    PostDate: String;
     Downvotes: number;
+    Upvotes: number;
+    Anonymous: number;
+    PostImage: String;
 }

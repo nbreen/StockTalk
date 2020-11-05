@@ -24,5 +24,5 @@ urlpatterns = [
     url(r'^', include('ProfileApp.urls')),
     url(r'^', include('LoginApp.urls')),
     url(r'^', include('TopicApp.urls')),
-    url(r'^', include('PostApp.urls'))
+    url(r'^', include('PostsApp.urls'))
 ]

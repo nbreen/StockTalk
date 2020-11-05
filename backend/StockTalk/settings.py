@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'ProfileApp',
     'LoginApp',
     'TopicApp',
+    'PostsApp',
     'PostApp',
     'CommentApp',
     'rest_framework',

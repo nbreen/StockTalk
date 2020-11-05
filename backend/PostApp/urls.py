@@ -10,7 +10,7 @@ urlpatterns=[
     url(r'^checksavedpost\/.*$', views.checkSavedPost),
     url(r'^unsavepost\/.*$', views.unsavePost),
     url(r'^savepost\/.*$', views.savePost),
-    url(r'^getAllPosts\/.*$', views.getAllPosts)
-
+    url(r'^getAllPosts\/.*$', views.getAllPosts),
+    url(r'^addPost/$', views.postApi)
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

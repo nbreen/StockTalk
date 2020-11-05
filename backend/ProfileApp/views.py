@@ -27,10 +27,6 @@ class ProfileList(generics.ListAPIView):
         return Profiles.objects.filter(Username=profile_username)
         
 
-
-        
-
-
 @csrf_exempt
 def SaveProfilePic(request):
     file=request.FILES['uploadedFile']
@@ -38,7 +34,7 @@ def SaveProfilePic(request):
     return JsonResponse(file_name, safe=False)
 
 @csrf_exempt
-def profileApi(request,id=0):
+def profileApi(request):
 
     if request.method=='GET':
         profiles = Profiles.objects.all()
@@ -63,7 +59,8 @@ def profileApi(request,id=0):
         return JsonResponse("Failed to update profile", safe=False)
 
     elif request.method=='DELETE':
-        profile=Profile.objects.get(Username=id)
+        profile_data = JSONParser().parse(request)
+        profile=Profile.objects.get(Username=profile_data['Username'])
         profile.delete()
         return JsonResponse("Deleted profile sucessfully", safe=False)    
 

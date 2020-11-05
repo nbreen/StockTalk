@@ -125,7 +125,8 @@ def unsavePost(request):
 
 
 @csrf_exempt
-def userApi(request,id=0):
+def postApi(request, id=0):
+
 
     if request.method=='GET':
         post = Post.objects.all()
@@ -150,7 +151,7 @@ def userApi(request,id=0):
         return JsonResponse("Failed to update post", safe=False)
 
     elif request.method=='DELETE':
-        post=Post.objects.get(UserID=id)
+        post=Post.objects.get(UserID="test")
         post.delete()
         return JsonResponse("Deleted post sucessfully", safe=False)   
 
