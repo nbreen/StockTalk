@@ -23,9 +23,8 @@ export interface Topic {
 }
 
 export interface Post {
-    Username : string;
     PostId : number;
-    UserId : number;
+    Username : string;
     TopicName : string;
     PostType : number;
     Post : string;
