@@ -4,7 +4,8 @@ from PostsApp.models import Posts
 class PostsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Posts
-        fields = ('Username',
+        fields = ('PostId',
+        'Username',
         'TopicName',
         'PostType',
         'Post',

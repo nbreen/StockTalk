@@ -125,7 +125,7 @@ cur.execute("SELECT MAX(UserID) FROM UserApp_users")
 max_id = cur.fetchone()
 next_id = max_id[0]
 
-cur.execute("SELECT MAX(PostId) FROM PostApp_post")
+cur.execute("SELECT MAX(PostId) FROM PostsApp_posts")
 max_post_id = cur.fetchone()
 next_post_id = max_post_id[0]
 
@@ -167,7 +167,7 @@ for i in range(len(data_with_ticker)):
 	date_formatted = datetime.datetime.fromtimestamp(int(date)/1000)
 	date_formatted = date_formatted.strftime('%Y-%m-%d %H:%M:%S')
 
-	cur.execute("INSERT INTO PostApp_post(Username, PostId, UserId, TopicName, PostType, Post, PostDate, Downvotes, Upvotes, Anonymous) VALUES (%s, %s, %s, %s, 0, %s, %s, 0, 0, 0)", (username, int(next_post_id), int(user_id_for_post), str(topic), str(post), date_formatted))
+	cur.execute("INSERT INTO PostsApp_posts(PostId, Username, TopicName,  PostType, Post, PostDate, Downvotes, Upvotes, Anonymous, PostImage) VALUES (%s, %s, %s, 0, %s, %s, 0, 0, 0, 'None')", (int(next_post_id), username, str(topic), str(post), date_formatted))
 	connection.commit()
 
 	cur.execute("SELECT NumberOfPosts FROM UserApp_users WHERE Username = %s", username)
