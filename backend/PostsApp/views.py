@@ -65,6 +65,10 @@ def getPost(Method):
         print(post)
     elif (filterBy == "ByUser"):
         post = Posts.objects.all().filter(Username=mustEqual)
+    elif (filterBy == "ById"):
+        post = Posts.objects.all().filter(PostId=mustEqual)
+
+
 
 
     # post = Post.objects.all().filter(TopicName=topicname)

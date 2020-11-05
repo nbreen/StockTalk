@@ -1,3 +1,5 @@
+
+
 <div class="bubble">
 
   <a style="font-size:20px; color:blue" routerLink="/profile/{{ Post.Username }}">@{{Post.Username}}</a>
@@ -14,7 +16,9 @@
   <button mat-raised-button color="green">Upvote</button>
   <button mat-raised-button color="red">Downvote</button>
   <div> Upvotes: {{ Post.Upvotes }} <br> Downvotes: {{ Post.Downvotes }}</div>
+  <a style="font-size:10px; color:black" routerLink="/post/{{Post.PostId}}">Visit Post</a>
 </div>
+
 
 <hr>
 

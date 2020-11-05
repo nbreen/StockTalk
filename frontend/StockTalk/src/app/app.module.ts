@@ -23,7 +23,8 @@ import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 import { MakePostComponent } from './make-post/make-post.component';
 import { FollowersComponent } from './followers/followers.component';
-import { ViewSavedPostsComponent } from './view-saved-posts/view-saved-posts.component';;
+import { ViewSavedPostsComponent } from './view-saved-posts/view-saved-posts.component';
+import { ViewSinglePostComponent } from './view-single-post/view-single-post.component';;
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ViewSavedPostsComponent } from './view-saved-posts/view-saved-posts.com
     ProfileSettingsComponent,
     MakePostComponent,
     FollowersComponent,
-    ViewSavedPostsComponent
+    ViewSavedPostsComponent,
+    ViewSinglePostComponent
   ],
   imports: [
     BrowserModule,
