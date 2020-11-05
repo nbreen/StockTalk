@@ -1,5 +1,5 @@
 <div class="bubble">
-    <h1>(@{{ Post.Username }})</h1>
+    <a style="font-size:20px; color:black" routerLink="/profile/{{ Post.Username }}">@{{Post.Username}}</a> 
     <h2>{{ Post.PostDate }}</h2>
     <p>{{ Post.Post }}</p>
     <button mat-raised-button>Save Post</button>
