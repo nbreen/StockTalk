@@ -1,7 +1,5 @@
 export class Post {
     Username: String;
-    PostId: number;
-    UserId: number;
     TopicName: String;
     PostType: number;
     Post: String;

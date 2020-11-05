@@ -28,16 +28,14 @@ export class MakePostComponent implements OnInit {
 
   @Input() new_post: Post = {
     Username: "",
-    PostId: 0,
-    UserId: 0,
     TopicName: "",
     PostType: 0,
     Post: "",
-    PostDate: "",
+    PostDate: "placeholder",
     Downvotes: 0,
     Upvotes: 0,
     Anonymous: 0,
-    PostImage: ""
+    PostImage: "placeholder"
   }
 
   resetPost() {
@@ -46,15 +44,21 @@ export class MakePostComponent implements OnInit {
   }
 
   submitPost() {
-    alert("hey");
+
+    if (this.new_post.TopicName == "") {
+      this.new_post.TopicName = "no_topic";
+    }
+
+    if (this.new_post.Post == "" ) {
+      this.new_post.Post = "no_post";
+    }
 
     this.backend.addPost(this.new_post).subscribe(res => {
-      if (res.toString != "Post added successfully") {
+      if (res.toString() != "Post added successfully") {
         alert("Something went wrong");
         this.resetPost();
       }
-      
-      
+      this.directProfile();
     });
 
 
