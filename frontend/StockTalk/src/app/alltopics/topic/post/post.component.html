@@ -11,8 +11,8 @@
   <button *ngIf="saved && getIsDone" mat-raised-button color="primary" (click)="unsaveButton()">Unsave Post</button>
   <button *ngIf="!saved && getIsDone" mat-raised-button color="primary" (click)="saveButton()">Save Post</button>
 
-  <button mat-raised-button color="green">Upvote</button>
-  <button mat-raised-button color="red">Downvote</button>
+  <button (click)="upvote()" mat-raised-button color="green">Upvote</button>
+  <button (click)="downvote()" mat-raised-button color="red">Downvote</button>
   <div> Upvotes: {{ Post.Upvotes }} <br> Downvotes: {{ Post.Downvotes }}</div>
 </div>
 

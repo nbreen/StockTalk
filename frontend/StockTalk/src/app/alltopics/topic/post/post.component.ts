@@ -29,6 +29,40 @@ export class PostComponent implements OnInit {
     });
   }
 
+  upvote() {
+
+    if (localStorage.getItem(this.Post.TopicName + "_upvoted") == "true") {
+      --this.Post.Upvotes;
+      localStorage.setItem(this.Post.TopicName + "_upvoted", "false");
+    } else {
+      ++this.Post.Upvotes;
+      localStorage.setItem(this.Post.TopicName + "_upvoted", "true");
+      return;
+    }
+
+    this.backend.updatePost(this.Post).subscribe(result => {
+      console.log("save success")
+      this.saved = true;
+    });
+  }
+
+  downvote() {
+
+    if (localStorage.getItem(this.Post.TopicName + "_downvoted") == "true") {
+      --this.Post.Downvotes;
+      localStorage.setItem(this.Post.TopicName + "_downvoted", "false");
+    } else {
+      ++this.Post.Downvotes;
+      localStorage.setItem(this.Post.TopicName + "_downvoted", "true");
+      return;
+    }
+   
+    this.backend.updatePost(this.Post).subscribe(result => {
+      console.log("save success")
+      this.saved = true;
+    });
+  }
+
   unsaveButton() {
     // Delete
     let info = "/unsavepost/" + this.globals.currentUsername + "/" + this.Post.PostId;
