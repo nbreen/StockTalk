@@ -28,8 +28,6 @@ export class ViewSavedPostsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    var i;
-
     this.backend.getAll<Post>("/getAllPosts/" + this.globals.currentUsername).subscribe(data => {
       this.AllPosts = data;
       this.postCountTotal = data.length;
