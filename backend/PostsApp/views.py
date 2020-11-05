@@ -145,8 +145,9 @@ def postApi(request, id=0):
         return JsonResponse("Failed to add post", safe=False)
 
     elif request.method=='PUT':
+        #ipdb.set_trace()
         post_data = JSONParser().parse(request)
-        post = Posts.objects.get(Username=user_data['Username'])
+        post = Posts.objects.get(TopicName=post_data['TopicName'])
         post_serializer = PostsSerializer(post, data=post_data) 
         if post_serializer.is_valid():
             post_serializer.save()

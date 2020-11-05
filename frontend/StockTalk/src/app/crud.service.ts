@@ -63,10 +63,15 @@ export class CrudService {
     return this.httpClient.get<User>(this.APIUrl + "/user/" + val);
   }
 
+  getPostList():Observable<any[]>{
+    return this.httpClient.get<any[]>(this.APIUrl + '/posts/');
+
+  }
+
   addPost(val: any) {
     let body = JSON.stringify(val);
     alert(body);
-    return this.httpClient.post<any>(this.APIUrl + "/addPosts/", val);
+    return this.httpClient.post<any>(this.APIUrl + "/posts/", val);
   }
 
 
@@ -102,6 +107,10 @@ export class CrudService {
   
   updateUser(val:any) {
     return this.httpClient.put(this.APIUrl + '/user/', val);
+  }
+
+  updatePost(val:any) {
+    return this.httpClient.put(this.APIUrl + '/posts/', val);
   }
 
   updateProfile(val:any) {
