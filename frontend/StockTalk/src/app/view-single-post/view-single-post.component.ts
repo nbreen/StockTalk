@@ -15,6 +15,7 @@ export class ViewSinglePostComponent implements OnInit {
 
   Posts: Array<Post>;
   SinglePostId: string;
+  Comments: Array<Comment>; 
 
   constructor(private route: ActivatedRoute,
     private backend : CrudService,
@@ -29,6 +30,11 @@ export class ViewSinglePostComponent implements OnInit {
     this.backend.getAll<Post>("/getPost/ById/" + this.SinglePostId).subscribe(data => {
       this.Posts = data;
       console.log(this.Posts);
+    })
+
+    this.backend.getAll<Comment>("/getComments/" + this.SinglePostId).subscribe(data => {
+      this.Comments = data;
+      console.log(this.Comments);
     })
 
     

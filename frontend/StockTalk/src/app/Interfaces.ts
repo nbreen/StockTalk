@@ -36,9 +36,9 @@ export interface Post {
 }
 
 export interface Comment {
-    CommentID : number;
+    CommentId : number;
     Username : string;
-    PostID : number;
+    PostId : number;
     Comment : string;
     CommentDate : Date;
 }

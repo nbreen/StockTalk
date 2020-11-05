@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Globals } from './../../../../Globals';
+import { CrudService } from 'src/app/crud.service';
+import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
 import { stringify } from 'querystring';
 
 @Component({
@@ -7,20 +10,13 @@ import { stringify } from 'querystring';
   styleUrls: ['./comment.component.scss']
 })
 export class CommentComponent implements OnInit {
-  CommentId : number;
-  Comment: string;
-  Username: string;
-  Name: string;
-  Date : Date;
-  PostId: number;
+  
+  @Input() Comment;
+  getIsDone: Boolean;
 
-  constructor() { 
-    this.CommentId = -1;
-    this.Comment = "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-    this.Username = "nulluser";
-    this.Name = "No Name";
-    this.Date = new Date();
-    this.PostId = -1;
+  constructor(private route: ActivatedRoute,
+    private backend : CrudService,
+    public globals: Globals) { 
   }
 
   ngOnInit(): void {
