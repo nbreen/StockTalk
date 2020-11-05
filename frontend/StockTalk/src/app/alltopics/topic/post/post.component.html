@@ -1,11 +1,14 @@
 <div class="bubble">
-    <h1>{{ Name }} (@{{ Username }})</h1>
-    <h2>{{ PostDate }}</h2>
-    <p>{{ Post }}</p>
+    <h1>(@{{ Post.Username }})</h1>
+    <h2>{{ Post.PostDate }}</h2>
+    <p>{{ Post.Post }}</p>
     <button mat-raised-button>Save Post</button>
     <button mat-raised-button color="green">Upvote</button>
     <button mat-raised-button color="red">Downvote</button>
+    <div> Upvotes: {{ Post.Upvotes }} <br> Downvotes: {{ Post.Downvotes }}</div>
 </div>
 
-<app-comment *ngFor="let comment of comments">
-</app-comment>
+<hr>
+
+<!-- <app-comment *ngFor="let comment of comments">
+</app-comment> -->

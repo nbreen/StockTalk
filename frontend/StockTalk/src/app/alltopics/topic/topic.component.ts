@@ -63,8 +63,8 @@ export class TopicComponent implements OnInit {
     });
     
     this.backend.getAll<Post>("/getPost/ByTopic/" + this.TopicName).subscribe(data => {
-      console.log(data);
       this.Posts = data;
+      console.log(this.Posts);
     })
 
   }
