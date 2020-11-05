@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
     public globals: Globals,
     private router: Router
   ) {
-    this.backend.getAll<Post>("/post/0").subscribe(data => {
+    this.backend.getAll<Post>("/getPost/ByUser" + this.user).subscribe(data => {
       console.log(data);
       this.posts = data;
     })
