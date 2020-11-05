@@ -7,4 +7,5 @@ export class Globals  {
   public currentUser: User;
   public currentUsername: any;
   public isAuthenticated: boolean = false;
+  public post_id: number;
 }

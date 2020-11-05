@@ -15,10 +15,10 @@
         <mat-form-field class="full-width">
           <mat-label>Topic</mat-label>
           <input  placeholder="topic" type="text" name="topic" 
-          [(ngModel)]="this.new_post.Topic">
+          [(ngModel)]="this.new_post.TopicName">
        </mat-form-field>
        <mat-form-field class="full-width">
-        <input placeholder="Input text here (optional)" name="text" [(ngModel)]="this.new_post.Text">
+        <input placeholder="Input text here (optional)" name="text" [(ngModel)]="this.new_post.Post">
          <!-- TODO Check for (valid) topic -->
 
      </mat-form-field>
@@ -27,7 +27,7 @@
     </mat-card-content>
     <mat-card-actions>
       <!-- SIGN UP BUTTON -->
-      <button mat-raised-button (click)="submitPost()" color="primary">SUBMIT</button>
+      <button mat-raised-button (click)="submitPost()" color="primary">POST</button>
       <button mat-raised-button (click)="directProfile()" color="primary">CANCEL</button>
     </mat-card-actions>
   </mat-card>

@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class Post(models.Model):
+class Posts(models.Model):
     PostId = models.AutoField(primary_key=True)
     Username = models.CharField(default='', max_length=256)
     TopicName = models.CharField(max_length=256, default='')

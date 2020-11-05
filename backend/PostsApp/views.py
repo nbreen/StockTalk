@@ -1,3 +1,4 @@
+
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
@@ -5,15 +6,15 @@ from rest_framework import generics
 from django.http.response import JsonResponse
 from django.core import serializers
 
-from PostApp.serializers import PostSerializer
-from PostApp.models import Post
+from PostsApp.serializers import PostsSerializer
+from PostsApp.models import Posts
 
 from django.core.files.storage import default_storage
 
 import ipdb;
 from django.db import connection
 
-
+# Create your views here.
 @csrf_exempt
 def getSavedPost(Method):
     # request = (str(Method)).split("/")
@@ -42,11 +43,11 @@ def getSavedPost(Method):
 
 # Create your views here.
 def getAllPosts(Method):
-    post = Post.objects.all()
+    post = Posts.objects.all()
     print(post)
-    post_serializer = PostSerializer(post, many=True)
-    print(post_serializer)
-    return JsonResponse(post_serializer.data, safe=False)
+    posts_serializer = PostsSerializer(post, many=True)
+    print(posts_serializer)
+    return JsonResponse(posts_serializer.data, safe=False)
 
 @csrf_exempt
 def getPost(Method):
@@ -60,18 +61,18 @@ def getPost(Method):
 
     post = "Hello"
     if (filterBy == "ByTopic"):
-        post = Post.objects.all().filter(TopicName=mustEqual)
+        post = Posts.objects.all().filter(TopicName=mustEqual)
         print(post)
     elif (filterBy == "ByUser"):
-        post = Post.objects.all().filter(Username=mustEqual)
+        post = Posts.objects.all().filter(Username=mustEqual)
 
 
     # post = Post.objects.all().filter(TopicName=topicname)
 
     print(post)
-    post_serializer = PostSerializer(post, many=True)
-    print(post_serializer)
-    return JsonResponse(post_serializer.data, safe=False)
+    posts_serializer = PostsSerializer(post, many=True)
+    print(posts_serializer)
+    return JsonResponse(posts_serializer.data, safe=False)
 
 
 @csrf_exempt
@@ -122,20 +123,18 @@ def unsavePost(request):
     return JsonResponse("success", safe=False)
 
 
-
-
 @csrf_exempt
 def postApi(request, id=0):
 
 
     if request.method=='GET':
         post = Post.objects.all()
-        post_serializer = PostSerializer(post, many=True)
+        post_serializer = PostsSerializer(post, many=True)
         return JsonResponse(post_serializer.data, safe=False)
 
     elif request.method=='POST':
         post_data = JSONParser().parse(request)
-        post_serializer = PostSerializer(data=post_data)
+        post_serializer = PostsSerializer(data=post_data)
         if post_serializer.is_valid():
             post_serializer.save()
             return JsonResponse("Post added successfully", safe=False)
@@ -143,15 +142,15 @@ def postApi(request, id=0):
 
     elif request.method=='PUT':
         post_data = JSONParser().parse(request)
-        post = Post.objects.get(Username=user_data['Username'])
-        post_serializer = PostSerializer(post, data=post_data) 
+        post = Posts.objects.get(Username=user_data['Username'])
+        post_serializer = PostsSerializer(post, data=post_data) 
         if post_serializer.is_valid():
             post_serializer.save()
             return JsonResponse("Post updated successfully", safe=False)
         return JsonResponse("Failed to update post", safe=False)
 
     elif request.method=='DELETE':
-        post=Post.objects.get(UserID="test")
+        post=Posts.objects.get(UserID="test")
         post.delete()
         return JsonResponse("Deleted post sucessfully", safe=False)   
 

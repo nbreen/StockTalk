@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from PostApp.models import Post
+from PostsApp.models import Posts
 
-class PostSerializer(serializers.ModelSerializer):
+class PostsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Post
-        fields = ('Username',
-        'PostId',
+        model = Posts
+        fields = ('PostId',
+        'Username',
         'TopicName',
         'PostType',
         'Post',
