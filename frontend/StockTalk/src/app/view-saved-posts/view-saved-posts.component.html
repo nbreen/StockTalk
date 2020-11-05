@@ -1,0 +1,7 @@
+<h2 *ngIf="postCount != -1">This Page has {{ postCount }} Post(s)</h2>
+
+<div *ngFor="let Post of Posts">
+
+  <app-post [Post]="Post"></app-post>
+
+</div>

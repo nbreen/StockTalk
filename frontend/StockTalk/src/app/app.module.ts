@@ -22,7 +22,8 @@ import { Globals } from './Globals';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 import { MakePostComponent } from './make-post/make-post.component';
-import { FollowersComponent } from './followers/followers.component';;
+import { FollowersComponent } from './followers/followers.component';
+import { ViewSavedPostsComponent } from './view-saved-posts/view-saved-posts.component';;
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { FollowersComponent } from './followers/followers.component';;
     DeleteUserComponent,
     ProfileSettingsComponent,
     MakePostComponent,
-    FollowersComponent
+    FollowersComponent,
+    ViewSavedPostsComponent
   ],
   imports: [
     BrowserModule,

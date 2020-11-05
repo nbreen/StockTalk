@@ -5,9 +5,11 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns=[
+    url(r'^getPost/BySaved/.*$', views.getSavedPost),
     url(r'^getPost\/.*$', views.getPost),
     url(r'^checksavedpost\/.*$', views.checkSavedPost),
     url(r'^unsavepost\/.*$', views.unsavePost),
-    url(r'^savepost\/.*$', views.savePost)
+    url(r'^savepost\/.*$', views.savePost),
+    url(r'^getAllPosts\/.*$', views.getAllPosts)
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -46,6 +46,12 @@ export class AppComponent {
       window.location.reload();
     });
   }
+
+  directSavedPosts() {
+    this.router.navigate(["/mysavedposts/"]) .then(() => {
+      window.location.reload();
+    });
+  }
   
 
   public logout() {

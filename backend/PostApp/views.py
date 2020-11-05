@@ -14,7 +14,40 @@ import ipdb;
 from django.db import connection
 
 
+@csrf_exempt
+def getSavedPost(Method):
+    # request = (str(Method)).split("/")
+    # Username = (str(request[3]))[:-2]
+    # print(Username)
+    # post = Post.objects.filter(Username=Username)
+
+    # post_serializer = PostSerializer(post, many=True)
+    # print(post_serializer)
+    # return JsonResponse(post_serializer.data, safe=False)
+
+
+    request = (str(Method)).split("/")
+    Username = (str(request[3]))[:-2]
+    print(Username)
+    query = f'SELECT PostId FROM UserSavesPost WHERE Username = "{Username}";'
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+    print(records)
+    cursor.close()
+    # post_serializer = PostSerializer(records, many=True)
+    # print(post_serializer)
+    return JsonResponse(records, safe=False)
+
+
 # Create your views here.
+def getAllPosts(Method):
+    post = Post.objects.all()
+    print(post)
+    post_serializer = PostSerializer(post, many=True)
+    print(post_serializer)
+    return JsonResponse(post_serializer.data, safe=False)
+
 @csrf_exempt
 def getPost(Method):
     print(str(Method))

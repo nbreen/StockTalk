@@ -1,3 +1,4 @@
+import { ViewSavedPostsComponent } from './view-saved-posts/view-saved-posts.component';
 import { FollowersComponent } from './followers/followers.component';
 import { TopicComponent } from './alltopics/topic/topic.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path: 'trendingtopics', component: TrendingtopicsComponent },
   { path: 'followers/:User', component: FollowersComponent},
   { path: 'makepost/:User', component: MakePostComponent },
-  { path: 'post', component: PostComponent }
+  { path: 'post', component: PostComponent },
+  { path: 'mysavedposts', component : ViewSavedPostsComponent }
 ];
 
 @NgModule({
