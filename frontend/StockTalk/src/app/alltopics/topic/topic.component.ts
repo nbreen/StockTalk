@@ -1,7 +1,7 @@
 import { Globals } from './../../Globals';
 import { ActivatedRoute } from '@angular/router';
 import { CrudService } from 'src/app/crud.service';
-import { Post, User } from './../../Interfaces';
+import { Post, User} from './../../Interfaces';
 import { CommentComponent } from './post/comment/comment.component';
 import { Component, OnInit } from '@angular/core';
 

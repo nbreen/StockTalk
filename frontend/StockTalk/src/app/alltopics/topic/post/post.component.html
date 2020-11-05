@@ -1,15 +1,19 @@
 <div class="bubble">
-    <a style="font-size:20px; color:black" routerLink="/profile/{{ Post.Username }}">@{{Post.Username}}</a>
-    <!-- <br> -->
-    <!-- <a style="font-size:20px; color:black" routerLink="/topic/{{ Post.TopicName }}">#{{ Post.TopicName }}</a>  -->
-    <h2>{{ Post.PostDate }}</h2>
-    <p>{{ Post.Post }}</p>
-    <button *ngIf="saved && getIsDone" mat-raised-button color="primary" (click)="unsaveButton()">Unsave Post</button>
-    <button *ngIf="!saved && getIsDone" mat-raised-button color="primary" (click)="saveButton()">Save Post</button>
 
-    <button mat-raised-button color="green">Upvote</button>
-    <button mat-raised-button color="red">Downvote</button>
-    <div> Upvotes: {{ Post.Upvotes }} <br> Downvotes: {{ Post.Downvotes }}</div>
+  <a style="font-size:20px; color:blue" routerLink="/profile/{{ Post.Username }}">@{{Post.Username}}</a>
+  <br>
+
+  <a style="font-size:20px; color:blue" routerLink="/topic/{{ Post.TopicName }}">#{{Post.TopicName}}</a>
+
+  <h2>{{ Post.PostDate }}</h2>
+
+  <p>{{ Post.Post }}</p>
+  <button *ngIf="saved && getIsDone" mat-raised-button color="primary" (click)="unsaveButton()">Unsave Post</button>
+  <button *ngIf="!saved && getIsDone" mat-raised-button color="primary" (click)="saveButton()">Save Post</button>
+
+  <button mat-raised-button color="green">Upvote</button>
+  <button mat-raised-button color="red">Downvote</button>
+  <div> Upvotes: {{ Post.Upvotes }} <br> Downvotes: {{ Post.Downvotes }}</div>
 </div>
 
 <hr>

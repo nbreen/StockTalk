@@ -73,6 +73,7 @@ def getPost(Method):
     print(post_serializer)
     return JsonResponse(post_serializer.data, safe=False)
 
+
 @csrf_exempt
 def checkSavedPost(Method):
     print(str(Method))
