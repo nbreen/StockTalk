@@ -18,6 +18,9 @@ export class PostComponent implements OnInit {
 
   saved: Boolean;
   getIsDone: Boolean;
+  upvoted: Boolean;
+  downvoted: Boolean;
+
 
   saveButton() {
     // Post
@@ -27,6 +30,15 @@ export class PostComponent implements OnInit {
       this.saved = true;
 
     });
+  }
+
+  deleteVote() {
+    // let info = "/savepost/" + this.globals.currentUsername + "/" + this.Post.PostId;
+    // this.backend.getAll(info).subscribe(result => {
+    //   console.log("save success")
+    //   this.saved = true;
+
+    // });
   }
 
   upvote() {

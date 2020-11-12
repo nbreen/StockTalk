@@ -1,3 +1,4 @@
+import { SuggestionsComponent } from './suggestions/suggestions.component';
 import { ViewSinglePostComponent } from './view-single-post/view-single-post.component';
 import { ViewSavedPostsComponent } from './view-saved-posts/view-saved-posts.component';
 import { FollowersComponent } from './followers/followers.component';
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: 'followers/:User', component: FollowersComponent},
   { path: 'makepost/:User', component: MakePostComponent },
   { path: 'post/:PostId', component: ViewSinglePostComponent },
-  { path: 'mysavedposts', component : ViewSavedPostsComponent }
+  { path: 'mysavedposts', component : ViewSavedPostsComponent },
+  { path: 'suggestions', component : SuggestionsComponent}
 ];
 
 @NgModule({

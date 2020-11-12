@@ -13,9 +13,26 @@
   <button *ngIf="saved && getIsDone" mat-raised-button color="primary" (click)="unsaveButton()">Unsave Post</button>
   <button *ngIf="!saved && getIsDone" mat-raised-button color="primary" (click)="saveButton()">Save Post</button>
 
-  <button (click)="upvote()" mat-raised-button color="green">Upvote</button>
-  <button (click)="downvote()" mat-raised-button color="red">Downvote</button>
-  <div> Upvotes: {{ Post.Upvotes }} <br> Downvotes: {{ Post.Downvotes }}</div>
+  <!-- Shows a light green and light red button when user has not voted with text prompting them to Upvote/Downvote -->
+  <a *ngIf="!upvoted && !downvoted">
+  <button (click)="upvote()" mat-raised-button color="light_green">Upvote</button>
+  <button (click)="downvote()" mat-raised-button color="light_red">Downvote</button>
+  </a>
+
+  <!-- User has already upvoted so show "Upvoted" text in the Bubble with a darker green background -->
+  <a *ngIf="upvoted && !downvoted">
+    <button (click)="deletevote()" mat-raised-button color="green">Upvoted</button> <!-- User already upvoted, but clicked upvote again, we should delete the vote (aka updo unvote) -->
+    <button (click)="downvote()" mat-raised-button color="light_red">Downvote</button>
+  </a>
+
+  <!-- User has already downvoted so show "Downvoted" text in the Bubble with a darker red background -->
+  <a *ngIf="!upvoted && downvoted">
+    <button (click)="upvote()" mat-raised-button color="light_green">Upvote</button>
+    <button (click)="deletevote()" mat-raised-button color="red">Downvoted</button> <!-- User already downvoted, but clicked downvote again, we should delete the vote (aka undo downvote) -->
+  </a>
+
+  <!-- <div> Upvotes: {{ Post.Upvotes }} <br> Downvotes: {{ Post.Downvotes }}</div> -->
+    <div> Votes: {{ Post.Upvotes - Post.Downvotes }}</div>
   <a style="font-size:10px; color:black" routerLink="/post/{{Post.PostId}}">Visit Post</a>
 </div>
 
