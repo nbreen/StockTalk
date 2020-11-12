@@ -52,6 +52,12 @@ export class AppComponent {
       window.location.reload();
     });
   }
+
+  directSuggestions() {
+    this.router.navigate(["/suggestions/"]) .then(() => {
+      window.location.reload();
+    });
+  }
   
 
   public logout() {

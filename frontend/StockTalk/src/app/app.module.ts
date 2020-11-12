@@ -24,7 +24,8 @@ import { ProfileSettingsComponent } from './profile-settings/profile-settings.co
 import { MakePostComponent } from './make-post/make-post.component';
 import { FollowersComponent } from './followers/followers.component';
 import { ViewSavedPostsComponent } from './view-saved-posts/view-saved-posts.component';
-import { ViewSinglePostComponent } from './view-single-post/view-single-post.component';;
+import { ViewSinglePostComponent } from './view-single-post/view-single-post.component';
+import { SuggestionsComponent } from './suggestions/suggestions.component';;
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ViewSinglePostComponent } from './view-single-post/view-single-post.com
     MakePostComponent,
     FollowersComponent,
     ViewSavedPostsComponent,
-    ViewSinglePostComponent
+    ViewSinglePostComponent,
+    SuggestionsComponent
   ],
   imports: [
     BrowserModule,

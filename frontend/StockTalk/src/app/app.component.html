@@ -15,6 +15,7 @@
 
      <a mat-button (click)="logout()" *ngIf="this.globals.isAuthenticated">Logout</a>
      <a mat-button (click)="directProfile()" *ngIf="this.globals.isAuthenticated">My Profile</a>
+     <a mat-button (click)="directSuggestions()" *ngIf="this.globals.isAuthenticated">Suggested Topics & Users</a>
      <a mat-button (click)="directSavedPosts()" *ngIf="this.globals.isAuthenticated">My Saved Posts</a>
     <a mat-button *ngIf="!this.globals.isAuthenticated" routerLink="signup">Signup</a>
     <a mat-button *ngIf="!this.globals.isAuthenticated" routerLink="login">Login</a>
