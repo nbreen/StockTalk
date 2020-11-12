@@ -33,6 +33,34 @@ def userDeleteApi(id):
     return JsonResponse("Deleted user sucessfully", safe=False)
 
 @csrf_exempt
+def suggestedTopics(request):
+    name = str(request).split("/")
+    currUser = (name[2])[:-2]
+
+    query = f'SELECT * FROM RecommendTopics WHERE CurrentUser = "{currUser}" ORDER BY -Score, RecommendedTopic LIMIT 0, 10;'
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+
+    print(records)
+    cursor.close()
+    return JsonResponse(records, safe=False)
+
+@csrf_exempt
+def suggestedUsers(request):
+    name = str(request).split("/")
+    currUser = (name[2])[:-2]
+
+    query = f'SELECT * FROM RecommendUsers WHERE CurrentUser = "{currUser}" ORDER BY -Score, RecommendedUser LIMIT 0, 10;'
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+
+    print(records)
+    cursor.close()
+    return JsonResponse(records, safe=False)
+
+@csrf_exempt
 def userApi(request,id=0):
 
     if request.method=='GET':
