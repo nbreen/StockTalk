@@ -3,14 +3,9 @@
 import pymysql
 import re
 import random
-import updateTrendingTopics as utt
 import datetime
-import matplotlib.pyplot as plt
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.cluster import KMeans
 import pandas as pd
 import numpy as np
-from sklearn.decomposition import PCA
 
 #connect to database
 db_engine = 'django.db.backends.mysql'

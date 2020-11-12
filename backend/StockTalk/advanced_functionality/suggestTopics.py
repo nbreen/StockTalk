@@ -3,14 +3,9 @@
 import pymysql
 import re
 import random
-import updateTrendingTopics as utt
 import datetime
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsClassifier
-#from sklearn.neighbors import kneighbors_graph
-#from sklearn.metrics import classification_report, confusion_matrix 
-#from sklearn.preprocessing import MinMaxScaler
-#from sklearn.model_selection import train_test_split
 from sklearn.cluster import KMeans
 import pandas as pd
 
