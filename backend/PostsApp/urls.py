@@ -12,5 +12,10 @@ urlpatterns=[
     url(r'^unsavepost\/.*$', views.unsavePost),
     url(r'^savepost\/.*$', views.savePost),
     url(r'^getAllPosts\/.*$', views.getAllPosts),
-    url(r'^posts/$', views.postApi)
+    url(r'^posts/$', views.postApi),
+    url(r'^checkvotes\/.*$', views.checkVotes),
+    url(r'^deletevote\/.*$', views.deleteVote),
+    url(r'^upvote\/.*$', views.upvote),
+    url(r'^downvote\/.*$', views.downvote),
+    url(r'^addvotes\/.*$', views.addvotes)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

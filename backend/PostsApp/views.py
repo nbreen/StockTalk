@@ -81,7 +81,7 @@ def getPost(Method):
 
 @csrf_exempt
 def checkSavedPost(Method):
-    print(str(Method))
+    #print(str(Method))
     request = (str(Method)).split("/")
     Username = request[2]
     PostId = (request[3])[:-2]
@@ -91,7 +91,7 @@ def checkSavedPost(Method):
     cursor.execute(query)
     records = cursor.fetchall()
 
-    print(records)
+    #print(records)
     cursor.close()
     return JsonResponse(records, safe=False)
 
@@ -126,6 +126,86 @@ def unsavePost(request):
     cursor.close()
     return JsonResponse("success", safe=False)
 
+# Votes Stuff
+@csrf_exempt
+def checkVotes(Method):
+    print(str(Method))
+    request = (str(Method)).split("/")
+    Username = request[2]
+    PostId = (request[3])[:-2]
+
+    query = f'SELECT * FROM PostVotes WHERE Username = "{Username}" AND PostId = "{PostId}";'
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+
+    print(records)
+    cursor.close()
+    return JsonResponse(records, safe=False)
+
+@csrf_exempt
+def deleteVote(Method):
+    print(str(Method))
+    request = (str(Method)).split("/")
+    Username = request[2]
+    PostId = (request[3])[:-2]
+
+    query = f'DELETE FROM PostVotes WHERE Username = "{Username}" AND PostId = "{PostId}";'
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+
+    print(records)
+    cursor.close()
+    return JsonResponse(records, safe=False)
+
+@csrf_exempt
+def upvote(Method):
+    print(str(Method))
+    request = (str(Method)).split("/")
+    Username = request[2]
+    PostId = (request[3])[:-2]
+
+    query = f'DELETE FROM PostVotes WHERE Username = "{Username}" AND PostId = "{PostId}"; INSERT INTO PostVotes VALUES("{Username}", {PostId}, 1);'
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+
+    print(records)
+    cursor.close()
+    return JsonResponse(records, safe=False)
+
+@csrf_exempt
+def downvote(Method):
+    print(str(Method))
+    request = (str(Method)).split("/")
+    Username = request[2]
+    PostId = (request[3])[:-2]
+
+    query = f'DELETE FROM PostVotes WHERE Username = "{Username}" AND PostId = "{PostId}"; INSERT INTO PostVotes VALUES("{Username}", {PostId}, -1);'
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+
+    print(records)
+    cursor.close()
+    return JsonResponse(records, safe=False)
+
+@csrf_exempt
+def addvotes(Method):
+    request = (str(Method)).split("/")
+    PostId = (request[2])[:-2]
+    print(PostId)
+
+    query = f'SELECT SUM(Vote) FROM PostVotes WHERE PostId = "{PostId}";'
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+
+    print(records)
+    cursor.close()
+    return JsonResponse(records, safe=False)
+
 
 @csrf_exempt
 def postApi(request, id=0):
@@ -157,5 +237,5 @@ def postApi(request, id=0):
     elif request.method=='DELETE':
         post=Posts.objects.get(UserID="test")
         post.delete()
-        return JsonResponse("Deleted post sucessfully", safe=False)   
+        return JsonResponse("Deleted post sucessfully", safe=False)
 

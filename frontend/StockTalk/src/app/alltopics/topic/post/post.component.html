@@ -32,7 +32,7 @@
   </a>
 
   <!-- <div> Upvotes: {{ Post.Upvotes }} <br> Downvotes: {{ Post.Downvotes }}</div> -->
-    <div> Votes: {{ Post.Upvotes - Post.Downvotes }}</div>
+    <div> Votes: {{ this.totalVotes }}</div>
   <a style="font-size:10px; color:black" routerLink="/post/{{Post.PostId}}">Visit Post</a>
 </div>
 
