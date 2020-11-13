@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../Interfaces';
+import { Profile } from '../shared/profile.model';
 import { NgForm} from '@angular/forms';
 import { CrudService } from 'src/app/crud.service';
 import { Router, RouterModule } from '@angular/router';
@@ -25,8 +26,13 @@ export class SignupComponent implements OnInit {
     UserAge: 0
   };
 
+  profile: Profile = {
+    Username: "",
+    Bio: "No Bio",
+    ProfileImage: "default.png"
+  }
 
-  
+
   resetForm(form?:NgForm) {
     if (form != null) {
       form.reset();
@@ -50,7 +56,10 @@ export class SignupComponent implements OnInit {
       return;
     }
 
+    this.profile.Username = this.user.Username;
 
+    this.service.addProfile(this.profile).subscribe(res => {
+    });
 
     this.service.addUser(this.user).subscribe(res => {
       alert(res.toString());

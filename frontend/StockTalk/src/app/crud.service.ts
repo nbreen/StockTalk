@@ -86,6 +86,11 @@ export class CrudService {
       */
   }
 
+  addProfile(val: any) {
+    let body = JSON.stringify(val);
+    return this.httpClient.post<any>(this.APIUrl + "/profile/", val);
+  }
+
   validateUser(loginData: any) {
     let body = JSON.stringify(loginData);
     return this.httpClient.post<any>(this.APIUrl + "/login/", body);
