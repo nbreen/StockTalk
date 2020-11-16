@@ -4,7 +4,6 @@ import { Profile } from '../shared/profile.model';
 import { NgForm} from '@angular/forms';
 import { CrudService } from 'src/app/crud.service';
 import { Router, RouterModule } from '@angular/router';
-import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({

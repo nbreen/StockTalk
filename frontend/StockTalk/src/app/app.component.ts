@@ -2,11 +2,7 @@ import { CrudService } from './crud.service';
 import { Router } from '@angular/router';
 import { Globals } from './Globals';
 import { Component } from '@angular/core';
-import { isConstructorDeclaration } from 'typescript';
-import { ResourceLoader } from '@angular/compiler';
-import { Username } from './Interfaces';
 import { Profile } from './shared/profile.model';
-//import { networkInterfaces } from 'os';
 
 
 @Component({
