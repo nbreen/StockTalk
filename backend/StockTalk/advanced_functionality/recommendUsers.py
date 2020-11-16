@@ -89,6 +89,11 @@ def update(user1, user2, method):
 	for i in range(len(result)):
 		recommended_users.append(result[i][0])	
 
+	#remove user2 from recommended users
+	if user2 in recommended_users:
+		cur.execute("DELETE FROM RecommendUsers WHERE CurrentUser = %s AND RecommendedUser = %s", (user1, user2))
+		connection.commit()
+
 	#followed user method
 	#when a user1 follows user2, every user that follows user2 needs to be given +1 common follower score, and update table accordingly (Some might not be recommendedusers yet).
 	if method == 0:
@@ -141,7 +146,7 @@ def update(user1, user2, method):
 					
 user1 = '9O8fes'
 user2 = 'aommiemj'
-method = 1
+method = 0
 update(user1, user2, method)
 #populate_recommendUsers_currentData()
 
