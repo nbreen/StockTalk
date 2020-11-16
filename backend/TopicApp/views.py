@@ -9,6 +9,10 @@ from TopicApp.models import Topic
 from TopicApp.serializers import TopicSerializer
 import re
 
+# Advanced
+from StockTalk.advanced_functionality.recommendTopics import update as updateTopics
+# End Advanced
+
 # Create your views here.
 @csrf_exempt
 def getAllTopics(Method):
@@ -70,6 +74,12 @@ def followtopic(request):
     records = cursor.fetchall()
     # print(records)
     cursor.close()
+
+    # Advanced
+    followInt = 1
+    updateTopics(name1, name2, followInt) # Does things for RecommendTopics
+    # End Advanced
+
     return JsonResponse(records, safe=False)
     
 @csrf_exempt

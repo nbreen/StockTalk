@@ -14,6 +14,10 @@ from django.core.files.storage import default_storage
 import ipdb;
 from django.db import connection
 
+# Advanced
+from StockTalk.advanced_functionality.recommendTopics import update as updateTopics
+# End Advanced
+
 # Create your views here.
 @csrf_exempt
 def getSavedPost(Method):
@@ -59,7 +63,6 @@ def getPost(Method):
     #print(filterBy)
     #print(mustEqual)
 
-    post = "Hello"
     if (filterBy == "ByTopic"):
         post = Posts.objects.all().filter(TopicName=mustEqual)
         print(post)
@@ -221,6 +224,14 @@ def postApi(request, id=0):
         post_serializer = PostsSerializer(data=post_data)
         if post_serializer.is_valid():
             post_serializer.save()
+
+            # Advanced
+            username = post_data['Username']
+            topicname = post_data['TopicName']
+            newPostInt = 0
+            updateTopics(username, topicname, newPostInt) # Does things for RecommendTopics
+            # End Advanced
+
             return JsonResponse("Post added successfully", safe=False)
         return JsonResponse("Failed to add post", safe=False)
 

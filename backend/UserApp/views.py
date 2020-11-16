@@ -4,7 +4,8 @@ from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from django.db import connection
 from rest_framework import generics
-import bycrypt
+# import bycrypt
+import bcrypt
 
 from UserApp.models import Users
 from UserApp.serializers import UserSerializer
