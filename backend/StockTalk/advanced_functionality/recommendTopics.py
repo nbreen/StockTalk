@@ -116,23 +116,57 @@ def populate_recommendTopics_currentData():
 			#print(scores[i])
 		
 	
+
 def update(user, topic, method):
+	posted_bias = 1.3
+
+	#get topics that user follows
+	cur.execute("SELECT TopicName from UserFollowsTopic WHERE Username = %s", user)
+	result = cur.fetchall()
+	followed_topics = []
+	for i in range(len(result)):
+		followed_topics.append(result[i][0])
+
+	#get recommended topics
+	cur.execute("SELECT RecommendedTopic from RecommendTopics WHERE CurrentUser = %s ORDER BY Score DESC", user)
+	result = cur.fetchall()
+	recommend_topics = []
+	for i in range(len(result)):
+		recommend_topics.append(result[i][0])
+
+	#get recommended topics scores
+	cur.execute("SELECT Score from RecommendTopics WHERE CurrentUser = %s ORDER BY Score DESC", user)
+	result = cur.fetchall()
+	scores = []
+	for i in range(len(result)):
+		scores.append(result[i][0])	
+
 	#new post about topic
-	if method == 0:
-		pass
+	if method == 0:	
+		if topic not in followed_topics:
+			#lower all scores to add new one at top	
+			for i in range(len(recommend_topics)):
+				print("1")
+				cur.execute("UPDATE RecommendTopics SET Score = %s WHERE CurrentUser = %s AND RecommendedTopic = %s", (scores[i]*.9, user, recommend_topics[i]))
+				connection.commit()
+
+			#add new topic
+			cur.execute("INSERT IGNORE INTO RecommendTopics(CurrentUser, RecommendedTopic, Score) VALUES (%s, %s, %s)", (user, topic, posted_bias))
+			connection.commit()
+
 	#followed topic
 	elif method == 1:
-		pass
-	#unfollowed_topic
-	elif method == 2:
-		pass
+		#remove topic from recommended topics
+		if topic in recommend_topics:
+			cur.execute("DELETE FROM RecommendTopics WHERE CurrentUser = %s AND RecommendedTopic = %s", (user, topic))
+			connection.commit()
 
 
 
-#0 = new post, 1 = follow, 2 = unfollow
+#0 = new post, 1 = follow
 method = 0
-user = '908fes'
+user = '9O8fes'
 topic = 'TSLA'
 update(user, topic, method)
-populate_recommendTopics_currentData()
+#populate_recommendTopics_currentData()
 
