@@ -5,7 +5,6 @@ import re
 import random
 import datetime
 import pandas as pd
-import numpy as np
 
 #connect to database
 db_engine = 'django.db.backends.mysql'
