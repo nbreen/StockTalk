@@ -131,7 +131,184 @@ def knn_cluster():
 
 	#print(y_predicted)
 
+	for i in range(len(usernames)):
+		cur.execute("UPDATE UserApp_users SET Cluster = %s WHERE Username = %s", (int(y_predicted[i]), str(usernames[i])))
+		connection.commit()
 
-knn_cluster()
+def updateProfiles():
+	pass
+	'''
+	#get all usernames
+	cur.execute("SELECT Username FROM UserApp_users")
+	result = cur.fetchall()
+	usernames = []
+	for i in range(len(result)):
+		usernames.append(result[i][0])	
+
+	#get all bios
+	cur.execute("SELECT Bio FROM UserApp_users")
+	result = cur.fetchall()
+	bios = []
+	for i in range(len(result)):
+		bios.append(result[i][0])	
+
+	#get all users with profile
+	cur.execute("SELECT Username FROM ProfileApp_profiles")
+	result = cur.fetchall()
+	profiles = []
+	for i in range(len(result)):
+		profiles.append(result[i][0])	
+
+
+	for i in range(len(usernames)):
+		if usernames[i] not in profiles:
+			image = 'default.png'
+			cur.execute("INSERT IGNORE INTO ProfileApp_profiles(Username, Bio, ProfileImage) VALUES (%s, %s, %s)", (usernames[i], bios[i], image))
+			connection.commit()
+
+	'''
+	'''
+	#get all usernames
+	cur.execute("SELECT Username FROM UserApp_users")
+	result = cur.fetchall()
+	usernames = []
+	for i in range(len(result)):
+		usernames.append(result[i][0])	
+
+	#get all bios
+	cur.execute("SELECT Bio FROM UserApp_users")
+	result = cur.fetchall()
+	bios = []
+	for i in range(len(result)):
+		bios.append(result[i][0])
+
+	for i in range(len(bios)):
+		if bios[i] == None:
+			cur.execute("UPDATE ProfileApp_profiles SET Bio = 'my bio' WHERE Username = %s", (usernames[i]))
+			connection.commit()	
+	'''	
+
+def getTrendingTopics():
+	cur.execute("SELECT TopicName FROM TopicApp_topic WHERE isTrending = 1 ORDER BY TrendingScore DESC")
+	result = cur.fetchall()
+	trending_topics = []
+	for i in range(len(result)):
+		trending_topics.append(result[i][0])
+
+	return trending_topics	
+
+def getFollowedTopics(user):
+	#get topics the user follows
+	cur.execute("SELECT * FROM UserFollowsTopic WHERE Username = %s", user)
+	result = cur.fetchall()
+	followed_topics = []
+	for i in range(len(result)):
+		followed_topics.append(result[i][1])
+
+	return followed_topics
+
+def getAllTopics():
+	#get topics the user follows
+	cur.execute("SELECT TopicName FROM TopicApp_topic")
+	result = cur.fetchall()
+	all_topics = []
+	for i in range(len(result)):
+		all_topics.append(result[i][0])
+
+	return all_topics
+
+
+#needs to be called on every keystroke
+def update(user, post_text):
+	#get cluster for user
+	cur.execute("SELECT Cluster FROM UserApp_users WHERE Username = %s", user)
+	cluster = cur.fetchone()[0]
+	suggested_topics = []
+	trending_topics = getTrendingTopics()	
+	followed_topics = getFollowedTopics(user)
+	all_topics = getAllTopics()
+
+	#search for # symbol
+	pattern = '#[a-zA-Z]+'
+	hashtag = re.search(pattern, post_text)
+
+	#default suggestion depends on knn cluster result
+	if hashtag == None:
+		#if cluster is 0, user posts about trending topics often
+		if cluster == 0:
+			return trending_topics
+
+		#if cluster is 1, user posts about trending topics and followed topics evenly
+		if cluster == 1:
+			for topic in trending_topics:
+				suggested_topics.append(topic)
+			for topic in followed_topics:
+				suggested_topics.append(topic)
+
+			suggest_ten_topics = []
+			for i in range(10):
+				random.sample(suggested_topics, k=10)
+			return suggest_ten_topics
+
+		#if cluster is 2, user posts about followed topics often
+		if cluster == 2:
+			return followed_topics
+
+	else:
+		potential_topic = re.findall(pattern, post_text)[0][1:].lower()
+		pattern = '^' + potential_topic
+		#print(potential_topic)
+		#if cluster is 0, user posts about trending topics often
+		if cluster == 0:
+			for topic in trending_topics:
+				match = re.search(pattern, topic.lower())
+				if match != None:
+					suggested_topics.append(topic)
+
+			for topic in all_topics:
+				match = re.search(pattern, topic.lower())
+				if match != None and topic not in suggested_topics:
+					suggested_topics.append(topic)
+					
+		#if cluster is 1, user posts about trending topics and followed topics evenly
+		if cluster == 1:
+
+			for topic in trending_topics:
+				match = re.search(pattern, topic.lower())
+				if match != None:
+					suggested_topics.append(topic)
+
+			for topic in followed_topics:
+				match = re.search(pattern, topic.lower())
+				if match != None and topic not in suggested_topics:
+					suggested_topics.append(topic)
+
+			for topic in all_topics:
+				match = re.search(pattern, topic.lower())
+				if match != None and topic not in suggested_topics:
+					suggested_topics.append(topic)
+			
+		#if cluster is 2, user posts about followed topics often
+		if cluster == 2:
+
+			for topic in followed_topics:
+				match = re.search(pattern, topic.lower())
+				if match != None and topic not in suggested_topics:
+					suggested_topics.append(topic)
+
+			for topic in all_topics:
+				match = re.search(pattern, topic.lower())
+				if match != None and topic not in suggested_topics:
+					suggested_topics.append(topic)
+
+		#print(suggested_topics[:10])
+		return suggested_topics[:10]
+
+
+user = '9O8fes'
+text = '# #1 #/ #cs hku 8y 9hui #sdgvbasd'
+update(user, text)
+#updateProfiles()
+#knn_cluster()
 
 
