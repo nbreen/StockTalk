@@ -1,20 +1,16 @@
 
 
 <div class="profile-page">
-  <a mat-raised-button routerLink="/followers/{{currProfile}}" color="primary">See {{ currProfile }}'s followers and the Users/Topics they follow!</a>
-  <br>
-  
-
-  <a *ngIf="following && getIsDone && !isUser" mat-raised-button color="primary" (click)="unfollowButton()">Unfollow</a>
-  <a *ngIf="!following && getIsDone && !isUser" mat-raised-button color="primary" (click)="followButton()">Follow</a>
-  <a *ngIf = "isUser">Welcome to your Profile!</a>
-
 
   <mat-toolbar>
     {{this.profile.Username}}'s profile
   </mat-toolbar>
 
   <mat-card class="my-card">
+    <a class="a" mat-raised-button routerLink="/followers/{{currProfile}}" color="primary">See {{ currProfile }}'s followers and the Users/Topics they follow!</a><br>
+    <a class="a" *ngIf="following && getIsDone && !isUser" mat-raised-button color="primary" (click)="unfollowButton()">Unfollow</a>
+    <a class="a" *ngIf="!following && getIsDone && !isUser" mat-raised-button color="primary" (click)="followButton()">Follow</a>
+    <a *ngIf = "isUser">Welcome to your Profile!</a><br>
     <mat-card-content>
       <!--<img class="profile" src = {{profile.ProfileImage}}>
     <p>Image src {{profile.ProfileImage}}</p>-->

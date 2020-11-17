@@ -90,7 +90,8 @@ export class ProfileComponent implements OnInit {
       this.settingsURL = "/settings/" + this.globals.currentUsername;
     }
 
-    this.backend.getProfile(this.globals.currentUsername).subscribe(res => {
+    // this.backend.getProfile(this.globals.currentUsername).subscribe(res => {
+    this.backend.getProfile(this.currProfile).subscribe(res => {
       var profile_data = JSON.stringify(res);
       profile_data = profile_data.substring(1, profile_data.length-1);
       this.profile = JSON.parse(profile_data);
