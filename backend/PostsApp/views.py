@@ -267,3 +267,10 @@ def suggestTopics(Method):
     return JsonResponse(topic_serializer.data, safe=False)
 
 
+@csrf_exempt
+def SavePostPic(request):
+    file=request.FILES['uploadedFile']
+    file_name = default_storage.save(file.name, file)
+    return JsonResponse(file_name, safe=False)
+
+

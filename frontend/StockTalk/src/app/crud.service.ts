@@ -34,7 +34,7 @@ export class CrudService {
   }
 
   uploadPostPic(val:any) {
-    return this.httpClient.post(this.APIUrl + '/SaveProfilePic/', val);
+    return this.httpClient.post(this.APIUrl + '/SavePostPic/', val);
   }
 
   getProfile(val: any): Observable<Profile> {

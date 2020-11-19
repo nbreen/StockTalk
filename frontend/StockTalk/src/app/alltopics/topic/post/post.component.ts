@@ -20,6 +20,9 @@ export class PostComponent implements OnInit {
   downvoted: Boolean;
   totalVotes: number;
 
+  post_pic: Boolean;
+
+
   deletevote() {
     let info = "/deletevote/" + this.globals.currentUsername + "/" + this.Post.PostId;
     this.backend.getAll(info).subscribe(result => {
@@ -129,6 +132,8 @@ export class PostComponent implements OnInit {
 
     // Adds up votes
     this.addVotes();
+
+    this.post_pic = (this.Post.PostImage != "placeholder");
 
   }
 

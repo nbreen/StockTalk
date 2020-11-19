@@ -21,6 +21,10 @@ export class MakePostComponent implements OnInit {
 
   showDropDown = false;
 
+  pic_upload = false;
+
+  postPhotoPath: string;
+
   /*topics: Array<Topic>;*/
   topics = ['suggest topic1 placeholder', 'suggest topic2 placeholder', 'suggest topic3 placeholder']
   constructor(
@@ -68,7 +72,8 @@ export class MakePostComponent implements OnInit {
 
   resetPost() {
     this.new_post.TopicName = "";
-    this.new_post.PostImage = "";
+    this.new_post.PostImage = "placeholder";
+    this.pic_upload = false;
   }
 
   submitPost() {
@@ -79,6 +84,10 @@ export class MakePostComponent implements OnInit {
 
     if (this.new_post.Post == "" ) {
       this.new_post.Post = "no_post";
+    }
+
+    if (this.pic_upload) {
+      this.new_post.PostImage = this.postPhotoPath;
     }
 
     this.backend.addPost(this.new_post).subscribe(res => {
@@ -130,6 +139,19 @@ export class MakePostComponent implements OnInit {
 
   getSearchValue() {
     return this.stateForm.value.search;
+  }
+
+  uploadPostPic(event){
+    var file=event.target.files[0];
+    const formData:FormData=new FormData();
+    formData.append('uploadedFile',file,file.name);
+    this.new_post.PostImage = file.name;
+    this.pic_upload = true;
+
+    this.backend.uploadPostPic(formData).subscribe((data:any)=>{
+      var photoFileName=data.toString();
+      this.postPhotoPath=this.backend.PhotoUrl + photoFileName;
+    })
   }
 
 }
