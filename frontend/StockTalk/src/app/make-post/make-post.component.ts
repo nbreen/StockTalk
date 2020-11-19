@@ -1,5 +1,5 @@
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CrudService } from '../crud.service'; 
 import { Globals } from '../Globals';
@@ -7,7 +7,8 @@ import { Profile } from '../shared/profile.model';
 import { User } from '../shared/user.model';
 import { Post } from '../shared/post.model';
 import { Router } from '@angular/router';
-import { NgForm} from '@angular/forms';
+import { Topic } from '../Interfaces';
+import { NgForm, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-make-post',
@@ -16,12 +17,33 @@ import { NgForm} from '@angular/forms';
 })
 export class MakePostComponent implements OnInit {
 
+  stateForm: FormGroup;
+
+  showDropDown = false;
+
+  /*topics: Array<Topic>;*/
+  topics = ['suggest topic1 placeholder', 'suggest topic2 placeholder', 'suggest topic3 placeholder']
   constructor(
+    private fb: FormBuilder,
     private route: ActivatedRoute,
     private backend : CrudService,
     public globals: Globals,
     private router: Router
-  ) { }
+  ) {
+
+    this.initForm()
+    /*
+    this.backend.getAll<Topic>("/suggestTopics/0").subscribe(data => {
+      console.log(data);
+      this.topics = data;
+    })*/
+  }
+
+  initForm(): FormGroup {
+    return this.stateForm = this.fb.group({
+      search:[null]
+    })
+  }
 
   profile: Profile;
   user: User;
@@ -36,6 +58,12 @@ export class MakePostComponent implements OnInit {
     Upvotes: 0,
     Anonymous: 0,
     PostImage: "placeholder"
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+      console.log(event)
+    
   }
 
   resetPost() {
@@ -59,6 +87,7 @@ export class MakePostComponent implements OnInit {
         this.resetPost();
       }
       this.directProfile();
+      console.log("post submitted")
     });
 
 
@@ -88,6 +117,19 @@ export class MakePostComponent implements OnInit {
       this.new_post.Username = this.user.Username;
     });
 
+  }
+
+  toggleDropDown() {
+    this.showDropDown = !this.showDropDown;
+  }
+
+  selectValue(value) {
+    this.stateForm.patchValue({ "search": value});
+    this.showDropDown = false;
+  }
+
+  getSearchValue() {
+    return this.stateForm.value.search;
   }
 
 }

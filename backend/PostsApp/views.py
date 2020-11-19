@@ -250,3 +250,20 @@ def postApi(request, id=0):
         post.delete()
         return JsonResponse("Deleted post sucessfully", safe=False)
 
+
+@csrf_exempt
+def suggestTopics(Method):
+    methString = str(Method)[-3]
+
+    if int(methString) == 0 :
+        topic = Topic.objects.all().filter(isTrending=1).only('TopicName',
+                        'IsStock',
+                        'isTrending',
+                        'TrendingScore',
+                        'NumberOfPosts').order_by("-TrendingScore", "TopicName")
+    print(topic)
+    topic_serializer = TopicSerializer(topic, many=True)
+    print(topic_serializer)
+    return JsonResponse(topic_serializer.data, safe=False)
+
+

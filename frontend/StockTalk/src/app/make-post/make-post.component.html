@@ -14,12 +14,20 @@
       <form class="my-form">
         <mat-form-field class="full-width">
           <mat-label>Topic</mat-label>
-          <input  placeholder="topic" type="text" name="topic" 
+          <input id='search' placeholder="topic" (click)="toggleDropDown()" formControlName="search" type="text" name="topic"
           [(ngModel)]="this.new_post.TopicName">
-       </mat-form-field>
+          <div *ngIf="showDropDown"class="state-container-dropdown">
+            <div>
+              <div (click)="selectValue(t)" class='state' *ngFor='let t of topics'>
+                {{t}}
+              </div>
+            </div>
+          </div>
+</mat-form-field>
        <mat-form-field class="full-width">
         <input placeholder="Input text here (optional)" name="text" [(ngModel)]="this.new_post.Post">
          <!-- TODO Check for (valid) topic -->
+
 
      </mat-form-field>
       </form>
