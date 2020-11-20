@@ -4,7 +4,7 @@ from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from django.db import connection
 from rest_framework import generics
-# import bycrypt
+# import bcrypt
 import bcrypt
 
 from UserApp.models import Users
@@ -78,6 +78,7 @@ def userApi(request,id=0):
                 safe=False)
         if user_serializer.is_valid() and int(user_data['UserAge']) >= 18 and set(user_data['Password'])-set(user_data['Password'].lower())!=set() and set(user_data['Password'])-set(user_data['Password'].upper())!=set():
             passwd = user_data['Password']
+            passwd = bytes(passwd, 'utf-8')
             salt = bcrypt.gensalt()
             hashed = bcrypt.hashpw(passwd, salt)
             user_data['Password'] = hashed
