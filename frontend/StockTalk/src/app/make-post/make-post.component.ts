@@ -9,6 +9,7 @@ import { Post } from '../shared/post.model';
 import { Router } from '@angular/router';
 import { Topic } from '../Interfaces';
 import { NgForm, FormGroup, FormBuilder } from '@angular/forms';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-make-post',
@@ -77,6 +78,9 @@ export class MakePostComponent implements OnInit {
   }
 
   submitPost() {
+
+    this.new_post.PostDate = new Date().toLocaleString();
+  
 
     if (this.new_post.TopicName == "") {
       this.new_post.TopicName = "no_topic";
