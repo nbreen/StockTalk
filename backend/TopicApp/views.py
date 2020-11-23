@@ -11,11 +11,13 @@ import re
 
 # Advanced
 from StockTalk.advanced_functionality.recommendTopics import update as updateTopics
+from StockTalk.advanced_functionality.suggestTopics import update as updateSuggestedTopics
 # End Advanced
 
 # Create your views here.
 @csrf_exempt
 def getAllTopics(Method):
+    print("***********************")
     methString = str(Method)[-3]
 
     if int(methString) == 0 :
@@ -36,10 +38,37 @@ def getAllTopics(Method):
                         'isTrending',
                         'TrendingScore',
                         'NumberOfPosts').order_by("-TrendingScore", "TopicName")
+
     print(topic)
     topic_serializer = TopicSerializer(topic, many=True)
     print(topic_serializer)
     return JsonResponse(topic_serializer.data, safe=False)
+
+@csrf_exempt
+def suggestTopics(Method):
+    print("***********************")
+    args = str(Method).split("/")
+    user = args[3]
+    postText = args[4]
+    methString = str(args[2])
+    print(args)
+    postText = "test placeholder blah blah #TSLA"
+    print(user)
+    print(postText)
+    print("***********************")
+
+    if int(methString) == 0:
+            
+        topic = Topic.objects.all().filter(isTrending=1).only('TopicName',
+                        'IsStock',
+                        'isTrending',
+                        'TrendingScore',
+                        'NumberOfPosts').order_by("-TrendingScore", "TopicName")
+    print(topic)
+    topic_serializer = TopicSerializer(topic, many=True)
+    print(topic_serializer)
+    return JsonResponse(topic_serializer.data, safe=False)
+    #return suggestedTopics
 
 
 @csrf_exempt
