@@ -221,7 +221,7 @@ def getAllTopics():
 #needs to be called on every keystroke
 def update(user, post_text):
 	#get cluster for user
-	cur.execute("SELECT Cluster FROM UserApp_users WHERE Username = %s", user)
+	cur.execute("SELECT Cluster FROM UserApp_users WHERE Username = %s", str(user))
 	cluster = cur.fetchone()[0]
 	suggested_topics = []
 	trending_topics = getTrendingTopics()	
@@ -229,7 +229,7 @@ def update(user, post_text):
 	all_topics = getAllTopics()
 
 	#search for # symbol
-	pattern = '#[a-zA-Z]+'
+	pattern = '\*[a-zA-Z]+'
 	hashtag = re.search(pattern, post_text)
 
 	#default suggestion depends on knn cluster result
@@ -300,14 +300,14 @@ def update(user, post_text):
 				match = re.search(pattern, topic.lower())
 				if match != None and topic not in suggested_topics:
 					suggested_topics.append(topic)
-
+		print(suggested_topics[:10])
 		#print(suggested_topics[:10])
 		return suggested_topics[:10]
 
 
 user = '9O8fes'
-text = '# #1 #/ #cs hku 8y 9hui #sdgvbasd'
-update(user, text)
+text = '# #1 #/ *cs hku 8y 9hui *sdgvbasd'
+#update(user, text)
 #updateProfiles()
 #knn_cluster()
 

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
-
+from urllib.parse import unquote
 from django.db import connection
 
 from TopicApp.models import Topic
@@ -48,27 +48,25 @@ def getAllTopics(Method):
 def suggestTopics(Method):
     print("***********************")
     args = str(Method).split("/")
+    print(Method)
     user = args[3]
-    postText = args[4]
+    postText = unquote(args[4])
     methString = str(args[2])
     print(args)
-    postText = "test placeholder blah blah #TSLA"
+    #postText = "test placeholder #T"
     print(user)
     print(postText)
     print("***********************")
 
     if int(methString) == 0:
-            
-        topic = Topic.objects.all().filter(isTrending=1).only('TopicName',
-                        'IsStock',
-                        'isTrending',
-                        'TrendingScore',
-                        'NumberOfPosts').order_by("-TrendingScore", "TopicName")
+        suggestedTopics = updateSuggestedTopics(user, postText)
+        topic = []
+        for t in suggestedTopics:
+            topic.append(Topic.objects.all().get(TopicName__exact=t))
     print(topic)
     topic_serializer = TopicSerializer(topic, many=True)
     print(topic_serializer)
     return JsonResponse(topic_serializer.data, safe=False)
-    #return suggestedTopics
 
 
 @csrf_exempt
