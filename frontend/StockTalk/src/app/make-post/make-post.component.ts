@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { Topic } from '../Interfaces';
 import { NgForm, FormGroup, FormBuilder } from '@angular/forms';
 import {DatePipe} from '@angular/common';
+import { decode } from 'querystring';
 
 @Component({
   selector: 'app-make-post',
@@ -20,14 +21,17 @@ export class MakePostComponent implements OnInit {
 
   stateForm: FormGroup;
 
-  showDropDown = false;
+  showDropDown = true;
 
   pic_upload = false;
 
   postPhotoPath: string;
 
-  /*topics: Array<Topic>;*/
-  topics = ['suggest topic1 placeholder', 'suggest topic2 placeholder', 'suggest topic3 placeholder']
+  topics: Array<Topic>;
+  text = '';
+
+
+  //topics = ['suggest topic1 placeholder', 'suggest topic2 placeholder', 'suggest topic3 placeholder']
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -37,11 +41,11 @@ export class MakePostComponent implements OnInit {
   ) {
 
     this.initForm()
-    /*
-    this.backend.getAll<Topic>("/suggestTopics/0").subscribe(data => {
+
+    this.backend.getAll<Topic>("/suggestTopics/0/" + this.globals.currentUsername + "/None").subscribe(data => {
       console.log(data);
       this.topics = data;
-    })*/
+    })
   }
 
   initForm(): FormGroup {
@@ -157,5 +161,40 @@ export class MakePostComponent implements OnInit {
       this.postPhotoPath=this.backend.PhotoUrl + photoFileName;
     })
   }
-
+  
+  onKeydown(event: any) {
+    //console.log(event);
+    if (event.key == '#') {
+      this.text = decodeURI(this.text + "*");
+      this.backend.getAll<Topic>("/suggestTopics/0/" + this.globals.currentUsername + "/" + this.text).subscribe(data => {
+        console.log(data);
+        this.topics = data;
+        if (!this.showDropDown) {
+          this.toggleDropDown;
+        }
+      })
+    } else if (event.code == "Backspace") {
+      //if (this.text.length > 0) {
+      this.text = decodeURI(this.text.slice(0, -1))
+      this.backend.getAll<Topic>("/suggestTopics/0/" + this.globals.currentUsername + "/" + this.text).subscribe(data => {
+        console.log(data);
+        this.topics = data;
+        if (!this.showDropDown) {
+          this.toggleDropDown;
+        }
+      })
+      //}
+    } else if (event.key != "Shift") {
+      this.text = decodeURI(this.text + event.key);
+      //console.log(this.text);
+      this.backend.getAll<Topic>("/suggestTopics/0/" + this.globals.currentUsername + "/" + unescape(this.text)).subscribe(data => {
+        console.log(data);
+        this.topics = data;
+        if (!this.showDropDown) {
+          this.toggleDropDown;
+        }
+      })
+    }
+  }
+  
 }

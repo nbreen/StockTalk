@@ -1,10 +1,10 @@
-﻿import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { CrudService } from '../crud.service';
 import { Globals } from '../Globals';
 import { NgForm} from '@angular/forms';
 import { User } from '../shared/user.model';
-import bcrypt
+//import bcrypt
 
 
 @Component({
@@ -35,14 +35,14 @@ export class LoginComponent implements OnInit {
   temp_user: User;
 
   public login() {
-    passwd = this.loginData.Password
-    salt = bcrypt.gensalt()
-    hashed = bcrypt.hashpw(passwd, salt)
-    this.loginData.Password = hashed
+    //passwd = this.loginData.Password
+    //salt = bcrypt.gensalt()
+    //hashed = bcrypt.hashpw(passwd, salt)
+    //this.loginData.Password = hashed
     if (this.loginData.Username && this.loginData.Password) {
       return this.service.validateUser(this.loginData).subscribe(res => {
         console.log(res);
-        if (res.toString().match("User exists") === null) {
+        if (res.toString().match("User exists") == null) {
           alert("Username or password is incorrect");
         } else {
 
@@ -51,7 +51,8 @@ export class LoginComponent implements OnInit {
             user_data = user_data.substring(1, user_data.length-1);
             this.temp_user = JSON.parse(user_data);
 
-            if (bcrypt.checkpw(this.temp_user.Password, this.loginData.Password)) {
+            if (this.temp_user.Password == this.loginData.Password) {
+            //if (bcrypt.checkpw(this.temp_user.Password, this.loginData.Password)) {
               alert("Welcome " + this.temp_user.Username);
               this.globals.isAuthenticated = true;
               this.globals.currentUsername = this.loginData.Username;
