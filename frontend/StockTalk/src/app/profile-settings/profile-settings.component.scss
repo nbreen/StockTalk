@@ -7,3 +7,37 @@
 .full-width {
   width: 100%;
 }
+
+#settings_title {
+  font-size: 30px;
+}
+
+#bio_field {
+  height: 40px;
+  width: 300px;
+}
+
+#upload {
+  padding-top: 20px;
+}
+
+.mat-buttons {
+  background-color: rgb(79, 165, 115);
+}
+
+#profile_pic {
+  border-radius: 20%;
+  border: 3px solid rgb(79, 165, 115);
+}
+
+#settings {
+  margin: auto;
+  width: 60%;
+  background-color: white;
+  color: black;
+}
+
+.mat-delete_button {
+  float: right;
+  background-color: rgb(199, 46, 46);
+}

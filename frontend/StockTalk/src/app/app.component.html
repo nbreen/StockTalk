@@ -1,26 +1,27 @@
 
 
-<body ng-init="reload()">
+<body id="background" ng-init="reload()">
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <!--  <span>HOME</span> -->
-    <span><a href="/">$tockTalk</a></span>
+    <span><a id="title" href="/">$tockTalk</a></span>
     <span class="spacer"></span>
-    <a mat-button routerLink="alltopics">Topics</a>
-    <span class="spacer"></span>
-
-    <span class="spacer"></span>
-    <a mat-button routerLink="trendingtopics">Trending Topics</a>
+    <a mat-button routerLink="alltopics">topics</a>
     <span class="spacer"></span>
 
-     <a mat-button (click)="logout()" *ngIf="this.globals.isAuthenticated">Logout</a>
-     <a mat-button (click)="directProfile()" *ngIf="this.globals.isAuthenticated">My Profile</a>
-     <a mat-button (click)="directSuggestions()" *ngIf="this.globals.isAuthenticated">Suggested Topics & Users</a>
-     <a mat-button (click)="directSavedPosts()" *ngIf="this.globals.isAuthenticated">My Saved Posts</a>
-    <a mat-button *ngIf="!this.globals.isAuthenticated" routerLink="signup">Signup</a>
-    <a mat-button *ngIf="!this.globals.isAuthenticated" routerLink="login">Login</a>
+    <span class="spacer"></span>
+    <a mat-button routerLink="trendingtopics">trending</a>
+    <span class="spacer"></span>
 
-    <a mat-button *ngIf="this.globals.isAuthenticated" routerLink="delete-user">Delete Account</a>
+
+     
+     <a mat-button (click)="directSuggestions()" *ngIf="this.globals.isAuthenticated">suggested topics & users</a>
+     <a mat-button (click)="directSavedPosts()" *ngIf="this.globals.isAuthenticated">saved posts</a>
+    <a mat-button *ngIf="!this.globals.isAuthenticated" routerLink="signup">signup</a>
+    <a mat-button *ngIf="!this.globals.isAuthenticated" routerLink="login">login</a>
+
+    <a mat-button (click)="directProfile()" *ngIf="this.globals.isAuthenticated">my profile</a>
+    <a mat-button (click)="logout()" *ngIf="this.globals.isAuthenticated">logout</a>
 
     <!-- <a mat-button (click)="test()">Test</a> -->
 

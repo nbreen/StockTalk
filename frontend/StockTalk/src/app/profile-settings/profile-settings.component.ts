@@ -37,6 +37,10 @@ export class ProfileSettingsComponent implements OnInit {
     this.router.navigate(["/profile/" + this.globals.currentUsername]);
   }
 
+  directDelete() {
+    this.router.navigate(["/delete-user/"]);
+  }
+
 
   submitChanges() {
 

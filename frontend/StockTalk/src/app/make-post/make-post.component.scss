@@ -7,9 +7,20 @@
   overflow-y:auto;
 }
 
+#make_post {
+  margin: auto;
+  width: 60%;
+  background-color: white;
+  color: black;
+}
+
 .state{
   padding:5px;
   color:blue;
+}
+
+.mat-buttons {
+  background-color: rgb(79, 165, 115);
 }
 
 .state:hover{

@@ -1,37 +1,42 @@
 <mat-toolbar>
-  <span>Edit Profile Settings</span>
 </mat-toolbar>
-<mat-card class="my-card">
+<mat-card id="settings" class="my-card">
+  <p id="settings_title">profile settings</p>
   <mat-card-content>
-    <img [src]=this.profilePhotoPath height="100px;" width="100px;">
+    <img id=profile_pic [src]=this.profilePhotoPath height="170px;" width="170px;">
     
     <!-- CONTENT HERE -->
     <form class="my-form">
       <!--FORM FIELDS HERE-->
-      <form action="/action_page.php">
+      
+      <form id="upload" action="/action_page.php">
         <input type="file" (change)="uploadProfilePic($event)" id="myFile" name="filename">
       </form>
        <mat-form-field class="full-width">
-          <input placeholder={{this.profile.Bio}}  name="username" [(ngModel)]="this.new_bio"> 
+          <p>Edit bio here:</p>
+          <input id="bio_field" placeholder={{this.profile.Bio}}  name="username" [(ngModel)]="this.new_bio"> 
        </mat-form-field>
     </form>
     <form class="my-form">
+      <p>Enter current and new password to change password:</p>
       <mat-form-field class="full-width">
         <mat-label>Current Password</mat-label>
-        <input  placeholder="Password" type="password" name="password1" 
+        <input  placeholder="Current password" type="password" name="Current password" 
         [(ngModel)]="this.current_password">
      </mat-form-field>
      <mat-form-field class="full-width">
         <mat-label>New Password</mat-label>
-        <input  placeholder="Password2" type="password" name="password2"
+        <input  placeholder="New password" type="password" name="New password"
         [(ngModel)]="this.new_password">
      </mat-form-field>
     </form>
        
   </mat-card-content>
+
   <mat-card-actions>
     <!-- SIGN UP BUTTON -->
-    <button mat-raised-button (click)="submitChanges()" color="primary">POST</button>
-    <button mat-raised-button (click)="directProfile()" color="primary">CANCEL</button>
+    <button mat-raised-button (click)="submitChanges()" color="buttons">submit changes</button>
+    <button mat-raised-button (click)="directProfile()" color="buttons">cancel</button>
+    <button mat-raised-button (click)="directDelete()" color="delete_button">I want to delete my account</button>
   </mat-card-actions>
 </mat-card>

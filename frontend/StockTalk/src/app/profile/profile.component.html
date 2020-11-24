@@ -2,39 +2,40 @@
 
 <div class="profile-page">
 
-  <mat-toolbar>
-    {{this.profile.Username}}'s profile
-  </mat-toolbar>
 
-  <mat-card class="my-card">
-    <a class="a" mat-raised-button routerLink="/followers/{{currProfile}}" color="primary">See {{ currProfile }}'s followers and the Users/Topics they follow!</a><br>
+  <mat-card id="profile_block" class="my-card">
+    <a class="a" mat-raised-button routerLink="/followers/{{currProfile}}" color="theme_color">See {{ currProfile }}'s followers and the Users/Topics they follow!</a><br>
     <a class="a" *ngIf="following && getIsDone && !isUser" mat-raised-button color="primary" (click)="unfollowButton()">Unfollow</a>
     <a class="a" *ngIf="!following && getIsDone && !isUser" mat-raised-button color="primary" (click)="followButton()">Follow</a>
-    <a *ngIf = "isUser">Welcome to your Profile!</a><br>
     <mat-card-content>
       <!--<img class="profile" src = {{profile.ProfileImage}}>
     <p>Image src {{profile.ProfileImage}}</p>-->
-      <img [src]=this.profilePhotoPath height="100px;" width="100px;">
-      <mat-label class="profile-info">Username: {{this.profile.Username}} </mat-label>
-      <mat-label class="profile-info">Bio: {{this.profile.Bio}}</mat-label>
+      <mat-label id="username" class="profile-info">{{this.profile.Username}} </mat-label>
+      <img id="profile_pic" [src]=this.profilePhotoPath height="120px;" width="120px;">
+      
+      <mat-label id="bio" class="profile-info">{{this.profile.Bio}}</mat-label>
     </mat-card-content>
-    <button *ngIf="this.showSettings()" (click)="routeMakePost()" mat-raised-button color="primary">Make a post!</button>
-    <button *ngIf="this.showSettings()" routerLink="{{this.settingsURL}}" mat-raised-button color="primary">Edit Profile</button>
+    <button *ngIf="this.showSettings()" (click)="routeMakePost()" mat-raised-button color="buttons">make a new post!</button>
+    <button *ngIf="this.showSettings()" routerLink="{{this.settingsURL}}" style="float:right;" mat-raised-button color="buttons">profile settings</button>
+    <button id="verify_button" *ngIf="this.showSettings()" font-size="100px;" style="float:right;" routerLink="{{this.settingsURL}}" mat-raised-button color="verify">get verified!</button>
+    
     <!-- <a mat-raised-button routerLink="/followers/{{currProfile}}" color="primary">See {{ currProfile }}'s followers and the Users/Topics they follow!</a> -->
 
   </mat-card>
 
 
-  <h2>Posts Created By {{ currProfile }}</h2>
+  <div id="profile_block_2">
+    <h2>posts uploaded by {{ currProfile }}</h2>
 
-<h2 *ngIf="postCount != -1">This Page has {{ postCount }} Post(s)</h2>
+    <h2 id=post_number *ngIf="postCount != -1">{{ postCount }} post(s)</h2>
+  </div>
 
-<div *ngFor="let Post of Posts">
+  <div *ngFor="let Post of Posts">
 
-  <app-post [Post]="Post"></app-post>
+    <app-post [Post]="Post"></app-post>
 
-</div>
+  </div>
+  
 
- 
 
 </div>

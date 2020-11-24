@@ -1,3 +1,18 @@
 .spacer {
     flex: 1 1 auto;
 }
+
+.mat-primary {
+    background-color: rgb(79, 165, 115);
+}
+
+#title {
+    color: rgb(1, 39, 26);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 30px;
+}
+
+#background {
+    background-color: white;
+    background-image: url(./shared/gradient.png);
+}

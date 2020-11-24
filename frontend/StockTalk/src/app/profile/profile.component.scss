@@ -16,3 +16,54 @@
 .a {
     margin-bottom: 10px;
 }
+
+.mat-verify {
+    background-color: rgb(6, 186, 241);
+    color: #fff;
+    border-radius: 20%;
+}
+
+.mat-buttons {
+    background-color:rgb(79, 165, 115);
+    color: #fff;
+    font-size: 13px;
+}
+
+#verify_button {
+    font-size: 10px;  
+}
+
+#profile_block {
+    background-color: rgb(224, 224, 224);
+    color: rgb(1, 59, 36);
+    padding-bottom: 30px;
+}
+
+#profile_block_2 {
+    color: rgb(1, 59, 36);
+    padding-top: 25px;
+    text-align: center;
+    
+}
+
+#profile_pic {
+    border-radius: 20%;
+    border: 3px solid rgb(79, 165, 115);
+}
+
+.mat-theme_color {
+    background-color:  rgb(79, 165, 115);
+}
+
+#post_number {
+    font-size: 15px;
+}
+
+#bio {
+    padding-top: 10px;
+    font-size: 15px;
+}
+
+#username {
+    font-size: 35px;
+}

@@ -1,7 +1,5 @@
-<mat-toolbar>
-    <span>Make a new post!</span>
-  </mat-toolbar>
-<mat-card class="my-card">
+
+<mat-card id="make_post" class="my-card">
   <mat-card-content>
 
     <!-- CONTENT HERE -->
@@ -14,7 +12,7 @@
     </form>
     <form class="my-form">
       <mat-form-field class="full-width">
-        <mat-label>Topic</mat-label>
+        <mat-label>topic</mat-label>
         <input id='search' placeholder="topic" (click)="toggleDropDown()" formControlName="search" type="text" name="topic"
                [(ngModel)]="this.new_post.TopicName">
         <div *ngIf="showDropDown" class="state-container-dropdown">
@@ -41,8 +39,8 @@
   <mat-card-actions>
     <!-- SIGN UP BUTTON -->
    
-      <button mat-raised-button (click)="submitPost()" color="primary">POST</button>
-      <button mat-raised-button (click)="directProfile()" color="primary">CANCEL</button>
+      <button mat-raised-button (click)="submitPost()" color="buttons">post</button>
+      <button mat-raised-button (click)="directProfile()" color="buttons">cancel</button>
   </mat-card-actions>
 
 </mat-card>
