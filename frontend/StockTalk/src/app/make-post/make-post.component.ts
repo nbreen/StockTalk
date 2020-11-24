@@ -29,6 +29,7 @@ export class MakePostComponent implements OnInit {
 
   topics: Array<Topic>;
   text = '';
+  
 
 
   //topics = ['suggest topic1 placeholder', 'suggest topic2 placeholder', 'suggest topic3 placeholder']
@@ -174,7 +175,7 @@ export class MakePostComponent implements OnInit {
         }
       })
     } else if (event.code == "Backspace") {
-      //if (this.text.length > 0) {
+      if (this.text.length > 0) {
       this.text = decodeURI(this.text.slice(0, -1))
       this.backend.getAll<Topic>("/suggestTopics/0/" + this.globals.currentUsername + "/" + this.text).subscribe(data => {
         console.log(data);
@@ -183,7 +184,7 @@ export class MakePostComponent implements OnInit {
           this.toggleDropDown;
         }
       })
-      //}
+      }
     } else if (event.key != "Shift") {
       this.text = decodeURI(this.text + event.key);
       //console.log(this.text);
