@@ -124,6 +124,7 @@ export class ProfileComponent implements OnInit {
       this.Posts = data;
       console.log(this.Posts);
       this.postCount = data.length;
+      this.Posts = this.Posts.reverse();
     })
 
 

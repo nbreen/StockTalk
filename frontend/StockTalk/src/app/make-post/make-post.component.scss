@@ -7,11 +7,36 @@
   overflow-y:auto;
 }
 
+#title {
+  font-size: 24px;
+}
+
+#post_pic {
+  border-radius: 20%;
+  border: 3px solid rgb(79, 165, 115);
+}
+
+
 #make_post {
   margin: auto;
   width: 60%;
   background-color: white;
   color: black;
+}
+
+#bottom_buttons {
+  padding-top: 40px;
+}
+
+#search {
+  width: 120px;
+  height: 30px;
+
+}
+
+#text {
+  width: 300px;
+  height: 30px;
 }
 
 .state{

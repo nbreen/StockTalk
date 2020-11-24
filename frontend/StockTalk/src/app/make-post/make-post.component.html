@@ -2,6 +2,8 @@
 <mat-card id="make_post" class="my-card">
   <mat-card-content>
 
+    <p id="title" >make a new post!</p>
+
     <!-- CONTENT HERE -->
     <form class="my-form">
       <!--FORM FIELDS HERE-->
@@ -13,7 +15,7 @@
     <form class="my-form">
       <mat-form-field class="full-width">
         <mat-label>topic</mat-label>
-        <input id='search' placeholder="topic" (click)="toggleDropDown()" formControlName="search" type="text" name="topic"
+        <input id='search' placeholder="choose a topic" (click)="toggleDropDown()" formControlName="search" type="text" name="topic"
                [(ngModel)]="this.new_post.TopicName">
         <div *ngIf="showDropDown" class="state-container-dropdown">
           <div>
@@ -26,17 +28,16 @@
           </div>
         </div>
       </mat-form-field>
-      <mat-form-field class="full-width">
-        <input placeholder="Input text here (optional)" name="text" type="text" (keydown)="onKeydown($event)" [(ngModel)]="this.new_post.Post">
-        <!-- TODO Check for (valid) topic -->
+      <input id="text" placeholder="say something! (optional) " name="text" type="text" (keydown)="onKeydown($event)" [(ngModel)]="this.new_post.Post">
 
-
-      </mat-form-field>
     </form>
 
   </mat-card-content>
 
-  <mat-card-actions>
+  <img id="post_pic" *ngIf="this.pic_upload" [src]=this.postPhotoPath height="160px;" width="160px;">
+  
+
+  <mat-card-actions id="bottom_buttons">
     <!-- SIGN UP BUTTON -->
    
       <button mat-raised-button (click)="submitPost()" color="buttons">post</button>

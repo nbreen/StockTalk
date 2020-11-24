@@ -52,7 +52,6 @@ export class CrudService {
 
   addPost(val: any) {
     let body = JSON.stringify(val);
-    alert(body);
     return this.httpClient.post<any>(this.APIUrl + "/posts/", val);
   }
 
