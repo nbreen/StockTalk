@@ -53,14 +53,13 @@ def suggestTopics(Method):
     postText = unquote(args[4])
     methString = str(args[2])
     print(args)
-    #postText = "test placeholder #T"
     print(user)
     print(postText)
     print("***********************")
+    topic = []
 
     if int(methString) == 0:
         suggestedTopics = updateSuggestedTopics(user, postText)
-        topic = []
         for t in suggestedTopics:
             topic.append(Topic.objects.all().get(TopicName__exact=t))
     print(topic)

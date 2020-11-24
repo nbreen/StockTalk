@@ -248,11 +248,11 @@ def update(user, post_text):
 			suggest_ten_topics = []
 			for i in range(10):
 				random.sample(suggested_topics, k=10)
-			return suggest_ten_topics
+			suggested_topics = suggest_ten_topics
 
 		#if cluster is 2, user posts about followed topics often
 		if cluster == 2:
-			return followed_topics
+			suggested_topics = followed_topics
 
 	else:
 		potential_topic = re.findall(pattern, post_text)[0][1:].lower()
@@ -300,13 +300,14 @@ def update(user, post_text):
 				match = re.search(pattern, topic.lower())
 				if match != None and topic not in suggested_topics:
 					suggested_topics.append(topic)
-		print(suggested_topics[:10])
-		#print(suggested_topics[:10])
-		return suggested_topics[:10]
+	if len(suggested_topics) < 1:
+		suggested_topics = trending_topics
+	#print(suggested_topics[:10])
+	return suggested_topics[:10]
 
 
 user = '9O8fes'
-text = '# #1 #/ *cs hku 8y 9hui *sdgvbasd'
+text = 'sd *markt'
 #update(user, text)
 #updateProfiles()
 #knn_cluster()
