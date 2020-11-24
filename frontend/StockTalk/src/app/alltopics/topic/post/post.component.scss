@@ -1,17 +1,23 @@
 .bubble {
     position:relative;
     background:#F5F5F5;
-    padding:10px;
+    padding:25px;
     color:#200;
     border-radius: 5px;
     margin-bottom:10px;
     margin-left:20px;
     margin-right:10px;
-    margin-top:10px;
+    margin-top:20px;
     text-align: center;
-    width: 70%;
+    width: 55%;
     margin: auto;
 }
+
+#post_pic {
+    border-radius: 5%;
+    border: 3px solid rgb(79, 165, 115);
+}
+  
 
 h1 {
     font-weight: 500;

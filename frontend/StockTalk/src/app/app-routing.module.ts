@@ -15,6 +15,7 @@ import { TrendingtopicsComponent } from './trendingtopics/trendingtopics.compone
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 import { MakePostComponent } from './make-post/make-post.component';
+import { VerifyComponent } from './verify/verify.component';
 
 const routes: Routes = [
   //{ path: '', redirectTo: '/', pathMatch: 'full' },
@@ -32,7 +33,8 @@ const routes: Routes = [
   { path: 'makepost/:User', component: MakePostComponent },
   { path: 'post/:PostId', component: ViewSinglePostComponent },
   { path: 'mysavedposts', component : ViewSavedPostsComponent },
-  { path: 'suggestions', component : SuggestionsComponent}
+  { path: 'suggestions', component : SuggestionsComponent},
+  { path: 'verify', component: VerifyComponent}
 ];
 
 @NgModule({

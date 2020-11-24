@@ -2,6 +2,7 @@
 </mat-toolbar>
 <mat-card id="settings" class="my-card">
   <p id="settings_title">profile settings</p>
+  
   <mat-card-content>
     <img id=profile_pic [src]=this.profilePhotoPath height="170px;" width="170px;">
     
@@ -35,6 +36,7 @@
 
   <mat-card-actions>
     <!-- SIGN UP BUTTON -->
+    <button id="verify_button" (click)="directVerify()" font-size="100px;" mat-raised-button color="verify">get verified!</button>
     <button mat-raised-button (click)="submitChanges()" color="buttons">submit changes</button>
     <button mat-raised-button (click)="directProfile()" color="buttons">cancel</button>
     <button mat-raised-button (click)="directDelete()" color="delete_button">I want to delete my account</button>

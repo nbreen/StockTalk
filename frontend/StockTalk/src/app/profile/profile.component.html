@@ -15,9 +15,8 @@
       
       <mat-label id="bio" class="profile-info">{{this.profile.Bio}}</mat-label>
     </mat-card-content>
-    <button *ngIf="this.showSettings()" (click)="routeMakePost()" mat-raised-button color="buttons">make a new post!</button>
+    <button *ngIf="this.showSettings()" (click)="routeMakePost()" style="float:left;" mat-raised-button color="buttons">make a new post!</button>
     <button *ngIf="this.showSettings()" routerLink="{{this.settingsURL}}" style="float:right;" mat-raised-button color="buttons">profile settings</button>
-    <button id="verify_button" *ngIf="this.showSettings()" font-size="100px;" style="float:right;" routerLink="{{this.settingsURL}}" mat-raised-button color="verify">get verified!</button>
     
     <!-- <a mat-raised-button routerLink="/followers/{{currProfile}}" color="primary">See {{ currProfile }}'s followers and the Users/Topics they follow!</a> -->
 

@@ -8,6 +8,13 @@
   width: 100%;
 }
 
+.mat-verify {
+  background-color: rgb(6, 186, 241);
+  color: #fff;
+  border-radius: 20%;
+  float: right;
+}
+
 #settings_title {
   font-size: 30px;
 }
@@ -25,7 +32,7 @@
   background-color: rgb(79, 165, 115);
 }
 
-#post_pic {
+#profile_pic {
   border-radius: 20%;
   border: 3px solid rgb(79, 165, 115);
 }
