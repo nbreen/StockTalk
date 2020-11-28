@@ -81,7 +81,7 @@ def userApi(request,id=0):
             passwd = bytes(passwd, 'utf-8')
             salt = bcrypt.gensalt()
             hashed = bcrypt.hashpw(passwd, salt)
-            user_data['Password'] = hashed
+            user_data['Password'] = str(hashed)
             user_serializer.save()
             return JsonResponse("User added successfully", safe=False)
         if (int(user_data['UserAge']) < 18):
