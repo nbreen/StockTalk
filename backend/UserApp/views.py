@@ -4,6 +4,7 @@ from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from django.db import connection
 from rest_framework import generics
+from django.conf import settings
 # import bcrypt
 
 from UserApp.models import Users
@@ -76,11 +77,11 @@ def userApi(request,id=0):
             return JsonResponse("Error: Your password is invalid! Make sure there is one upper and one lowecase letter.",
                 safe=False)
         if user_serializer.is_valid() and int(user_data['UserAge']) >= 18 and set(user_data['Password'])-set(user_data['Password'].lower())!=set() and set(user_data['Password'])-set(user_data['Password'].upper())!=set():
-            #passwd = user_data['Password']
-            #passwd = bytes(passwd, 'utf-8')
-            #salt = bcrypt.gensalt()
-            #hashed = bcrypt.hashpw(passwd, salt)
-            #user_data['Password'] = hashed
+            passwd = user_data['Password']
+            passwd = bytes(passwd, 'utf-8')
+            salt = bcrypt.gensalt()
+            hashed = bcrypt.hashpw(passwd, salt)
+            user_data['Password'] = hashed
             user_serializer.save()
             return JsonResponse("User added successfully", safe=False)
         if (int(user_data['UserAge']) < 18):
