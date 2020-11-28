@@ -77,11 +77,11 @@ def userApi(request,id=0):
             return JsonResponse("Error: Your password is invalid! Make sure there is one upper and one lowecase letter.",
                 safe=False)
         if user_serializer.is_valid() and int(user_data['UserAge']) >= 18 and set(user_data['Password'])-set(user_data['Password'].lower())!=set() and set(user_data['Password'])-set(user_data['Password'].upper())!=set():
-            passwd = user_data['Password']
-            passwd = bytes(passwd, 'utf-8')
-            salt = bcrypt.gensalt()
-            hashed = bcrypt.hashpw(passwd, salt)
-            user_data['Password'] = hashed
+            #passwd = user_data['Password']
+            #passwd = bytes(passwd, 'utf-8')
+            #salt = bcrypt.gensalt()
+            #hashed = bcrypt.hashpw(passwd, salt)
+            #user_data['Password'] = hashed
             user_serializer.save()
             return JsonResponse("User added successfully", safe=False)
         if (int(user_data['UserAge']) < 18):
@@ -96,10 +96,10 @@ def userApi(request,id=0):
         user = Users.objects.get(Username=user_data['Username'])
         user_serializer = UserSerializer(user, data=user_data) 
         if user_serializer.is_valid():
-            passwd = user_data['Password']
-            salt = bcrypt.gensalt()
-            hashed = bcrypt.hashpw(passwd, salt)
-            user_data['Password'] = hashed
+            #passwd = user_data['Password']
+            #salt = bcrypt.gensalt()
+            #hashed = bcrypt.hashpw(passwd, salt)
+            #user_data['Password'] = hashed
             user_serializer.save()
             return JsonResponse("User updated successfully", safe=False)
         return JsonResponse("Failed to update user", safe=False)
