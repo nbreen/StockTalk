@@ -73,9 +73,9 @@ def userApi(request,id=0):
     elif request.method=='POST':
         user_data = JSONParser().parse(request)
         user_serializer = UserSerializer(data=user_data)
-        #if (set(user_data['Password'])-set(user_data['Password'].lower())!=set() and set(user_data['Password'])-set(user_data['Password'].upper())!=set()):
-        #    return JsonResponse("Error: Your password is invalid! Make sure there is one upper and one lowecase letter.",
-        #        safe=False)
+        if (set(user_data['Password'])-set(user_data['Password'].lower())==set() and set(user_data['Password'])-set(user_data['Password'].upper())==set()):
+            return JsonResponse("Error: Your password is invalid! Make sure there is one upper and one lowecase letter.",
+                safe=False)
         if user_serializer.is_valid() and int(user_data['UserAge']) >= 18 and set(user_data['Password'])-set(user_data['Password'].lower())!=set() and set(user_data['Password'])-set(user_data['Password'].upper())!=set():
             passwd = user_data['Password']
             passwd = bytes(passwd, 'utf-8')
