@@ -5,6 +5,7 @@ import { Globals } from '../Globals';
 import { NgForm} from '@angular/forms';
 import { User } from '../shared/user.model';
 import bcrypt
+from django.contrib.auth import authenticate
 
 
 @Component({
