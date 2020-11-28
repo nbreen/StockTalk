@@ -74,7 +74,7 @@ def userApi(request,id=0):
         user_data = JSONParser().parse(request)
         user_serializer = UserSerializer(data=user_data)
         if (set(user_data['Password'])-set(user_data['Password'].lower())==set() and set(user_data['Password'])-set(user_data['Password'].upper())==set()):
-            return JsonResponse("Error: Your password is invalid! Make sure there is one upper and one lowecase letter.",
+            return JsonResponse("Error: Your password is invalid! Make sure there is one upper and one lowercase letter.",
                 safe=False)
         if user_serializer.is_valid() and int(user_data['UserAge']) >= 18 and set(user_data['Password'])-set(user_data['Password'].lower())!=set() and set(user_data['Password'])-set(user_data['Password'].upper())!=set():
             passwd = user_data['Password']
@@ -83,8 +83,9 @@ def userApi(request,id=0):
             hashed = bcrypt.hashpw(passwd, salt)
             user_data['Password'] = str(hashed)
             user_serializer = UserSerializer(data=user_data)
-            user_serializer.save()
-            return JsonResponse("User added successfully", safe=False)
+            if user_serializer.is_valid():
+                user_serializer.save()
+                return JsonResponse("User added successfully", safe=False)
         if (int(user_data['UserAge']) < 18):
             return JsonResponse("Error: You must be 18 or older to create an account!",
                 safe=False)
