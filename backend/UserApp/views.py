@@ -96,10 +96,10 @@ def userApi(request,id=0):
         user = Users.objects.get(Username=user_data['Username'])
         user_serializer = UserSerializer(user, data=user_data) 
         if user_serializer.is_valid():
-            #passwd = user_data['Password']
-            #salt = bcrypt.gensalt()
-            #hashed = bcrypt.hashpw(passwd, salt)
-            #user_data['Password'] = hashed
+            passwd = user_data['Password']
+            salt = bcrypt.gensalt()
+            hashed = bcrypt.hashpw(passwd, salt)
+            user_data['Password'] = str(hashed)
             user_serializer.save()
             return JsonResponse("User updated successfully", safe=False)
         return JsonResponse("Failed to update user", safe=False)
