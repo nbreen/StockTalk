@@ -102,8 +102,10 @@ def userApi(request,id=0):
             salt = bcrypt.gensalt()
             hashed = bcrypt.hashpw(passwd, salt)
             user_data['Password'] = str(hashed)
-            user_serializer.save()
-            return JsonResponse("User updated successfully", safe=False)
+            user_serializer = UserSerializer(data=user_data)
+            if user_serializer.is_valid():
+                user_serializer.save()
+                return JsonResponse("User added successfully", safe=False)
         return JsonResponse("Failed to update user", safe=False)
 
     elif request.method=='DELETE':
