@@ -5,7 +5,6 @@ from django.http.response import JsonResponse
 from django.db import connection
 from rest_framework import generics
 # import bcrypt
-import bcrypt
 
 from UserApp.models import Users
 from UserApp.serializers import UserSerializer
