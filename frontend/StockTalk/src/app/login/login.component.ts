@@ -1,12 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+﻿import { Component, Input, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { CrudService } from '../crud.service';
 import { Globals } from '../Globals';
 import { NgForm} from '@angular/forms';
 import { User } from '../shared/user.model';
-import bcrypt
+/*import bcrypt
 
-import UserApp.views
+import UserApp.views */
 
 
 
@@ -38,10 +38,10 @@ export class LoginComponent implements OnInit {
   temp_user: User;
 
   public login() {
-    passwd = this.loginData.Password
+    /*passwd = this.loginData.Password
     //salt = bcrypt.gensalt()
     hashed = bcrypt.hashpw(passwd, salt)
-    this.loginData.Password = str(hashed)
+    this.loginData.Password = str(hashed)*/
     if (this.loginData.Username && this.loginData.Password) {
       return this.service.validateUser(this.loginData).subscribe(res => {
         console.log(res);
