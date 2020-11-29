@@ -14,6 +14,8 @@ import re
 
 # Create your views here.
 
+global salt = bcrypt.gensalt()
+
 class UserList(generics.ListAPIView):    
     serializer_class = UserSerializer
 
@@ -79,7 +81,6 @@ def userApi(request,id=0):
         if user_serializer.is_valid() and int(user_data['UserAge']) >= 18 and set(user_data['Password'])-set(user_data['Password'].lower())!=set() and set(user_data['Password'])-set(user_data['Password'].upper())!=set():
             passwd = user_data['Password']
             passwd = bytes(passwd, 'utf-8')
-            salt = bcrypt.gensalt()
             hashed = bcrypt.hashpw(passwd, salt)
             user_data['Password'] = str(hashed)
             user_serializer = UserSerializer(data=user_data)
@@ -99,7 +100,6 @@ def userApi(request,id=0):
         user_serializer = UserSerializer(user, data=user_data) 
         if user_serializer.is_valid():
             passwd = user_data['Password']
-            salt = bcrypt.gensalt()
             hashed = bcrypt.hashpw(passwd, salt)
             user_data['Password'] = str(hashed)
             user_serializer = UserSerializer(data=user_data)
