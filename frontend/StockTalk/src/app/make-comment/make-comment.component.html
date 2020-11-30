@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h4 class="modal-title">Hi there!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Make a new Comment!</p>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <textarea matInput [(ngModel)]="this.new_comment.Comment" placeholder="Say something!"></textarea>
+    </mat-form-field>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-outline-dark" (click)="submitComment()">Submit Comment</button>
+</div>

@@ -1,5 +1,5 @@
 <div class="bubble">
-    <a style="font-size:20px; color:blue" routerLink="/profile/{{ Comment.Username }}">@{{Comment.Username}}</a>
-    <h2>{{ Comment.CommentDate }}</h2>
+    <a style="font-size:20px; color:blue" routerLink="/profile/{{ Comment.Username }}">@{{ Comment.Username }}</a>
+    <h2>{{ Comment.CommentDate | date:'short' }}</h2>
     <p>{{ Comment.Comment }}</p>
 </div>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User, Profile } from './Interfaces';
+import { User, Profile, Comment } from './Interfaces';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -98,5 +98,9 @@ export class CrudService {
     var typeStr = this.instanceOfObj(type);
 
     return this.httpClient.delete<T>(this.APIUrl + typeStr + id, this.httpOptions);
+  }
+
+  addComment(newComment: Comment) {
+    return this.httpClient.post(this.APIUrl, newComment);
   }
 }

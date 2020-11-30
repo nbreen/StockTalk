@@ -1,9 +1,12 @@
 import { Globals } from './../Globals';
 import { Component, OnInit } from '@angular/core';
-import { Topic, Post } from './../Interfaces';
+import { Topic, Post, Comment } from './../Interfaces';
 import { ActivatedRoute } from '@angular/router';
 import { CrudService } from 'src/app/crud.service';
-import { Input } from '@angular/core'; 
+import { Input } from '@angular/core';
+import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap"; 
+import { MakeCommentComponent } from '../make-comment/make-comment.component';
+import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 
 @Component({
   selector: 'app-view-single-post',
@@ -19,7 +22,8 @@ export class ViewSinglePostComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private backend : CrudService,
-    public globals: Globals) { }
+    public globals: Globals,
+    private modalService: NgbModal) { }
     
 
   ngOnInit(): void {
@@ -34,10 +38,18 @@ export class ViewSinglePostComponent implements OnInit {
 
     this.backend.getAll<Comment>("/getComments/" + this.SinglePostId).subscribe(data => {
       this.Comments = data;
+      this.Comments.forEach(function (value) {
+        value.CommentDate = new Date(value.CommentDate);
+      })
+      this.Comments = this.Comments.sort((a, b) => {
+        return <any>new Date(b.CommentDate) - <any>new Date(a.CommentDate);});
       console.log(this.Comments);
     })
+  }
 
-    
+  open() {
+    const modalRef = this.modalService.open(MakeCommentComponent);
+    modalRef.componentInstance.parentPostId = Number(this.SinglePostId);
   }
 
 }

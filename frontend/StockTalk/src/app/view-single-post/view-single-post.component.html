@@ -6,9 +6,11 @@
 
 <h2>COMMENT COUNT: {{ Comments.length }}</h2>
 
-<div *ngFor="let Comment of Comments">
+  <button *ngIf="this.globals.isAuthenticated" (click)="open()">New Comment</button> 
 
-    <app-comment [Comment]="Comment"></app-comment>
+  <div *ngFor="let Comment of Comments">
+    
+    <app-comment [Comment]="Comment">{{Comment.CommentId}}</app-comment>
   
 </div>
   
