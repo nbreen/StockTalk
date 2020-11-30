@@ -133,7 +133,13 @@ export class PostComponent implements OnInit {
     // Adds up votes
     this.addVotes();
 
-    this.post_pic = (this.Post.PostImage != "placeholder");
+
+    if (this.Post.PostImage != "placeholder") {
+      if (this.Post.PostImage != "None") {
+        this.post_pic = true;
+      }
+    } 
+
 
   }
 

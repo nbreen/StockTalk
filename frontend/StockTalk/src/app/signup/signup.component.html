@@ -1,11 +1,10 @@
-<mat-toolbar>
-    <span>Sign up</span>
- </mat-toolbar>
- <mat-card class="my-card">
+
+ <mat-card id="signup_block" class="my-card">
     <mat-card-content>
       <!-- CONTENT HERE -->
       <form class="my-form">
         <!--FORM FIELDS HERE-->
+        <p id="welcome" >signup</p>
          <mat-form-field class="full-width">
             <mat-label>Username</mat-label>
             <input  matInput  placeholder="Username"  name="username"  required
@@ -43,6 +42,6 @@
     </mat-card-content>
     <mat-card-actions>
       <!-- SIGN UP BUTTON -->
-      <button mat-raised-button (click)="signup()" color="primary">SIGN UP</button>
+      <button id="signup" mat-raised-button (click)="signup()" color="primary">SIGN UP</button>
     </mat-card-actions>
  </mat-card>
