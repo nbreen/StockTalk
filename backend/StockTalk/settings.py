@@ -100,6 +100,9 @@ DATABASES = {
         'PASSWORD': '13Team13',
         'HOST': 'cs307team13.cwbgzf4cyva5.us-east-2.rds.amazonaws.com',
         'PORT': '3306',
+        'OPTIONS': {
+            'sql_mode': 'traditional',
+        }
     }
 }
 
