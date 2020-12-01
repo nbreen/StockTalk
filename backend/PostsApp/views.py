@@ -84,6 +84,29 @@ def getPost(Method):
     print(posts_serializer)
     return JsonResponse(posts_serializer.data, safe=False)
 
+@csrf_exempt
+def getFollowingPostId(Method):
+
+    request = (str(Method)).split("/")
+    Username = (str(request[2]))[:-2]
+    print(Username)
+    query = f'''SELECT * FROM
+        (SELECT PostId FROM PostsApp_posts p
+        JOIN (SELECT * FROM UserFollowsUser WHERE DoingFollowing = "saung") s
+        ON p.Username = s.BeingFollowed
+        UNION
+        SELECT PostId
+        FROM PostsApp_posts p
+        JOIN (SELECT * FROM UserFollowsTopic WHERE Username = "saung") t
+        ON p.TopicName = t.TopicName) T1 ORDER BY PostId DESC;'''
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+    print(records)
+    cursor.close()
+    # post_serializer = PostSerializer(records, many=True)
+    # print(post_serializer)
+    return JsonResponse(records, safe=False)
 
 @csrf_exempt
 def checkSavedPost(Method):

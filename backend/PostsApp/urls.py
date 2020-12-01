@@ -19,5 +19,6 @@ urlpatterns=[
     url(r'^downvote\/.*$', views.downvote),
     url(r'^addvotes\/.*$', views.addvotes),
     url(r'^suggestTopics/.$', views.suggestTopics),
-    url(r'^SavePostPic/$', views.SavePostPic)
+    url(r'^SavePostPic/$', views.SavePostPic),
+    url(r'^getFollowingPostId/.*$', views.getFollowingPostId)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
