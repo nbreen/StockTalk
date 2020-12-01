@@ -3,7 +3,7 @@
 </mat-toolbar>
   <mat-card class="my-card">
      <h2>{{ title }}</h2>
-     <h2 *ngIf="timer != -1 && !topics">Please wait {{ timer }} seconds for the topics to load!</h2>
+     <h2 *ngIf="timer != -1 && !topics">Please wait up to {{ timer }} seconds for the topics to load!</h2>
      <h2 *ngIf="timer != -1 && !topics && warningOne">W1: {{ warningOne }}</h2>
      <h2 *ngIf="timer != -1 && !topics && warningTwo">W2: {{ warningTwo }}</h2>
 

@@ -68,7 +68,7 @@ export class AlltopicsComponent implements OnInit {
     this.backend.getAll<number>("/getTopicCount/").subscribe(data => {
       console.log(data)
       this.topicCount = data[0];
-      let timePerTopic = 0.000525;
+      let timePerTopic = 0.000875;
       this.timer = timePerTopic * this.topicCount;
       // let variability = Math.random() / 3;
       // this.timer += variability;
@@ -81,13 +81,13 @@ export class AlltopicsComponent implements OnInit {
     function addWarningOne() {
       setTimeout(function () {
           this.warningOne = "This page is taking longer than usual to load. Thank you for your patience.";
-      }, this.timer);
+      }, this.timer * 1000);
     }
 
     function addWarningTwo() {
       setTimeout(function () {
           this.warningTwo = "Error: Please try again later.";
-      }, 3 * this.timer);
+      }, 3 * this.timer * 3000);
     }
 
     

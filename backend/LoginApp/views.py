@@ -18,7 +18,7 @@ def loginApi(request,id=0):
 
         passwd = user_data['Password']
         passwd = bytes(passwd, 'utf-8')
-        hashed = bcrypt.hashpw(passwd, salt)
+        hashed = str(bcrypt.hashpw(passwd, salt))
         user_data['Password'] = str(hashed)
         print(user_data['Password'])
 
