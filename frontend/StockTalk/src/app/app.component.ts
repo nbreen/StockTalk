@@ -43,6 +43,13 @@ export class AppComponent {
     });
   }
 
+  directHome() {
+    // this.router.navigate(["/profile/" + this.globals.currentUsername]);
+    this.router.navigate(["/homepage/" + this.globals.currentUsername]) .then(() => {
+      window.location.reload();
+    });
+  }
+
   directSavedPosts() {
     this.router.navigate(["/mysavedposts/"]) .then(() => {
       window.location.reload();

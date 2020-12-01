@@ -60,7 +60,7 @@ export class MakePostComponent implements OnInit {
 
   @Input() new_post: Post = {
     Username: "",
-    TopicName: "",
+    TopicName: "placeholder",
     PostType: 0,
     Post: "",
     PostDate: "placeholder",
@@ -77,7 +77,7 @@ export class MakePostComponent implements OnInit {
   }
 
   resetPost() {
-    this.new_post.TopicName = "";
+    this.new_post.TopicName = "placeholder";
     this.new_post.PostImage = "placeholder";
     this.pic_upload = false;
   }
@@ -85,9 +85,10 @@ export class MakePostComponent implements OnInit {
   submitPost() {
 
     this.new_post.PostDate = new Date().toLocaleString();
-  
 
-    if (this.new_post.TopicName == "") {
+    alert(this.new_post.TopicName);
+
+    if (this.new_post.TopicName == "placeholder") {
       this.new_post.TopicName = "no_topic";
     }
 
@@ -99,13 +100,13 @@ export class MakePostComponent implements OnInit {
       this.new_post.PostImage = this.postPhotoPath;
     }
 
+
     this.backend.addPost(this.new_post).subscribe(res => {
       if (res.toString() != "Post added successfully") {
         alert("Something went wrong");
         this.resetPost();
       }
       this.directProfile();
-      console.log("post submitted")
     });
 
 
@@ -116,6 +117,7 @@ export class MakePostComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.pic_upload = false;
     var url_username = this.route.snapshot.params["User"];
 
     if (this.globals.currentUsername != url_username) {

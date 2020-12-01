@@ -32,6 +32,7 @@ export class FollowersComponent implements OnInit {
       this.followers = res;
     });
 
+
     this.backend.getAll<string>("/following/" + this.url_username).subscribe(res => {
       this.following = res;
     });

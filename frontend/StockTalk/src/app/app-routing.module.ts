@@ -16,6 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 import { MakePostComponent } from './make-post/make-post.component';
 import { VerifyComponent } from './verify/verify.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 const routes: Routes = [
   //{ path: '', redirectTo: '/', pathMatch: 'full' },
@@ -34,7 +35,8 @@ const routes: Routes = [
   { path: 'post/:PostId', component: ViewSinglePostComponent },
   { path: 'mysavedposts', component : ViewSavedPostsComponent },
   { path: 'suggestions', component : SuggestionsComponent},
-  { path: 'verify', component: VerifyComponent}
+  { path: 'verify', component: VerifyComponent},
+  { path: 'homepage/:User', component: HomepageComponent}
 ];
 
 @NgModule({

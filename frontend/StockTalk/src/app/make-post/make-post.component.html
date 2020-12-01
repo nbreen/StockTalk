@@ -15,8 +15,7 @@
     <form class="my-form">
       <mat-form-field class="full-width">
         <mat-label>topic</mat-label>
-        <input id='search' placeholder="choose a topic" (click)="toggleDropDown()" formControlName="search" type="text" name="topic"
-               [(ngModel)]="this.new_post.TopicName">
+        <input [(ngModel)]="this.new_post.TopicName" id="search" placeholder="choose a topic" (click)="toggleDropDown()" formControlName="search" type="text" name="topic">
         <div *ngIf="showDropDown" class="state-container-dropdown">
           <div>
             <div (click)="selectValue(t)" class='state' *ngFor='let topic of topics'>

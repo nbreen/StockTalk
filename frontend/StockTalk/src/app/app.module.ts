@@ -27,7 +27,8 @@ import { ViewSavedPostsComponent } from './view-saved-posts/view-saved-posts.com
 import { ViewSinglePostComponent } from './view-single-post/view-single-post.component';
 import { SuggestionsComponent } from './suggestions/suggestions.component';
 import { VerifyComponent } from './verify/verify.component';
-import { MakeCommentComponent } from './make-comment/make-comment.component';;
+import { MakeCommentComponent } from './make-comment/make-comment.component';
+import { HomepageComponent } from './homepage/homepage.component';;
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { MakeCommentComponent } from './make-comment/make-comment.component';;
     ViewSinglePostComponent,
     SuggestionsComponent,
     VerifyComponent,
-    MakeCommentComponent
+    MakeCommentComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
