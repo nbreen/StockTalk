@@ -21,7 +21,7 @@ def getComments(Method):
     mustEqual = (request[2])[:-2]
     print(mustEqual)
 
-    comment = Comment.objects.all().filter(PostId=mustEqual)
+    comment = Comment.objects.all().filter(PostId=mustEqual).order_by('-CommentId')
     
     print(comment)
     comment_serializer = CommentSerializer(comment, many=True)

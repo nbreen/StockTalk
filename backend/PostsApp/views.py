@@ -64,10 +64,10 @@ def getPost(Method):
     #print(mustEqual)
 
     if (filterBy == "ByTopic"):
-        post = Posts.objects.all().filter(TopicName=mustEqual)
+        post = Posts.objects.all().filter(TopicName=mustEqual).order_by('-PostId')
         print(post)
     elif (filterBy == "ByUser"):
-        post = Posts.objects.all().filter(Username=mustEqual)
+        post = Posts.objects.all().filter(Username=mustEqual).order_by('-PostId')
     elif (filterBy == "ById"):
         post = Posts.objects.all().filter(PostId=mustEqual)
 
