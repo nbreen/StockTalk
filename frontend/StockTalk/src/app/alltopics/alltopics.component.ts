@@ -18,6 +18,8 @@ export class AlltopicsComponent implements OnInit {
   topics: Array<Topic> = null;
   timer: number = -1;
   topicCount: number = -1;
+  warningOne: string = null;
+  warningTwo: string = null;
 
   constructor(
     private backend: CrudService,
@@ -71,8 +73,22 @@ export class AlltopicsComponent implements OnInit {
       // let variability = Math.random() / 3;
       // this.timer += variability;
       this.timer = Math.round(10 * this.timer) / 10;
+      addWarningOne();
+      addWarningTwo();
 
     })
+
+    function addWarningOne() {
+      setTimeout(function () {
+          this.warningOne = "This page is taking longer than usual to load. Thank you for your patience.";
+      }, this.timer);
+    }
+
+    function addWarningTwo() {
+      setTimeout(function () {
+          this.warningTwo = "Error: Please try again later.";
+      }, 3 * this.timer);
+    }
 
     
   }
