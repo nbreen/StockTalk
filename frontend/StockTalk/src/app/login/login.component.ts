@@ -33,8 +33,12 @@ export class LoginComponent implements OnInit {
   }
 
   temp_user: User;
+  enteredPasswordHashed;
+
 
   public login() {
+
+    
     if (this.loginData.Username && this.loginData.Password) {
       return this.service.validateUser(this.loginData).subscribe(res => {
         console.log(res);
@@ -47,18 +51,28 @@ export class LoginComponent implements OnInit {
             user_data = user_data.substring(1, user_data.length-1);
             this.temp_user = JSON.parse(user_data);
 
-            if (this.temp_user.Password == this.loginData.Password) {
-              alert("Welcome " + this.temp_user.Username);
-              this.globals.isAuthenticated = true;
-              this.globals.currentUsername = this.loginData.Username;
-              localStorage.setItem("isAuthenticated", "true");
-              localStorage.setItem("currentUsername", this.loginData.Username);
-              this.router.navigate(["/profile/" + this.loginData.Username]);
-            } else {
-              alert("Username or password is incorrect");
-              this.temp_user = null;
-              return;
-            }
+            this.service.getAll<String>("/hashPassword/" + this.loginData.Password).subscribe(data => {
+              this.enteredPasswordHashed = data;
+
+              // console.log(this.temp_user.Password)
+              // console.log(this.enteredPasswordHashed)
+              
+
+
+              if (this.temp_user.Password == this.enteredPasswordHashed) {
+                alert("Welcome " + this.temp_user.Username);
+                this.globals.isAuthenticated = true;
+                this.globals.currentUsername = this.loginData.Username;
+                localStorage.setItem("isAuthenticated", "true");
+                localStorage.setItem("currentUsername", this.loginData.Username);
+                this.router.navigate(["/profile/" + this.loginData.Username]);
+              } else {
+                alert("Username or password is incorrect");
+                this.temp_user = null;
+                return;
+              }
+            })
+
           })
         }
       });

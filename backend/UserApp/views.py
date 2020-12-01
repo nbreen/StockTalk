@@ -14,7 +14,7 @@ import re
 
 # Create your views here.
 
-salt = bcrypt.gensalt()
+salt = b'$2b$12$7KcY5oHPhABt0RDOdNKjdu'
 
 class UserList(generics.ListAPIView):    
     serializer_class = UserSerializer
