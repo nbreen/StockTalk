@@ -4,9 +4,6 @@ import { CrudService } from '../crud.service';
 import { Globals } from '../Globals';
 import { NgForm} from '@angular/forms';
 import { User } from '../shared/user.model';
-/*import bcrypt
-
-import UserApp.views */
 
 
 
@@ -38,10 +35,6 @@ export class LoginComponent implements OnInit {
   temp_user: User;
 
   public login() {
-    /*passwd = this.loginData.Password
-    //salt = bcrypt.gensalt()
-    hashed = bcrypt.hashpw(passwd, salt)
-    this.loginData.Password = str(hashed)*/
     if (this.loginData.Username && this.loginData.Password) {
       return this.service.validateUser(this.loginData).subscribe(res => {
         console.log(res);
@@ -55,7 +48,6 @@ export class LoginComponent implements OnInit {
             this.temp_user = JSON.parse(user_data);
 
             if (this.temp_user.Password == this.loginData.Password) {
-            //if (bcrypt.checkpw(this.temp_user.Password, this.loginData.Password)) {
               alert("Welcome " + this.temp_user.Username);
               this.globals.isAuthenticated = true;
               this.globals.currentUsername = this.loginData.Username;
