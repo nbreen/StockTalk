@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   temp_user: User;
 
   public login() {
-    this.longinData.Password = this.service.valPass(this.loginData.Password).subscribe(res => {
+    this.loginData.Password = this.service.valPass(this.loginData.Password).subscribe(res => {
         console.log(res);
     if (this.loginData.Username && this.loginData.Password) {
       return this.service.validateUser(this.loginData).subscribe(res => {
