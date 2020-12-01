@@ -69,6 +69,11 @@ export class CrudService {
     let body = JSON.stringify(loginData);
     return this.httpClient.post<any>(this.APIUrl + "/login/", body);
   }
+  
+  valPass(val: any){
+    let body = JSON.stringify(val);
+    return this.httpClient.put<any>(this.APIUrl + "/login/", body)
+  }
 
   getUserById<T>(id : Number, type : T) : Observable<T> {
 
