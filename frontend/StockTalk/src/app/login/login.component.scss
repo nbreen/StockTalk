@@ -5,7 +5,9 @@
     text-emphasis-color: black;
     background-color:  rgb(79, 165, 115);
     color: white;
+    padding-top: 50px;
     padding-bottom: 50px;
+    display: block;
 }
 
 #login_text {
@@ -17,4 +19,11 @@
 #login_button {
     background-color: white;
     color:  rgb(79, 165, 115);
+}
+
+.center {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

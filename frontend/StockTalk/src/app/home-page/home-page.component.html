@@ -1,0 +1,24 @@
+<div class="bg">
+    <h1 class="welcome">Welcome to $tockTalk!</h1>
+    <div class="container">
+        <h3>
+            $tockTalk is a social media platform for stock traders to converse with other traders and even with company representatives.
+        </h3>
+        <p>
+            Our Goal is to be a platform focused on trading providing a single source of information regarding daily trading activites.
+        </p>
+        <p *ngIf=this.global.isAuthenticated>
+            Welcome back <a routerLink="profile/{{this.global.currentUsername}}">{{this.global.currentUsername}}</a>  checkout your<a routerLink="suggestions"> suggested topics & users </a>
+        </p>
+        <p *ngIf=!this.global.isAuthenticated>
+            Get started by checking out our <a routerLink="trendingtopics">trending</a> topics.
+        </p>
+        <p *ngIf=!this.global.isAuthenticated>
+            If you like what you see consider signing up for a free account!
+        </p>
+        <button *ngIf=!this.global.isAuthenticated routerLink="signup">Signup Here!</button>
+        <p *ngIf=!this.global.isAuthenticated>Already have an account? <a routerLink="login">Login here</a></p>
+    </div>
+</div>
+
+
