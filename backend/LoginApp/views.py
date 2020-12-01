@@ -17,3 +17,7 @@ def loginApi(request,id=0):
             return JsonResponse("User exists", safe=False)
         else:    
             return JsonResponse("User does not exist", safe=False)
+    elif request.method=='PUT':
+            passwd = JSONParser().parse(request)
+            hash = bcrypt.hashpw(passwd, salt)
+            return str(hash)
