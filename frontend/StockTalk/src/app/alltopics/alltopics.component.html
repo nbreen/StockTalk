@@ -3,6 +3,7 @@
 </mat-toolbar>
   <mat-card class="my-card">
      <h2>{{ title }}</h2>
+     <h2 *ngIf="timer != -1 && !topics">Please wait {{ timer }} seconds for the topics to load!</h2>
 
      <button class=mybutton mat-raised-button color="primary" (click)="sortAZ()">Sort by Topic Name</button>
      <button class=mybutton mat-raised-button color="primary" (click)="sortCount()">Sort by Post Count</button>

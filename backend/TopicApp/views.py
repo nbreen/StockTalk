@@ -45,6 +45,19 @@ def getAllTopics(Method):
     return JsonResponse(topic_serializer.data, safe=False)
 
 @csrf_exempt
+def getTopicCount(request):
+    
+
+    query = f'SELECT COUNT(TopicName) FROM TopicApp_topic;'
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+
+    # print(records)
+    cursor.close()
+    return JsonResponse(records, safe=False)
+
+@csrf_exempt
 def suggestTopics(Method):
     print("***********************")
     args = str(Method).split("/")

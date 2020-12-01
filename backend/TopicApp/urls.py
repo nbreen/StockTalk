@@ -7,4 +7,5 @@ urlpatterns=[
     url(r'unfollowtopic/.*$', views.unfollowtopic),
     url(r'followtopic/.*$', views.followtopic),
     url(r'suggestTopics/.*$', views.suggestTopics),
+    url(r'getTopicCount/$', views.getTopicCount)
 ]
