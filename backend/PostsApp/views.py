@@ -34,7 +34,7 @@ def getSavedPost(Method):
     request = (str(Method)).split("/")
     Username = (str(request[3]))[:-2]
     print(Username)
-    query = f'SELECT PostId FROM UserSavesPost WHERE Username = "{Username}";'
+    query = f'SELECT PostId FROM UserSavesPost WHERE Username = "{Username}" ORDER BY "PostId" DESC;'
     cursor = connection.cursor()
     cursor.execute(query)
     records = cursor.fetchall()
@@ -70,7 +70,10 @@ def getPost(Method):
         post = Posts.objects.all().filter(Username=mustEqual).order_by('-PostId')
     elif (filterBy == "ById"):
         post = Posts.objects.all().filter(PostId=mustEqual)
-
+    elif (filterBy == "ByArray"):
+        mustEqual = mustEqual.split(",")
+        print(mustEqual)
+        post = Posts.objects.all().filter(PostId__in=mustEqual).order_by('-PostId')
 
 
 
@@ -89,7 +92,7 @@ def checkSavedPost(Method):
     Username = request[2]
     PostId = (request[3])[:-2]
 
-    query = f'SELECT * FROM UserSavesPost WHERE Username = "{Username}" AND PostId = "{PostId}";'
+    query = f'SELECT * FROM UserSavesPost WHERE Username = "{Username}" AND PostId = "{PostId}"'
     cursor = connection.cursor()
     cursor.execute(query)
     records = cursor.fetchall()

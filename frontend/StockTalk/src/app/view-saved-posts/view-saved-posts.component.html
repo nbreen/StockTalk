@@ -1,9 +1,13 @@
-<h2 *ngIf="postCount != -1">This Page has {{ savedPostCount }} Post(s)</h2>
-
-<h3> Click the Numbers to Visit the Posts </h3>
-
-<div *ngFor="let Post of savedPostIds">
+<!-- <div *ngFor="let Post of savedPostIds">
 
   <a style="font-size:30px; color:blue" routerLink="/post/{{ Post[0] }}">#{{Post[0]}}</a>
+
+</div> -->
+
+<h2 *ngIf="postCount != -1">You have saved {{ postCount }} Post(s)</h2>
+
+<div *ngFor="let Post of Posts">
+
+  <app-post [Post]="Post"></app-post>
 
 </div>
