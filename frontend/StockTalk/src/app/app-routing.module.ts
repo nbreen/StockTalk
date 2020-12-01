@@ -17,6 +17,7 @@ import { ProfileSettingsComponent } from './profile-settings/profile-settings.co
 import { MakePostComponent } from './make-post/make-post.component';
 import { VerifyComponent } from './verify/verify.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { HomePageComponent } from './home-page/home-page.component'
 
 const routes: Routes = [
   //{ path: '', redirectTo: '/', pathMatch: 'full' },
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'suggestions', component : SuggestionsComponent},
   { path: 'verify', component: VerifyComponent},
   { path: 'homepage/:User', component: HomepageComponent}
+  { path: '', component: HomePageComponent}
 ];
 
 @NgModule({

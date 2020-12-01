@@ -29,6 +29,7 @@ import { SuggestionsComponent } from './suggestions/suggestions.component';
 import { VerifyComponent } from './verify/verify.component';
 import { MakeCommentComponent } from './make-comment/make-comment.component';
 import { HomepageComponent } from './homepage/homepage.component';;
+import { HomePageComponent } from './home-page/home-page.component';;
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { HomepageComponent } from './homepage/homepage.component';;
     SuggestionsComponent,
     VerifyComponent,
     MakeCommentComponent,
-    HomepageComponent
+    HomepageComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
