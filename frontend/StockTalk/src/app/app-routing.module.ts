@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'mysavedposts', component : ViewSavedPostsComponent },
   { path: 'suggestions', component : SuggestionsComponent},
   { path: 'verify', component: VerifyComponent},
-  { path: 'homepage/:User', component: HomepageComponent}
+  { path: 'homepage/:User', component: HomepageComponent},
   { path: '', component: HomePageComponent}
 ];
 
