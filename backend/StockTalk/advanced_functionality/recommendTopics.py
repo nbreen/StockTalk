@@ -16,6 +16,32 @@ db_port = '3306'
 connection = pymysql.connect(db_host, db_user, db_password, db_name)
 cur = connection.cursor()
 
+def remove_bad_topics():
+	#get all topics
+	cur.execute("SELECT TopicName from TopicApp_topic")
+	result = cur.fetchall()
+	all_topics = []
+	for i in range(len(result)):
+		all_topics.append(result[i][0])
+
+	#get recommended topics
+	cur.execute("SELECT RecommendedTopic from RecommendTopics")
+	result = cur.fetchall()
+	r_topics = []
+	for i in range(len(result)):
+		r_topics.append(result[i][0])
+
+	bad_topics = []
+	#get bad topics
+	for topic in r_topics:
+		if topic not in all_topics:
+			bad_topics.append(topic)
+
+	print(bad_topics)
+
+	for topic in bad_topics:
+		cur.execute("DELETE FROM RecommendTopics WHERE RecommendedTopic = %s", topic)
+		connection.commit()
 
 
 def populate_recommendTopics_currentData():
@@ -39,6 +65,7 @@ def populate_recommendTopics_currentData():
 	popular_topics = []
 	for i in range(len(result)):
 		popular_topics.append(result[i][0])
+
 
 	for user in usernames:
 		#get topics that user posted about 
@@ -137,7 +164,15 @@ def update(user, topic, method):
 	result = cur.fetchall()
 	scores = []
 	for i in range(len(result)):
-		scores.append(result[i][0])	
+		scores.append(result[i][0])
+
+
+	#get all topics
+	cur.execute("SELECT TopicName from TopicApp_topic")
+	result = cur.fetchall()
+	all_topics = []
+	for i in range(len(result)):
+		all_topics.append(result[i][0])
 
 	#new post about topic
 	if method == 0:	
@@ -149,8 +184,10 @@ def update(user, topic, method):
 				connection.commit()
 
 			#add new topic
-			cur.execute("INSERT IGNORE INTO RecommendTopics(CurrentUser, RecommendedTopic, Score) VALUES (%s, %s, %s)", (user, topic, posted_bias))
-			connection.commit()
+			if topic in all_topics:
+				if topic not in recommend_topics:
+					cur.execute("INSERT IGNORE INTO RecommendTopics(CurrentUser, RecommendedTopic, Score) VALUES (%s, %s, %s)", (user, topic, posted_bias))
+					connection.commit()
 
 	#followed topic
 	elif method == 1:
@@ -161,10 +198,12 @@ def update(user, topic, method):
 
 
 
+
 #0 = new post, 1 = follow
 method = 0
 user = '9O8fes'
 topic = 'TSLA'
 update(user, topic, method)
 #populate_recommendTopics_currentData()
+#remove_bad_topics()
 
