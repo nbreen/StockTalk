@@ -5,8 +5,8 @@
 
   <mat-card id="profile_block" class="my-card">
     <a class="a" mat-raised-button routerLink="/followers/{{currProfile}}" color="theme_color">See {{ currProfile }}'s followers and the Users/Topics they follow!</a><br>
-    <a class="a" *ngIf="following && getIsDone && !isUser" mat-raised-button color="primary" (click)="unfollowButton()">Unfollow</a>
-    <a class="a" *ngIf="!following && getIsDone && !isUser" mat-raised-button color="primary" (click)="followButton()">Follow</a>
+    <a class="a" *ngIf="following && getIsDone && !isUser && this.globals.isAuthenticated" mat-raised-button color="primary" (click)="unfollowButton()">Unfollow</a>
+    <a class="a" *ngIf="!following && getIsDone && !isUser && this.globals.isAuthenticated" mat-raised-button color="primary" (click)="followButton()">Follow</a>
     <mat-card-content>
       <!--<img class="profile" src = {{profile.ProfileImage}}>
     <p>Image src {{profile.ProfileImage}}</p>-->
