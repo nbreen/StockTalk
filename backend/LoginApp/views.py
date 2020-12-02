@@ -5,7 +5,8 @@ from django.http.response import JsonResponse
 
 from UserApp.models import Users
 import bcrypt
-from UserApp.views import salt
+#from UserApp.views import salt
+salt = b'$2b$12$7KcY5oHPhABt0RDOdNKjdu'
 
 # Create your views here.
 @csrf_exempt
@@ -18,7 +19,7 @@ def loginApi(request,id=0):
 
         passwd = user_data['Password']
         passwd = bytes(passwd, 'utf-8')
-        hashed = str(bcrypt.hashpw(passwd, salt))
+        hashed = bcrypt.hashpw(passwd, salt)
         user_data['Password'] = str(hashed)
         print(user_data['Password'])
 
