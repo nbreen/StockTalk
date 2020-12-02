@@ -16,6 +16,7 @@ import re
 
 salt = b'$2b$12$7KcY5oHPhABt0RDOdNKjdu'
 
+
 class UserList(generics.ListAPIView):    
     serializer_class = UserSerializer
 
