@@ -1,9 +1,10 @@
 <div *ngIf=topics class="center">
 
-<mat-toolbar>
-    <span>TRENDING TOPICS</span>
-</mat-toolbar>
-  <mat-card class="my-card">
+
+  <mat-card id="main_block" class="my-card">
+
+    <p id="title">TRENDING TOPICS</p>
+
      <h2>{{ title }}</h2>
      
      <table style="width:100%">
@@ -19,7 +20,7 @@
 
          <tr *ngFor="let topic of topics">
          <li>
-           <a routerLink="/topic/{{topic.TopicName}}">{{topic.TopicName}}</a>
+           <a id="text" routerLink="/topic/{{topic.TopicName}}">{{topic.TopicName}}</a>
 
 
          </li>

@@ -86,7 +86,7 @@ export class MakePostComponent implements OnInit {
 
     this.new_post.PostDate = new Date().toLocaleString();
 
-    alert(this.new_post.TopicName);
+    //alert(this.new_post.TopicName);
 
     if (this.new_post.TopicName == "placeholder") {
       this.new_post.TopicName = "no_topic";

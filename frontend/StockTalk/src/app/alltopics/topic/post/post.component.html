@@ -12,7 +12,7 @@
 
   <h2>{{ Post.PostDate }}</h2>
 
-  <img id=post_pic *ngIf="this.post_pic" [src]=this.Post.PostImage height="200px;" width="200px;">
+  <img id=post_pic *ngIf="this.post_pic" [src]=this.Post.PostImage height="200px;" width="230px;">
 
   <p>{{ Post.Post }}</p>
   <button *ngIf="saved && getIsDone" mat-raised-button color="primary" (click)="unsaveButton()">Unsave Post</button>
