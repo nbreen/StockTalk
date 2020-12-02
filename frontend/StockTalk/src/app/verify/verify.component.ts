@@ -44,7 +44,6 @@ export class VerifyComponent implements OnInit {
 
 
     alert("A verification request has been sent.");
-    alert(storedRequests);
     this.router.navigate(["/profile/" + this.globals.currentUsername]);
 
   }
