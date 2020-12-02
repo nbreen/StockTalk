@@ -14,7 +14,7 @@ import re
 
 # Create your views here.
 
-salt = b'$2b$12$7KcY5oHPhABt0RDOdNKjdu
+salt = b'$2b$12$7KcY5oHPhABt0RDOdNKjdu'
 
 
 
