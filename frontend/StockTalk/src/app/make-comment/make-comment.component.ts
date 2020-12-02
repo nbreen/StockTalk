@@ -1,3 +1,4 @@
+import { ViewSavedPostsComponent } from './../view-saved-posts/view-saved-posts.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Comment } from "../Interfaces";
@@ -31,6 +32,12 @@ export class MakeCommentComponent implements OnInit {
     this.activeModal.close();
     this.new_comment.PostId = this.parentPostId;
     console.log(JSON.stringify(this.new_comment));
-    this.backend.addComment(this.new_comment);
+    this.backend.addComment(this.new_comment).subscribe(res => {
+      if (res.toString() != "Comment added successfully") {
+        alert("Something went wrong");
+      }
+      location.reload();
+      
+    });
   }
 }

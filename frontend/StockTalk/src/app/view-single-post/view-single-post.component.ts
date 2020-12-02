@@ -25,6 +25,17 @@ export class ViewSinglePostComponent implements OnInit {
     public globals: Globals,
     private modalService: NgbModal) { }
     
+  getComments() {
+    this.backend.getAll<Comment>("/getComments/" + this.SinglePostId).subscribe(data => {
+      this.Comments = data;
+      this.Comments.forEach(function (value) {
+        value.CommentDate = new Date(value.CommentDate);
+      })
+      this.Comments = this.Comments.sort((a, b) => {
+        return <any>new Date(b.CommentDate) - <any>new Date(a.CommentDate);});
+      console.log(this.Comments);
+    })
+  }
 
   ngOnInit(): void {
     let arr = (window.location.href).split("/");
@@ -36,15 +47,7 @@ export class ViewSinglePostComponent implements OnInit {
       console.log(this.Posts);
     })
 
-    this.backend.getAll<Comment>("/getComments/" + this.SinglePostId).subscribe(data => {
-      this.Comments = data;
-      this.Comments.forEach(function (value) {
-        value.CommentDate = new Date(value.CommentDate);
-      })
-      this.Comments = this.Comments.sort((a, b) => {
-        return <any>new Date(b.CommentDate) - <any>new Date(a.CommentDate);});
-      console.log(this.Comments);
-    })
+    this.getComments()
   }
 
   open() {

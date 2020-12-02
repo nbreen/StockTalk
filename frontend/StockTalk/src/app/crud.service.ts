@@ -101,6 +101,6 @@ export class CrudService {
   }
 
   addComment(newComment: Comment) {
-    return this.httpClient.post(this.APIUrl, newComment);
+    return this.httpClient.post(this.APIUrl + '/addComment/', newComment);
   }
 }

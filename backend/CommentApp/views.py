@@ -28,3 +28,12 @@ def getComments(Method):
     print(comment_serializer)
     return JsonResponse(comment_serializer.data, safe=False)
 
+@csrf_exempt
+def commentApi(request, id=0):
+    post_data = JSONParser().parse(request)
+    post_serializer = CommentSerializer(data=post_data)
+    if post_serializer.is_valid():
+        post_serializer.save()
+
+        return JsonResponse("Comment added successfully", safe=False)
+    return JsonResponse("Failed to add comment", safe=False)
