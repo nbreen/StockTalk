@@ -4,9 +4,7 @@
   <mat-card id="background" class="my-card">
     <p id="title">ALL TOPICS</p>
      <h2>{{ title }}</h2>
-     <h2 *ngIf="timer != -1 && !topics">Please wait up to {{ timer }} seconds for the topics to load!</h2>
-     <h2 *ngIf="timer != -1 && !topics && warningOne">W1: {{ warningOne }}</h2>
-     <h2 *ngIf="timer != -1 && !topics && warningTwo">W2: {{ warningTwo }}</h2>
+     <h2 *ngIf="!topics">Please wait a moment.</h2>
 
      <button id="buttons" class=mybutton mat-raised-button color="primary" (click)="sortAZ()">Sort by Topic Name</button>
      <button id="buttons" class=mybutton mat-raised-button color="primary" (click)="sortCount()">Sort by Post Count</button>
@@ -16,26 +14,14 @@
         <tr>
           <th>Topic Name</th>
           <th>Post Count</th>
-          <!-- <th>Popularity Rank</th>
-          <th>Trending?</th>
-          <th>Stock?</th> -->
         </tr>
-        <tr *ngFor="let topic of topics">
+        <tr *ngFor="let topic of topics.slice(currentTopic, currentTopic + 100)">
               
               <a id="text" routerLink="/topic/{{topic.TopicName}}">{{topic.TopicName}}</a>
               <td>{{topic.NumberOfPosts}}</td>
-              <!-- <td>{{topic.popularity}}</td>
-              <td *ngIf="topic.is_trending">🔥</td>
-              <td *ngIf="!topic.is_trending">❌</td> -->
-              <!-- <td *ngIf="topic.is_stock;">💲</td>
-              <td *ngIf="!topic.is_stock;">❌</td> -->
              
-        </tr>
       </table>
+        <button id="buttons" class=mybutton mat-raised-button color="primary" (click)="prev()">← Prev 100</button>
+        <button id="buttons" class=mybutton mat-raised-button color="primary" (click)="next()">Next 100 →</button>
       </div>
   </mat-card>
-
-  <mat-card class="my-card">
-    <h2 *ngIf=!topics>Loading All Topics Please Wait...</h2>
-  </mat-card>
-  

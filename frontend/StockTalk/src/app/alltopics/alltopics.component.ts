@@ -16,18 +16,14 @@ import { Router } from '@angular/router';
 export class AlltopicsComponent implements OnInit {
   title: string = "explore all topics on StockTalk"
   topics: Array<Topic> = null;
-  timer: number = -1;
-  topicCount: number = -1;
-  warningOne: string = null;
-  warningTwo: string = null;
+
+  currentTopic: number = 0;
 
   constructor(
     private backend: CrudService,
     private router: Router,
     private globals: Globals
   ) { 
-
-    this.getTime();
     
     if (localStorage.getItem("sortAZ") == "true") {
       this.backend.getAll<Topic>("/topic/0").subscribe(data => {
@@ -49,7 +45,6 @@ export class AlltopicsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.backend.getAll<Topic>("/topic/").subscribe(val  => {console.log(val); this.topics = val});
   }
 
   sortAZ() {
@@ -64,33 +59,18 @@ export class AlltopicsComponent implements OnInit {
     window.location.reload(); 
   }
 
-  getTime() {
-    this.backend.getAll<number>("/getTopicCount/").subscribe(data => {
-      console.log(data)
-      this.topicCount = data[0];
-      let timePerTopic = 0.000875;
-      this.timer = timePerTopic * this.topicCount;
-      // let variability = Math.random() / 3;
-      // this.timer += variability;
-      this.timer = Math.round(10 * this.timer) / 10;
-      addWarningOne();
-      addWarningTwo();
-
-    })
-
-    function addWarningOne() {
-      setTimeout(function () {
-          this.warningOne = "This page is taking longer than usual to load. Thank you for your patience.";
-      }, this.timer * 1000);
+  next() {
+    this.currentTopic += 100;
+    if (this.currentTopic >= this.topics.length) {
+      this.currentTopic = this.topics.length - 1;
     }
-
-    function addWarningTwo() {
-      setTimeout(function () {
-          this.warningTwo = "Error: Please try again later.";
-      }, 3 * this.timer * 3000);
-    }
-
-    
   }
+
+  prev() {
+    if (this.currentTopic != 0) {
+    this.currentTopic -= 100;
+    }
+  }
+
   
 }
