@@ -3,7 +3,7 @@
 </mat-toolbar>
 
     <!-- <h2>{{}} Follower/Following Page!</h2> -->
-    <mat-card class="my-card"> 
+    <mat-card class="my-card" *ngIf= "topics && users && !(topics.length == 0 && users.length == 0)"> 
       <h2>Here are your suggestions</h2> 
        
         <table style="width:25%">
@@ -30,4 +30,6 @@
         </div>  
         </table>
     </mat-card>
+
+    <mat-card class="my-card" *ngIf= "topics && users && topics.length == 0 && users.length == 0"><h2>You do not have any suggestions. Please begin making posts and following users for new suggestions.</h2></mat-card>
     
