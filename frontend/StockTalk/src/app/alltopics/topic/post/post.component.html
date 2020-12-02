@@ -3,6 +3,9 @@
 <div id="post" class="bubble">
 
   <a style="font-size:20px; color:blue" routerLink="/profile/{{ Post.Username }}">@{{Post.Username}}</a>
+  <div>
+    <img *ngIf="this.isVerified" id="verified_check" [src]=this.verifiedPath height="25px;" width="25px;">
+  </div>
   <br>
 
   <a style="font-size:20px; color:blue" routerLink="/topic/{{ Post.TopicName }}">#{{Post.TopicName}}</a>

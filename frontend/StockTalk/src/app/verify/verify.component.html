@@ -1,1 +1,25 @@
-<p>verify works!</p>
+<mat-card id="settings" class="my-card">
+    <p id="settings_title">get verified</p>
+    
+    <mat-card-content>
+      
+      <!-- CONTENT HERE -->
+      <form class="my-form">
+        <!--FORM FIELDS HERE-->
+        
+      <p>
+          A verified badge is a check that appears next to a StockTalk account's name to indicate that the account is the authentic presence of a notable public figure, celebrity, global brand or entity it represents.
+      </p>
+      <p>Submitting a request for verification does not guarantee that your account will be verified</p>
+      </form>
+         
+    </mat-card-content>
+  
+    <mat-card-actions>
+      <!-- SIGN UP BUTTON -->
+      
+      <button mat-raised-button (click)="submitVerification()" color="buttons_v">request verification</button>
+      <button mat-raised-button (click)="directProfile()" color="buttons">cancel</button>
+      
+    </mat-card-actions>
+  </mat-card>

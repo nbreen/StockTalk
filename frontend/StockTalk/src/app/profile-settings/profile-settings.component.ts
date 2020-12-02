@@ -38,7 +38,7 @@ export class ProfileSettingsComponent implements OnInit {
   }
 
   directVerify() {
-    this.router.navigate(["/verify/"]);
+    this.router.navigate(["/verify/"  + this.globals.currentUsername]);
   }
 
   directDelete() {

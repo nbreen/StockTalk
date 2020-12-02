@@ -1,0 +1,24 @@
+<mat-card id="settings" class="my-card">
+    <p id="settings_title">manage verification requests</p>
+    
+    <mat-card-content>
+      
+      <!-- CONTENT HERE -->
+      <form class="my-form">
+        <!--FORM FIELDS HERE-->
+        
+      <p> The following users have requested verification</p>
+      </form>
+      <p>{{this.requests}}</p>
+         
+    </mat-card-content>
+  
+    <mat-card-actions>
+      <!-- SIGN UP BUTTON -->
+      <input  matInput  placeholder="Password" name="password" [(ngModel)]='this.user_request'>
+      
+      <button mat-raised-button (click)="acceptVerification()" color="buttons_v">accept verification</button>
+      <button mat-raised-button (click)="directProfile()" color="buttons">cancel</button>
+      
+    </mat-card-actions>
+  </mat-card>

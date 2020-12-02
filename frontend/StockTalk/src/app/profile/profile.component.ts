@@ -32,9 +32,12 @@ export class ProfileComponent implements OnInit {
   profile: Profile;
   profilePhotoPath: string;
   settingsURL: string;
+  verifiedPath: string;
 
   user: User;
   isUser: boolean;
+  isVerified: boolean;
+  isAdmin: boolean;
 
   currProfile: string;
   following: boolean;
@@ -42,7 +45,6 @@ export class ProfileComponent implements OnInit {
 
   Posts: Array<Post>;
   postCount: number = -1;
-
 
   showSettings() {
     if (this.isUser && this.globals.isAuthenticated) {
@@ -66,6 +68,10 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(["/makepost/" + this.globals.currentUsername]);
   }
 
+  verify() {
+    this.router.navigate(["/manage_verification/"]);
+  }
+
   unfollowButton() {
     // Delete
     let info = "/unfollowuser/" + this.globals.currentUsername + "/" + this.currProfile;
@@ -79,6 +85,15 @@ export class ProfileComponent implements OnInit {
   
     var url_username = this.route.snapshot.params["User"];
     this.currProfile = url_username;
+
+    this.verifiedPath = "http://127.0.0.1:8000/media/verified.png";
+    if (localStorage.getItem("verified_" + url_username) == "true") {
+      this.isVerified = true;
+    }
+
+    if (localStorage.getItem("admin_" + url_username) == "true") {
+      this.isAdmin = true;
+    }
 
     if (this.globals.currentUsername == url_username) {
       this.isUser = true;

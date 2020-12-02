@@ -29,7 +29,8 @@ import { SuggestionsComponent } from './suggestions/suggestions.component';
 import { VerifyComponent } from './verify/verify.component';
 import { MakeCommentComponent } from './make-comment/make-comment.component';
 import { HomepageComponent } from './homepage/homepage.component';;
-import { HomePageComponent } from './home-page/home-page.component';;
+import { HomePageComponent } from './home-page/home-page.component';
+import { ManageVerificationComponent } from './manage-verification/manage-verification.component';;
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { HomePageComponent } from './home-page/home-page.component';;
     VerifyComponent,
     MakeCommentComponent,
     HomepageComponent,
-    HomePageComponent
+    HomePageComponent,
+    ManageVerificationComponent
   ],
   imports: [
     BrowserModule,

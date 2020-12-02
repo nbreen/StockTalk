@@ -22,6 +22,9 @@ export class PostComponent implements OnInit {
 
   post_pic: Boolean;
 
+  verifiedPath: string;
+  isVerified: boolean;
+
 
   deletevote() {
     let info = "/deletevote/" + this.globals.currentUsername + "/" + this.Post.PostId;
@@ -139,6 +142,11 @@ export class PostComponent implements OnInit {
         this.post_pic = true;
       }
     } 
+
+    this.verifiedPath = "http://127.0.0.1:8000/media/verified.png";
+    if (localStorage.getItem("verified_" + this.Post.Username) == "true") {
+      this.isVerified = true;
+    }
 
 
   }

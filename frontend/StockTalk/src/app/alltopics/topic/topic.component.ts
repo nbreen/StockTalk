@@ -50,6 +50,7 @@ export class TopicComponent implements OnInit {
 
   ngOnInit(): void {
     
+    
     let info = "/checkfollowtopic/" + this.globals.currentUsername + "/" + this.TopicName;
     console.log(info);
     this.backend.getAll(info).subscribe(res => {

@@ -18,6 +18,7 @@ import { MakePostComponent } from './make-post/make-post.component';
 import { VerifyComponent } from './verify/verify.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { HomePageComponent } from './home-page/home-page.component'
+import { ManageVerificationComponent } from './manage-verification/manage-verification.component';
 
 const routes: Routes = [
   //{ path: '', redirectTo: '/', pathMatch: 'full' },
@@ -36,9 +37,10 @@ const routes: Routes = [
   { path: 'post/:PostId', component: ViewSinglePostComponent },
   { path: 'mysavedposts', component : ViewSavedPostsComponent },
   { path: 'suggestions', component : SuggestionsComponent},
-  { path: 'verify', component: VerifyComponent},
+  { path: 'verify/:User', component: VerifyComponent},
   { path: 'homepage/:User', component: HomepageComponent},
-  { path: '', component: HomePageComponent}
+  { path: '', component: HomePageComponent},
+  { path: 'manage_verification', component: ManageVerificationComponent}
 ];
 
 @NgModule({
