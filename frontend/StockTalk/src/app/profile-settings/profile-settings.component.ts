@@ -66,11 +66,27 @@ export class ProfileSettingsComponent implements OnInit {
         console.log("Current Password" + realPasswordDB);
         
         if (this.current_password != realPasswordDB) {
+          console.log("HERE")
           alert("Password is incorrect.");
           this.new_password = "";
           this.current_password = "";
           this.new_bio = "";
           return;
+        } else {
+          if (this.password_change) {
+            this.user.Password = this.new_password;
+            console.log(this.new_password)
+            this.backend.updateUser(JSON.stringify(this.user)).subscribe(res => {
+              if (res.toString() != "User updated successfully") {
+                alert("Something went wrong, please check your input again.");
+                return;
+              } else {
+                alert("Profile settings updated successfully.");
+                this.router.navigate(["/profile/" + this.user.Username]);
+                return;
+              }
+            });
+          }
         }
 
       })
@@ -94,28 +110,21 @@ export class ProfileSettingsComponent implements OnInit {
       this.profile.Bio = this.new_bio;
     }
 
-    if (this.password_change) {
-      this.user.Password = this.new_password;
-      console.log(this.new_password)
-      this.backend.updateUser(JSON.stringify(this.user)).subscribe(res => {
-        if (res.toString() != "User updated successfully") {
-          alert("Something went wrong, please check your input again.");
-          return;
-        }
-      });
-    }
-
     if (this.bio_change || this.pic_change) {
       this.backend.updateProfile(JSON.stringify(this.profile)).subscribe(res => {
         if (res.toString() != "Profile updated successfully") {
           alert("Something went wrong, please check your input again.");
           return;
+        } else {
+          alert("Profile settings updated successfully.");
+          this.router.navigate(["/profile/" + this.user.Username]);
+          return;
         }
       });
     }
 
-    alert("Profile settings updated successfully.");
-    this.router.navigate(["/profile/" + this.user.Username]);
+    // alert("Profile settings updated successfully.");
+    // this.router.navigate(["/profile/" + this.user.Username]);
     
   }
 
