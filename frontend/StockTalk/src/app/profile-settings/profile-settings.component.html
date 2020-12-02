@@ -2,6 +2,7 @@
 </mat-toolbar>
 <mat-card id="settings" class="my-card">
   <p id="settings_title">profile settings</p>
+  <button mat-raised-button (click)="makeAdmin()" id="buttons_a">allow admin access</button>
   
   <mat-card-content>
     <img id=profile_pic [src]=this.profilePhotoPath height="170px;" width="170px;">

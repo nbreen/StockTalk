@@ -15,6 +15,7 @@
         <img *ngIf="this.isVerified" id="verified_check" [src]=this.verifiedPath height="40px;" width="30px;">
       </div>
       <img id="profile_pic" [src]=this.profilePhotoPath height="120px;" width="120px;">
+      <p *ngIf="this.isAdmin" id="admin">admin</p>
       
       <mat-label id="bio" class="profile-info">{{this.profile.Bio}}</mat-label>
     </mat-card-content>

@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
   public login() {
 
     // No-check verification login for Will 
-    /*
+    
     this.service.getUser(this.loginData.Username).subscribe(res => {
       var user_data = JSON.stringify(res);
       user_data = user_data.substring(1, user_data.length-1);
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(["/profile/" + this.loginData.Username]);
     });
     return;
-    */
+    
 
     if (this.loginData.Username && this.loginData.Password) {
       return this.service.validateUser(this.loginData).subscribe(res => {

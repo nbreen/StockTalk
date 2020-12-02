@@ -45,6 +45,12 @@ export class ProfileSettingsComponent implements OnInit {
     this.router.navigate(["/delete-user/"]);
   }
 
+  makeAdmin() {
+    localStorage.setItem("admin_" + this.globals.currentUsername, "true");
+    alert("User: " + this.globals.currentUsername + " is now an admin");
+
+  }
+
 
   submitChanges() {
 
