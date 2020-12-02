@@ -6,6 +6,8 @@
      <h2>{{ title }}</h2>
      <h2 *ngIf="!topics">Please wait a moment.</h2>
 
+     <h2 *ngIf="topics">Page {{ pageNumber }} of {{ maxPage }}</h2>
+
      <button id="buttons" class=mybutton mat-raised-button color="primary" (click)="sortAZ()">Sort by Topic Name</button>
      <button id="buttons" class=mybutton mat-raised-button color="primary" (click)="sortCount()">Sort by Post Count</button>
     
@@ -15,13 +17,17 @@
           <th>Topic Name</th>
           <th>Post Count</th>
         </tr>
-        <tr *ngFor="let topic of topics.slice(currentTopic, currentTopic + 100)">
+        <tr *ngFor="let topic of topics.slice(currentTopic, currentTopic + postsPerPage)">
               
               <a id="text" routerLink="/topic/{{topic.TopicName}}">{{topic.TopicName}}</a>
               <td>{{topic.NumberOfPosts}}</td>
              
       </table>
-        <button id="buttons" class=mybutton mat-raised-button color="primary" (click)="prev()">← Prev 100</button>
-        <button id="buttons" class=mybutton mat-raised-button color="primary" (click)="next()">Next 100 →</button>
+        <br>
+        <button *ngIf="pageNumber != 1" id="buttons" class=mybutton mat-raised-button color="primary" (click)="prev()">← Prev 100</button>
+        <button *ngIf="pageNumber != maxPage" id="buttons" class=mybutton mat-raised-button color="primary" (click)="next()">Next 100 →</button>
+        <br>
+        <input type="number" id="page" name="page" placeholder="1 - {{maxPage}}">
+        <button id="buttons" class=mybutton mat-raised-button color="primary" (click)="jump(value)">Jump</button>
       </div>
   </mat-card>
