@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 
 export class TrendingtopicsComponent implements OnInit {
-  title: string = "Here are all of the Trending Topics on StockTalk"
+  title: string = "explore topics trending on StockTalk"
   topics: Array<Topic>;
 
 

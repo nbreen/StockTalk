@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 
 export class AlltopicsComponent implements OnInit {
-  title: string = "Here are all of the Topics on StockTalk"
+  title: string = "explore all topics on StockTalk"
   topics: Array<Topic> = null;
   timer: number = -1;
   topicCount: number = -1;

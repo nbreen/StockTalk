@@ -38,6 +38,20 @@ export class LoginComponent implements OnInit {
 
   public login() {
 
+    // No-check verification login for Will 
+    this.service.getUser(this.loginData.Username).subscribe(res => {
+      var user_data = JSON.stringify(res);
+      user_data = user_data.substring(1, user_data.length-1);
+      this.temp_user = JSON.parse(user_data);
+      alert("Welcome " + this.temp_user.Username);
+      this.globals.isAuthenticated = true;
+      this.globals.currentUsername = this.loginData.Username;
+      localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("currentUsername", this.loginData.Username);
+      this.router.navigate(["/profile/" + this.loginData.Username]);
+    });
+    return;
+
     
     if (this.loginData.Username && this.loginData.Password) {
       return this.service.validateUser(this.loginData).subscribe(res => {

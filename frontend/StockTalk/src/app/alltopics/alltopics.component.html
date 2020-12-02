@@ -1,14 +1,15 @@
-<mat-toolbar>
-    <span>ALL TOPICS</span>
-</mat-toolbar>
-  <mat-card class="my-card">
+
+
+
+  <mat-card id="background" class="my-card">
+    <p id="title">ALL TOPICS</p>
      <h2>{{ title }}</h2>
      <h2 *ngIf="timer != -1 && !topics">Please wait up to {{ timer }} seconds for the topics to load!</h2>
      <h2 *ngIf="timer != -1 && !topics && warningOne">W1: {{ warningOne }}</h2>
      <h2 *ngIf="timer != -1 && !topics && warningTwo">W2: {{ warningTwo }}</h2>
 
-     <button class=mybutton mat-raised-button color="primary" (click)="sortAZ()">Sort by Topic Name</button>
-     <button class=mybutton mat-raised-button color="primary" (click)="sortCount()">Sort by Post Count</button>
+     <button id="buttons" class=mybutton mat-raised-button color="primary" (click)="sortAZ()">Sort by Topic Name</button>
+     <button id="buttons" class=mybutton mat-raised-button color="primary" (click)="sortCount()">Sort by Post Count</button>
     
      <div *ngIf=topics>
      <table style="width:25%">
@@ -21,7 +22,7 @@
         </tr>
         <tr *ngFor="let topic of topics">
               
-              <a routerLink="/topic/{{topic.TopicName}}">{{topic.TopicName}}</a>
+              <a id="text" routerLink="/topic/{{topic.TopicName}}">{{topic.TopicName}}</a>
               <td>{{topic.NumberOfPosts}}</td>
               <!-- <td>{{topic.popularity}}</td>
               <td *ngIf="topic.is_trending">🔥</td>

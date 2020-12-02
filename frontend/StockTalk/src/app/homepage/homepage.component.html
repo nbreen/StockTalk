@@ -2,9 +2,9 @@
 <div id="homepage_block">
     <div id="homepage_block_2">
         
-        <h2>posts by users and topics you follow</h2>
+        <h2 id="post_number">posts by users and topics you follow</h2>
     
-        <h2 id=post_number *ngIf="postCount != -1">{{ postCount }} post(s)</h2>
+        <h2 id="post_number" *ngIf="postCount != -1">{{ postCount }} post(s)</h2>
       </div>
     
       <div *ngFor="let Post of Posts">

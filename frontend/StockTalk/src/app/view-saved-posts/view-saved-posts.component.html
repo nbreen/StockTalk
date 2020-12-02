@@ -4,7 +4,8 @@
 
 </div> -->
 
-<h2 *ngIf="postCount != -1">You have saved {{ postCount }} Post(s)</h2>
+<p id="title">saved posts</p>
+<h2 id="text" *ngIf="postCount != -1">you have saved {{ postCount }} post(s)</h2>
 
 <div *ngFor="let Post of Posts">
 
