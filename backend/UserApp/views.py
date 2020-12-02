@@ -99,16 +99,14 @@ def userApi(request,id=0):
     elif request.method=='PUT':
         user_data = JSONParser().parse(request)
         user = Users.objects.get(Username=user_data['Username'])
-        user_serializer = UserSerializer(user, data=user_data) 
-        if user_serializer.is_valid():
-            passwd = user_data['Password']
-            hashed = bcrypt.hashpw(passwd, salt)
-            user_data['Password'] = str(hashed)
-            user_serializer = UserSerializer(data=user_data)
-            if user_serializer.is_valid():
-                user_serializer.save()
-                return JsonResponse("User added successfully", safe=False)
-        return JsonResponse("Failed to update user", safe=False)
+
+        passwd = user_data['Password']
+        passwd = bytes(passwd, 'utf-8')
+        hashed = bcrypt.hashpw(passwd, salt)
+        # user_data['Password'] = str(hashed)
+        user.Password = str(hashed)
+        user.save()
+        return JsonResponse("User updated successfully", safe=False)
 
     elif request.method=='DELETE':
         user=Users.objects.get(UserID=id)

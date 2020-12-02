@@ -56,14 +56,25 @@ export class ProfileSettingsComponent implements OnInit {
       this.bio_change = true;
     }
 
+    let realPasswordDB = this.user.Password
     if (this.password_change) {
-      if (this.current_password != this.user.Password) {
-        alert("Password is incorrect.");
-        this.new_password = "";
-        this.current_password = "";
-        this.new_bio = "";
-        return;
-      }
+      // Authentication
+      this.backend.getAll<String>("/hashPassword/" + this.current_password).subscribe(data => {
+        this.current_password = String(data);
+  
+        console.log("Entered Password" + this.current_password);
+        console.log("Current Password" + realPasswordDB);
+        
+        if (this.current_password != realPasswordDB) {
+          alert("Password is incorrect.");
+          this.new_password = "";
+          this.current_password = "";
+          this.new_bio = "";
+          return;
+        }
+
+      })
+
     }
 
     if (this.new_bio.length > 256 && this.new_bio != "") {
@@ -84,6 +95,8 @@ export class ProfileSettingsComponent implements OnInit {
     }
 
     if (this.password_change) {
+      this.user.Password = this.new_password;
+      console.log(this.new_password)
       this.backend.updateUser(JSON.stringify(this.user)).subscribe(res => {
         if (res.toString() != "User updated successfully") {
           alert("Something went wrong, please check your input again.");
