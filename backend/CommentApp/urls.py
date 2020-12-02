@@ -18,4 +18,5 @@ from django.db import connection
 
 urlpatterns=[
     url(r'^getComments/.*$', views.getComments),
+    url(r'^addComment/$', views.commentApi)
 ]
