@@ -38,7 +38,7 @@
 
   <!-- <div> Upvotes: {{ Post.Upvotes }} <br> Downvotes: {{ Post.Downvotes }}</div> -->
     <div> Votes: {{ this.totalVotes }}</div>
-  <a style="font-size:10px; color:black" routerLink="/post/{{Post.PostId}}">Visit Post</a>
+  <a *ngIf="!isSinglePost" style="font-size:10px; color:black" routerLink="/post/{{Post.PostId}}">Click here to view and write comments</a>
 </div>
 
 

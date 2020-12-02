@@ -19,6 +19,8 @@ export class PostComponent implements OnInit {
   upvoted: Boolean;
   downvoted: Boolean;
   totalVotes: number;
+  currPath: String = window.location.pathname;
+  isSinglePost: Boolean;
 
   post_pic: Boolean;
 
@@ -117,6 +119,14 @@ export class PostComponent implements OnInit {
       this.saved = false;
     });
   }
+
+  checkIfSinglePost() {
+    const regex = "\/post\/[0-9]*";
+    let res = this.currPath.match(regex);
+    if (res) {
+      this.isSinglePost = true;
+    }
+  }
   
   constructor(private route: ActivatedRoute,
     private backend : CrudService,
@@ -128,6 +138,8 @@ export class PostComponent implements OnInit {
 
    ngOnInit() {
     // Check if User has saved post
+    this.checkIfSinglePost();
+
     this.checksavedpost();
 
     // Check if User has voted on post, if so is it a downvote or upvote?
