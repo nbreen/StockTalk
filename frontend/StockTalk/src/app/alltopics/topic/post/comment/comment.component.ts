@@ -3,7 +3,7 @@ import { CrudService } from 'src/app/crud.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 import { stringify } from 'querystring';
-import { runInThisContext } from 'vm';
+//import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-comment',
