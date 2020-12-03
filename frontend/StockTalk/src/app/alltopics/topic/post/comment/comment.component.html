@@ -1,5 +1,8 @@
 <div class="bubble">
     <a style="font-size:20px; color:blue" routerLink="/profile/{{ Comment.Username }}">@{{ Comment.Username }}</a>
+    <div>
+        <img *ngIf="this.isVerified" id="verified_check" [src]=this.verifiedPath height="25px;" width="25px;">
+    </div>
     <h2>{{ Comment.CommentDate | date:'short' }}</h2>
     <p>{{ Comment.Comment }}</p>
 </div>
