@@ -92,12 +92,12 @@ def getFollowingPostId(Method):
     print(Username)
     query = f'''SELECT * FROM
         (SELECT PostId FROM PostsApp_posts p
-        JOIN (SELECT * FROM UserFollowsUser WHERE DoingFollowing = "saung") s
+        JOIN (SELECT * FROM UserFollowsUser WHERE DoingFollowing = '{Username}') s
         ON p.Username = s.BeingFollowed
         UNION
         SELECT PostId
         FROM PostsApp_posts p
-        JOIN (SELECT * FROM UserFollowsTopic WHERE Username = "saung") t
+        JOIN (SELECT * FROM UserFollowsTopic WHERE Username = '{Username}') t
         ON p.TopicName = t.TopicName) T1 ORDER BY PostId DESC;'''
     cursor = connection.cursor()
     cursor.execute(query)
